@@ -1,0 +1,29 @@
+<div class="page-container">
+  <!-- Loading State with Progress Indicator -->
+  <div *ngIf="loading" class="loading-overlay">
+    <div class="loading-content">
+      <mat-icon class="loading-icon">contacts</mat-icon>
+      <h2 class="loading-title">{{ loadingMessage }}</h2>
+
+      <!-- Progress Bar -->
+      <mat-progress-bar
+        mode="determinate"
+        [value]="loadingProgress"
+        class="loading-progress-bar">
+      </mat-progress-bar>
+
+      <p class="loading-percentage">{{ loadingProgress }}%</p>
+
+      <!-- Reassurance message -->
+      <p class="loading-hint">Please wait while we retrieve your contact information...</p>
+    </div>
+  </div>
+
+  <!-- Table Content (shown when not loading) -->
+  <app-base-table
+    *ngIf="!loading"
+    [config]="tableConfig"
+    [data]="contacts"
+    [loading]="loading"
+  ></app-base-table>
+</div>

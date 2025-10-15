@@ -1,0 +1,40 @@
+// M3 Enhanced Empty State (Issue #2 Solution)
+.empty-state-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-2xl);
+  text-align: center;
+  min-height: 300px;
+}
+
+.empty-state-icon {
+  margin-bottom: var(--spacing-lg);
+
+  mat-icon {
+    font-size: 64px;
+    width: 64px;
+    height: 64px;
+    // M3 color applied via inline style in template (var(--md-sys-color-on-surface-variant))
+  }
+}
+
+.empty-state-title {
+  margin-bottom: var(--spacing-sm);
+  // M3 typography and color applied via classes in template
+}
+
+.empty-state-message {
+  max-width: 400px;
+  line-height: 1.6;
+  margin-bottom: var(--spacing-xl);
+  // M3 typography and color applied via classes in template
+}
+
+.empty-state-action {
+  // M3 button styles applied via class in template (md3-button-filled)
+  mat-icon {
+    margin-right: var(--spacing-xs);
+  }
+}

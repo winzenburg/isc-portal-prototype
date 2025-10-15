@@ -1,0 +1,445 @@
+<div class="base-table-container" [ngClass]="config?.tableClass || ''">
+  <!-- ====================================================================== -->
+  <!-- HEADER SECTION -->
+  <!-- ====================================================================== -->
+  <div class="table-header" *ngIf="config?.title || config?.actions?.header">
+    <h2 class="table-title" *ngIf="config?.title">{{ config.title }}</h2>
+
+    <!-- Header Actions (Add, Refresh, etc.) -->
+    <div class="header-actions" *ngIf="config?.actions?.header">
+      <button
+        *ngFor="let action of config.actions!.header"
+        mat-button
+        [color]="action.color || 'primary'"
+        (click)="action.callback()"
+        [matTooltip]="action.tooltip || ''"
+      >
+        <mat-icon *ngIf="action.icon">{{ action.icon }}</mat-icon>
+        {{ action.label }}
+      </button>
+    </div>
+  </div>
+
+  <!-- ====================================================================== -->
+  <!-- FILTERS & SEARCH SECTION -->
+  <!-- ====================================================================== -->
+  <div class="table-filters" *ngIf="config">
+    <!-- Quick Filter Pills (Component 3) -->
+    <div class="quick-filters" *ngIf="config.filtering?.quickFilters?.enabled">
+      <span class="filter-label" *ngIf="config.filtering!.quickFilters!.label">
+        {{ config.filtering!.quickFilters!.label }}
+      </span>
+      <div class="filter-pills">
+        <button
+          *ngFor="let option of config.filtering!.quickFilters!.options"
+          mat-button
+          class="filter-pill"
+          [class.active]="quickFilterValue === option.value"
+          (click)="onQuickFilterChange(option.value)"
+        >
+          <mat-icon *ngIf="quickFilterValue === option.value">check</mat-icon>
+          {{ option.label }}
+          <span class="count-badge" *ngIf="option.count !== undefined">{{ option.count }}</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Search Bar, Export Button & Advanced Filters Button -->
+    <div class="search-and-filters" *ngIf="config.filtering?.searchEnabled || config.filtering?.advancedFilters?.enabled || isExportEnabled()">
+      <!-- Global Search -->
+      <mat-form-field appearance="outline" class="search-field" *ngIf="config.filtering?.searchEnabled">
+        <mat-label>{{ config.filtering!.searchPlaceholder || 'Search all columns...' }}</mat-label>
+        <input
+          matInput
+          [(ngModel)]="searchTerm"
+          (ngModelChange)="onSearchChange($event)"
+          type="text"
+        />
+        <mat-icon matPrefix>search</mat-icon>
+        <button
+          mat-icon-button
+          matSuffix
+          *ngIf="searchTerm"
+          (click)="searchTerm = ''; onSearchChange('')"
+          aria-label="Clear search"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <!-- Export CSV Button -->
+      <button
+        mat-icon-button
+        color="primary"
+        class="export-button"
+        *ngIf="isExportEnabled()"
+        (click)="exportToCsv()"
+        [attr.aria-label]="getExportButtonLabel()"
+        [matTooltip]="getExportButtonLabel()"
+      >
+        <mat-icon>{{ getExportIcon() }}</mat-icon>
+      </button>
+
+      <!-- Advanced Filters Button -->
+      <button
+        mat-stroked-button
+        color="primary"
+        class="filters-button"
+        *ngIf="config.filtering?.advancedFilters?.enabled"
+        (click)="toggleFilterDrawer()"
+      >
+        <mat-icon>filter_list</mat-icon>
+        Filters
+        <span class="filter-count-badge" *ngIf="getActiveFilterCount() > 0">{{ getActiveFilterCount() }}</span>
+      </button>
+    </div>
+
+    <!-- Active Filter Chips (removable) -->
+    <div class="active-filters" *ngIf="activeFilters.length > 0">
+      <span class="active-filters-label">Active Filters:</span>
+      <mat-chip-list>
+        <mat-chip
+          *ngFor="let filter of activeFilters"
+          [removable]="true"
+          (removed)="removeFilter(filter)"
+          color="primary"
+        >
+          {{ filter.label }}
+          <mat-icon matChipRemove>cancel</mat-icon>
+        </mat-chip>
+      </mat-chip-list>
+      <button mat-button color="primary" (click)="clearAllFilters()">Clear All</button>
+    </div>
+  </div>
+
+  <!-- ====================================================================== -->
+  <!-- BULK ACTIONS BAR (shown when rows are selected) -->
+  <!-- ====================================================================== -->
+  <div class="bulk-actions-bar" *ngIf="selection && selection.selected.length > 0 && config?.actions?.bulk">
+    <span class="selection-count">{{ selection.selected.length }} selected</span>
+    <div class="bulk-actions">
+      <button
+        *ngFor="let action of config.actions!.bulk"
+        mat-button
+        [color]="action.color || 'primary'"
+        (click)="onBulkAction(action)"
+        [matTooltip]="action.tooltip || ''"
+      >
+        <mat-icon *ngIf="action.icon">{{ action.icon }}</mat-icon>
+        {{ action.label }}
+      </button>
+    </div>
+    <button mat-button (click)="selection.clear()">Clear Selection</button>
+  </div>
+
+  <!-- ====================================================================== -->
+  <!-- TABLE SECTION -->
+  <!-- ====================================================================== -->
+  <div class="table-wrapper" *ngIf="config">
+    <!-- Loading State -->
+    <div class="loading-state" *ngIf="loading">
+      <mat-spinner diameter="50"></mat-spinner>
+      <p>{{ config.loadingMessage || 'Loading data...' }}</p>
+    </div>
+
+    <!-- Error State -->
+    <app-error-state
+      *ngIf="shouldShowErrorState()"
+      [title]="config.errorState?.title || 'Error Loading Data'"
+      [message]="config.errorState?.message || error || 'An error occurred'"
+    ></app-error-state>
+
+    <!-- Access Denied State -->
+    <app-access-denied
+      *ngIf="shouldShowAccessDeniedState()"
+      [errorCode]="accessErrorCode!"
+      [errorMessage]="accessErrorMessage || 'You do not have access to this feature.'"
+      [errorDetails]="accessErrorDetails"
+      [showUpgrade]="showUpgradeButton"
+      [featureName]="featureName"
+    ></app-access-denied>
+
+    <!-- Empty State (no data at all) -->
+    <app-empty-state
+      *ngIf="shouldShowEmptyState()"
+      [type]="config.emptyState?.type || 'no-data'"
+    ></app-empty-state>
+
+    <!-- No Results State (filters active but no matches) -->
+    <div class="no-results-state" *ngIf="shouldShowNoResultsState()">
+      <mat-icon>search_off</mat-icon>
+      <h3>{{ config.emptyState?.noResultsTitle || 'No results found' }}</h3>
+      <p>{{ config.emptyState?.noResultsMessage || 'Try adjusting your filters or search term' }}</p>
+      <button mat-raised-button color="primary" (click)="clearAllFilters()">Clear Filters</button>
+    </div>
+
+    <!-- Material Table -->
+    <table
+      mat-table
+      [dataSource]="dataSource"
+      matSort
+      (matSortChange)="onSortChange($event)"
+      [class.compact]="config.compact"
+      [class.zebra-striping]="config.zebraStriping"
+      [class.hover-highlight]="config.hoverHighlight"
+      *ngIf="!loading && !error && hasData()"
+    >
+      <!-- ================================================================ -->
+      <!-- SELECTION COLUMN (checkbox) -->
+      <!-- ================================================================ -->
+      <ng-container matColumnDef="select">
+        <th mat-header-cell *matHeaderCellDef class="selection-column">
+          <mat-checkbox
+            *ngIf="config.selection?.selectAllEnabled"
+            (change)="$event ? masterToggle() : null"
+            [checked]="selection.hasValue() && isAllSelected()"
+            [indeterminate]="selection.hasValue() && !isAllSelected()"
+            [attr.aria-label]="'Select all rows'"
+          >
+          </mat-checkbox>
+        </th>
+        <td mat-cell *matCellDef="let row" class="selection-column">
+          <mat-checkbox
+            (click)="$event.stopPropagation()"
+            (change)="$event ? toggleRow(row) : null"
+            [checked]="selection.isSelected(row)"
+            [attr.aria-label]="'Select row'"
+          >
+          </mat-checkbox>
+        </td>
+      </ng-container>
+
+      <!-- ================================================================ -->
+      <!-- DATA COLUMNS -->
+      <!-- ================================================================ -->
+      <ng-container *ngFor="let column of config.columns" [matColumnDef]="column.field">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          [mat-sort-header]="column.sortable ? column.field : ''"
+          [disabled]="!column.sortable"
+          [ngClass]="column.headerClass || ''"
+          [ngStyle]="{'width': column.width, 'min-width': column.minWidth}"
+          [matTooltip]="column.tooltip || ''"
+        >
+          {{ column.header }}
+        </th>
+        <td
+          mat-cell
+          *matCellDef="let row; let rowIndex = index"
+          [ngClass]="column.cellClass || ''"
+          [ngStyle]="{'text-align': column.align || 'left'}"
+          [class.wrap-text]="column.wrap"
+        >
+          <!-- Status Column (with icon + color + text) -->
+          <app-status-indicator
+            *ngIf="column.type === 'status' && getStatusConfig(getColumnValue(row, column))"
+            [config]="getStatusConfig(getColumnValue(row, column))"
+          ></app-status-indicator>
+
+          <!-- Editable Column (inline editing) -->
+          <ng-container *ngIf="config.editing?.enabled && isRowEditing(rowIndex)">
+            <mat-form-field appearance="outline" class="inline-edit-field">
+              <input matInput [(ngModel)]="row[column.field]" />
+            </mat-form-field>
+          </ng-container>
+
+          <!-- Custom Column: Link Cell -->
+          <ng-container *ngIf="column.type === 'custom' && column.cellClass === 'link-cell' && (!config.editing?.enabled || !isRowEditing(rowIndex))">
+            <a class="table-link" href="#">{{ getColumnValue(row, column) }}</a>
+          </ng-container>
+
+          <!-- Custom Column: Editable Cell -->
+          <ng-container *ngIf="column.type === 'custom' && column.cellClass === 'editable-cell' && (!config.editing?.enabled || !isRowEditing(rowIndex))">
+            <span class="editable-value">
+              {{ getColumnValue(row, column) }}
+              <mat-icon class="edit-icon">edit</mat-icon>
+            </span>
+          </ng-container>
+
+          <!-- Custom Column: Site Alias Cell (blue link + edit icon) -->
+          <ng-container *ngIf="column.type === 'custom' && column.cellClass === 'site-alias-cell'">
+            <span class="site-alias-value">
+              <a class="site-alias-link" href="#">{{ getColumnValue(row, column) }}</a>
+              <mat-icon class="edit-icon">edit</mat-icon>
+            </span>
+          </ng-container>
+
+          <!-- Custom Column: Contacts Cell -->
+          <ng-container *ngIf="column.type === 'custom' && column.cellClass === 'contacts-cell'">
+            <button mat-icon-button color="primary" class="contacts-button">
+              <mat-icon>group</mat-icon>
+            </button>
+          </ng-container>
+
+          <!-- Custom Column: Circuits Health Cell -->
+          <ng-container *ngIf="column.type === 'custom' && column.cellClass === 'circuits-health-cell'">
+            <div class="circuits-health">
+              <ng-container *ngFor="let circuit of getColumnValue(row, column)">
+                <span class="circuit-indicator" [class]="'circuit-' + circuit.status"></span>
+              </ng-container>
+              <span *ngIf="!getColumnValue(row, column) || getColumnValue(row, column).length === 0" class="no-circuits">–</span>
+            </div>
+          </ng-container>
+
+          <!-- Regular Column -->
+          <ng-container *ngIf="column.type !== 'status' && column.type !== 'custom' && (!config.editing?.enabled || !isRowEditing(rowIndex))">
+            {{ getColumnValue(row, column) }}
+          </ng-container>
+        </td>
+      </ng-container>
+
+      <!-- ================================================================ -->
+      <!-- ACTIONS COLUMN -->
+      <!-- ================================================================ -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef class="actions-column">Actions</th>
+        <td mat-cell *matCellDef="let row; let rowIndex = index" class="actions-column">
+          <!-- Edit Mode Actions (Save/Cancel) -->
+          <ng-container *ngIf="config.editing?.enabled && isRowEditing(rowIndex)">
+            <button
+              mat-icon-button
+              color="primary"
+              (click)="saveEditRow(row, rowIndex)"
+              matTooltip="Save changes"
+            >
+              <mat-icon>check</mat-icon>
+            </button>
+            <button
+              mat-icon-button
+              color="warn"
+              (click)="cancelEditRow(row, rowIndex)"
+              matTooltip="Cancel editing"
+            >
+              <mat-icon>close</mat-icon>
+            </button>
+          </ng-container>
+
+          <!-- Normal Row Actions -->
+          <ng-container *ngIf="!config.editing?.enabled || !isRowEditing(rowIndex)">
+            <!-- Edit Button (for editable tables) -->
+            <button
+              *ngIf="config.editing?.enabled"
+              mat-button
+              color="primary"
+              (click)="startEditRow(row, rowIndex)"
+            >
+              <mat-icon>edit</mat-icon>
+              Edit
+            </button>
+
+            <!-- Custom Row Actions -->
+            <ng-container *ngIf="config.actions?.row && (config.actions?.row?.length ?? 0) > 0">
+              <!-- If only 1 action, show it as a button -->
+              <ng-container *ngIf="(config.actions?.row?.length ?? 0) === 1">
+                <ng-container *ngFor="let action of config.actions?.row">
+                  <button
+                    *ngIf="isActionVisible(action, row)"
+                    mat-button
+                    [color]="action.color || 'primary'"
+                    [disabled]="action.disabled && action.disabled(row)"
+                    (click)="onRowAction(action, row, rowIndex)"
+                    [matTooltip]="action.tooltip || ''"
+                  >
+                    <mat-icon *ngIf="action.icon">{{ action.icon }}</mat-icon>
+                    {{ action.label }}
+                  </button>
+                </ng-container>
+              </ng-container>
+
+              <!-- If multiple actions, show kebab menu -->
+              <ng-container *ngIf="(config.actions?.row?.length ?? 0) > 1">
+                <button
+                  mat-icon-button
+                  [matMenuTriggerFor]="rowActionsMenu"
+                  aria-label="Row actions"
+                  [matTooltip]="'Actions'"
+                >
+                  <mat-icon>more_vert</mat-icon>
+                </button>
+
+                <mat-menu #rowActionsMenu="matMenu">
+                  <ng-container *ngFor="let action of config.actions?.row">
+                    <button
+                      *ngIf="isActionVisible(action, row)"
+                      mat-menu-item
+                      [disabled]="action.disabled && action.disabled(row)"
+                      (click)="onRowAction(action, row, rowIndex)"
+                    >
+                      <mat-icon *ngIf="action.icon" [color]="action.color || ''">{{ action.icon }}</mat-icon>
+                      <span [style.color]="action.color === 'warn' ? '#f44336' : ''">{{ action.label }}</span>
+                    </button>
+                  </ng-container>
+                </mat-menu>
+              </ng-container>
+            </ng-container>
+          </ng-container>
+        </td>
+      </ng-container>
+
+      <!-- ================================================================ -->
+      <!-- TABLE STRUCTURE -->
+      <!-- ================================================================ -->
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr
+        mat-row
+        *matRowDef="let row; columns: displayedColumns;"
+        [class.selected-row]="selection && selection.isSelected(row)"
+      ></tr>
+    </table>
+  </div>
+
+  <!-- ====================================================================== -->
+  <!-- PAGINATION -->
+  <!-- ====================================================================== -->
+  <!-- ====================================================================== -->
+  <!-- CIRCUIT HEALTH KEY (for tables with circuit health column) -->
+  <!-- ====================================================================== -->
+  <div class="circuit-health-key" *ngIf="hasCircuitHealthColumn() && hasData()">
+    <span class="key-label">Key:</span>
+    <div class="key-items">
+      <div class="key-item">
+        <span class="circuit-indicator circuit-up"></span>
+        <span class="key-text">Up</span>
+      </div>
+      <div class="key-item">
+        <span class="circuit-indicator circuit-down"></span>
+        <span class="key-text">Down</span>
+      </div>
+      <div class="key-item">
+        <span class="circuit-indicator circuit-pending"></span>
+        <span class="key-text">Pending Disconnect</span>
+      </div>
+      <div class="key-item">
+        <span class="circuit-indicator circuit-disabled"></span>
+        <span class="key-text">Monitoring Disabled</span>
+      </div>
+      <div class="key-item">
+        <span class="circuit-indicator circuit-no-data"></span>
+        <span class="key-text">No Data</span>
+      </div>
+    </div>
+  </div>
+
+  <mat-paginator
+    *ngIf="config?.pagination?.enabled && hasData()"
+    [length]="dataSource?.data?.length || 0"
+    [pageSize]="config.pagination!.pageSize"
+    [pageSizeOptions]="config.pagination!.pageSizeOptions"
+    [showFirstLastButtons]="config.pagination!.showFirstLastButtons || true"
+    (page)="onPageChange($event)"
+    [attr.aria-label]="'Table pagination'"
+  >
+  </mat-paginator>
+
+  <!-- ====================================================================== -->
+  <!-- FILTER DRAWER (Component 2) -->
+  <!-- ====================================================================== -->
+  <app-filter-drawer
+    *ngIf="config?.filtering?.advancedFilters?.enabled"
+    [open]="filterDrawerOpen"
+    [filterGroups]="config.filtering!.advancedFilters!.groups"
+    (close)="filterDrawerOpen = false"
+    (apply)="onAdvancedFiltersApply($event)"
+  ></app-filter-drawer>
+</div>

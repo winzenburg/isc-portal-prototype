@@ -1,0 +1,52 @@
+<div class="sync-status-indicator" [class.compact]="compact">
+  <!-- Status Icon and Label -->
+  <div class="status-section">
+    <mat-icon
+      class="status-icon"
+      [class.spinning]="isSyncing"
+      [style.color]="statusColor">
+      {{ statusIcon }}
+    </mat-icon>
+
+    <div class="status-details">
+      <span class="status-label" [style.color]="statusColor">
+        {{ statusLabel }}
+      </span>
+
+      <span class="last-updated" *ngIf="syncInfo.lastUpdated && !compact">
+        {{ timeSinceUpdate }}
+      </span>
+    </div>
+  </div>
+
+  <!-- Record Count -->
+  <div class="record-count" *ngIf="showRecordCount && syncInfo.recordCount !== undefined">
+    <mat-icon class="count-icon">inventory_2</mat-icon>
+    <span>{{ syncInfo.recordCount }} {{ syncInfo.recordCount === 1 ? 'record' : 'records' }}</span>
+  </div>
+
+  <!-- Error Message -->
+  <div class="error-message" *ngIf="syncInfo.status === 'error' && syncInfo.errorMessage">
+    <mat-icon class="error-icon">error_outline</mat-icon>
+    <span>{{ syncInfo.errorMessage }}</span>
+  </div>
+
+  <!-- Refresh Button -->
+  <button
+    mat-icon-button
+    *ngIf="showRefreshButton"
+    [disabled]="isSyncing"
+    (click)="onRefresh()"
+    [matTooltip]="isSyncing ? 'Syncing...' : 'Refresh ' + dataSourceName"
+    class="refresh-button">
+    <mat-icon [class.spinning]="isSyncing">refresh</mat-icon>
+  </button>
+
+  <!-- Detailed Timestamp Tooltip -->
+  <mat-icon
+    class="info-icon"
+    *ngIf="syncInfo.lastUpdated"
+    [matTooltip]="'Last updated: ' + formattedLastUpdated">
+    info_outline
+  </mat-icon>
+</div>

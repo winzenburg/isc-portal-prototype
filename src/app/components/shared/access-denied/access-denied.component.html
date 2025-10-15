@@ -1,0 +1,94 @@
+<div class="access-denied-container" role="alert" aria-live="polite">
+  <div class="access-denied-content">
+    <!-- Icon -->
+    <div class="access-denied-icon">
+      <mat-icon [style.color]="getIconColor()" aria-hidden="true">
+        {{ getIcon() }}
+      </mat-icon>
+    </div>
+
+    <!-- Title -->
+    <h2 class="access-denied-title">
+      {{ getTitle() }}
+    </h2>
+
+    <!-- Error Code Badge -->
+    <div class="error-code-badge" *ngIf="errorCode">
+      <span class="error-code-label">Error Code:</span>
+      <span class="error-code-value">{{ errorCode }}</span>
+    </div>
+
+    <!-- Error Message -->
+    <p class="access-denied-message">
+      {{ errorMessage }}
+    </p>
+
+    <!-- Additional Details -->
+    <p class="access-denied-details" *ngIf="errorDetails">
+      {{ errorDetails }}
+    </p>
+
+    <!-- Help Text -->
+    <div class="access-denied-help">
+      <mat-icon class="help-icon" aria-hidden="true">info</mat-icon>
+      <span>{{ getHelpText() }}</span>
+    </div>
+
+    <!-- Contact Message -->
+    <div class="contact-message" *ngIf="contactMessage">
+      <mat-icon aria-hidden="true">phone</mat-icon>
+      <span>{{ contactMessage }}</span>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="access-denied-actions">
+      <!-- Upgrade Button -->
+      <button
+        *ngIf="showUpgrade"
+        mat-raised-button
+        color="primary"
+        (click)="onUpgrade()"
+        aria-label="Upgrade your plan to access this feature">
+        <mat-icon>upgrade</mat-icon>
+        <span>Upgrade Plan</span>
+      </button>
+
+      <!-- Request Access Button -->
+      <button
+        *ngIf="showRequestAccess"
+        mat-raised-button
+        color="accent"
+        (click)="onRequestAccess()"
+        aria-label="Request access from your administrator">
+        <mat-icon>mail</mat-icon>
+        <span>Request Access</span>
+      </button>
+
+      <!-- Contact Support Button -->
+      <button
+        *ngIf="showContactSupport"
+        mat-stroked-button
+        (click)="onContactSupport()"
+        aria-label="Contact support for assistance">
+        <mat-icon>support</mat-icon>
+        <span>Contact Support</span>
+      </button>
+
+      <!-- Copy Details Button -->
+      <button
+        mat-button
+        (click)="copyErrorDetails()"
+        aria-label="Copy error details to clipboard">
+        <mat-icon>content_copy</mat-icon>
+        <span>Copy Details</span>
+      </button>
+    </div>
+
+    <!-- Feature Info Box (if feature name provided) -->
+    <div class="feature-info" *ngIf="featureName">
+      <div class="feature-info-content">
+        <strong>Feature:</strong> {{ featureName }}
+      </div>
+    </div>
+  </div>
+</div>

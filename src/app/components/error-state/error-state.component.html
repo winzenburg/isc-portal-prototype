@@ -1,0 +1,78 @@
+<!-- Issue #1 Solution: Structured Error Messages with Recovery (M3 Enhanced) -->
+<div class="error-container md3-card-elevated"
+     role="alert"
+     aria-live="assertive"
+     aria-labelledby="error-title"
+     aria-describedby="error-message">
+  <div class="error-icon">
+    <mat-icon [style.color]="'var(--md-sys-color-error)'"
+              aria-hidden="true">
+      error_outline
+    </mat-icon>
+  </div>
+
+  <div class="error-content">
+    <h2 id="error-title" class="error-title md3-headline-small"
+        [style.color]="'var(--md-sys-color-on-surface)'">
+      {{ errorMessage }}
+    </h2>
+
+    <div class="error-meta">
+      <span class="error-code md3-label-medium" *ngIf="errorCode">
+        <strong>Error Code:</strong> {{ errorCode }}
+      </span>
+      <span class="error-timestamp md3-label-medium"
+            [style.color]="'var(--md-sys-color-on-surface-variant)'">
+        <mat-icon aria-hidden="true">schedule</mat-icon>
+        {{ timestamp | date:'short' }}
+      </span>
+    </div>
+
+    <p id="error-message" class="error-details md3-body-medium" *ngIf="errorDetails">
+      {{ errorDetails }}
+    </p>
+
+    <div class="error-actions">
+      <button
+        *ngIf="showRetry"
+        mat-raised-button
+        (click)="onRetry()"
+        class="md3-button-filled"
+        aria-label="Retry the failed operation">
+        <mat-icon>refresh</mat-icon>
+        <span class="md3-label-large">Try Again</span>
+      </button>
+
+      <button
+        *ngIf="showContact"
+        mat-stroked-button
+        (click)="onContactSupport()"
+        class="md3-button-outlined"
+        aria-label="Contact support for assistance">
+        <mat-icon>support</mat-icon>
+        <span class="md3-label-large">Contact Support</span>
+      </button>
+
+      <button
+        mat-button
+        (click)="copyErrorDetails()"
+        class="md3-button-text"
+        aria-label="Copy error details to clipboard">
+        <mat-icon>content_copy</mat-icon>
+        <span class="md3-label-large">Copy Details</span>
+      </button>
+    </div>
+
+    <div class="error-help md3-surface-info"
+         role="note">
+      <mat-icon [style.color]="'var(--md-sys-color-info)'"
+                aria-hidden="true">
+        info
+      </mat-icon>
+      <span class="md3-body-medium"
+            [style.color]="'var(--md-sys-color-on-info-container)'">
+        If this problem persists, please contact support with the error code above.
+      </span>
+    </div>
+  </div>
+</div>

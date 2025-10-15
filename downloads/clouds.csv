@@ -1,0 +1,45 @@
+﻿Cloud ID,Cloud Alias,Cloud Type,Status,Created Date,Connections
+MS079631,SD-WAN primary,ITP VPRN / Private / Layer 3 Cloud,Installed,2022-12-14,56
+MS304031,WARP9 DEMO,ITP VPLS Layer 2 Cloud,Installed,2016-09-25,23
+MS304029,WARP9 DEMO,ITP VPLS Transparent Layer 2 Cloud,Installed,2016-09-25,22
+MS304028,WARP9 DEMO,ITP VPRN / Private / Layer 3 Cloud,Installed,2016-09-25,22
+MS304030,WARP9 DEMO,ITP Public IP Cloud,Installed,2016-09-25,21
+MS100168,alias 4,ITP VPRN / Private / Layer 3 Cloud,Installed,2012-04-04,16
+MS1027518,MMM VPN,ITP VPRN / Private / Layer 3 Cloud,Installed,2021-07-14,8
+MS084704,Private IP Cloud,ITP VPRN / Private / Layer 3 Cloud,Installed,2011-12-19,8
+MS410252,Voice VPRN,ITP VPRN / Private / Layer 3 Cloud,Installed,2017-11-07,7
+MS255842,NFVDemo,ITP VPRN / Private / Layer 3 Cloud,Installed,2016-02-23,5
+MS123456,Production VPN,ITP VPRN / Private / Layer 3 Cloud,Installed,2020-05-12,45
+MS234567,Dev Environment,ITP VPLS Layer 2 Cloud,Installed,2019-08-22,18
+MS345678,QA Network,ITP VPRN / Private / Layer 3 Cloud,Installed,2021-03-15,12
+MS456789,Stage Cloud,ITP VPLS Layer 2 Cloud,Installed,2020-11-08,9
+MS567890,Backup Gateway,ITP Public IP Cloud,Installed,2018-06-30,6
+MS678901,DR Site Primary,ITP VPRN / Private / Layer 3 Cloud,Installed,2022-01-20,34
+MS789012,DR Site Secondary,ITP VPRN / Private / Layer 3 Cloud,Installed,2022-01-20,28
+MS890123,Branch Office VPN,ITP VPLS Transparent Layer 2 Cloud,Installed,2019-12-05,19
+MS901234,HQ Network,ITP VPRN / Private / Layer 3 Cloud,Installed,2018-03-14,52
+MS012345,Regional Hub,ITP VPRN / Private / Layer 3 Cloud,Installed,2020-09-18,41
+MS112233,Internet Breakout,ITP Public IP Cloud,Installed,2021-06-11,15
+MS223344,MPLS Core,ITP VPLS Layer 2 Cloud,Installed,2017-04-25,38
+MS334455,WAN Aggregation,ITP VPRN / Private / Layer 3 Cloud,Installed,2019-02-08,29
+MS445566,Cloud Connect,ITP VPLS Transparent Layer 2 Cloud,Installed,2021-11-30,14
+MS556677,DMZ Network,ITP VPRN / Private / Layer 3 Cloud,Installed,2018-07-19,26
+MS667788,Guest WiFi,ITP Public IP Cloud,Installed,2020-04-02,8
+MS778899,IoT Network,ITP VPLS Layer 2 Cloud,Installed,2022-08-16,31
+MS889900,Secure Access,ITP VPRN / Private / Layer 3 Cloud,Installed,2021-01-24,47
+MS990011,Partner Network,ITP VPLS Transparent Layer 2 Cloud,Installed,2019-05-13,11
+MS001122,Legacy VPN,ITP VPRN / Private / Layer 3 Cloud,Installed,2015-10-07,24
+MS102030,Campus Core,ITP VPLS Layer 2 Cloud,Installed,2020-02-28,36
+MS203040,Data Center,ITP VPRN / Private / Layer 3 Cloud,Installed,2018-11-12,63
+MS304050,Remote Access,ITP VPRN / Private / Layer 3 Cloud,Installed,2021-09-05,39
+MS405060,Video Conferencing,ITP VPLS Layer 2 Cloud,Installed,2019-07-22,17
+MS506070,VoIP Gateway,ITP VPRN / Private / Layer 3 Cloud,Installed,2020-12-01,27
+MS607080,Cloud Storage,ITP VPLS Transparent Layer 2 Cloud,Installed,2022-03-18,13
+MS708090,SaaS Connect,ITP Public IP Cloud,Installed,2021-05-29,10
+MS809001,Multi-Cloud Hub,ITP VPRN / Private / Layer 3 Cloud,Installed,2022-07-04,51
+MS910203,Edge Computing,ITP VPLS Layer 2 Cloud,Installed,2021-10-14,20
+MS021304,AI Workloads,ITP VPRN / Private / Layer 3 Cloud,Installed,2022-11-22,33
+MS132405,Analytics Platform,ITP VPLS Layer 2 Cloud,Installed,2020-08-07,25
+MS243506,Test Lab,ITP VPRN / Private / Layer 3 Cloud,Installed,2019-04-16,7
+MS354607,Training Environment,ITP VPLS Transparent Layer 2 Cloud,Installed,2021-02-09,4
+MS465708,Demo Cloud,ITP VPRN / Private / Layer 3 Cloud,Installed,2020-06-23,6

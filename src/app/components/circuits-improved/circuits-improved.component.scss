@@ -1,0 +1,432 @@
+.circuits-improved-container {
+  padding: 24px;
+  max-width: 1400px;
+  margin: 0 auto;
+  background-color: var(--md-sys-color-surface-variant, #F5F5F5);
+  min-height: 100vh;
+}
+
+// ============================================================================
+// PAGE HEADER
+// ============================================================================
+
+.page-header {
+  margin-bottom: 24px;
+
+  h1 {
+    margin: 0 0 8px 0;
+    color: var(--md-sys-color-on-surface, #1D1B20);
+  }
+
+  .improvements-badge {
+    margin: 0;
+    color: var(--md-sys-color-on-surface-variant, #49454F);
+    font-weight: 500;
+  }
+}
+
+// ============================================================================
+// TABLE CARD
+// ============================================================================
+
+.table-card {
+  margin-bottom: 24px;
+
+  .table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 16px 24px;
+    border-bottom: 1px solid var(--md-sys-color-outline-variant, #E0E0E0);
+
+    mat-card-title {
+      margin: 0;
+      flex: 1;
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+
+      button {
+        mat-icon {
+          margin-right: 4px;
+        }
+      }
+    }
+  }
+
+  mat-card-content {
+    padding: 0;
+  }
+}
+
+// ============================================================================
+// FILTER SECTION
+// ============================================================================
+
+.filter-section {
+  padding: 16px 24px;
+  background-color: var(--md-sys-color-surface, #FFFFFF);
+  border-bottom: 1px solid var(--md-sys-color-outline-variant, #E0E0E0);
+}
+
+.filter-pills {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+
+  .filter-label {
+    font-weight: 500;
+    color: var(--md-sys-color-on-surface, #1D1B20);
+    white-space: nowrap;
+  }
+
+  mat-chip-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  mat-chip {
+    cursor: pointer;
+    background-color: transparent;
+    border: 1px solid var(--md-sys-color-outline, #79747E);
+    color: var(--md-sys-color-on-surface, #1D1B20);
+    font-weight: 400;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background-color: var(--md-sys-color-surface-variant, #E8E8E8);
+    }
+
+    &.active,
+    &.mat-chip-selected {
+      background-color: var(--md-sys-color-primary, #0D62FF);
+      color: var(--md-sys-color-on-primary, #FFFFFF);
+      border-color: var(--md-sys-color-primary, #0D62FF);
+
+      .chip-count {
+        color: var(--md-sys-color-on-primary, #FFFFFF);
+      }
+    }
+
+    .chip-count {
+      margin-left: 6px;
+      font-size: 12px;
+      opacity: 0.8;
+    }
+
+    mat-icon {
+      font-size: 16px;
+      width: 16px;
+      height: 16px;
+      margin-right: 4px;
+    }
+  }
+}
+
+.filter-controls {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+
+  .search-field {
+    flex: 1;
+    max-width: 400px;
+  }
+
+  button {
+    position: relative;
+
+    &.active {
+      background-color: var(--md-sys-color-primary-container, #E8F0FE);
+      color: var(--md-sys-color-on-primary-container, #001A41);
+    }
+
+    .filter-badge {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background-color: var(--md-sys-color-error, #DA1E28);
+      color: white;
+      border-radius: 10px;
+      padding: 2px 6px;
+      font-size: 11px;
+      font-weight: 600;
+      min-width: 18px;
+      text-align: center;
+    }
+  }
+}
+
+// Active Filter Chips (Removable)
+.active-filters {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 24px;
+  background-color: var(--md-sys-color-surface-container-lowest, #F9F9F9);
+  border-bottom: 1px solid var(--md-sys-color-outline-variant, #E0E0E0);
+  flex-wrap: wrap;
+
+  .filter-label {
+    font-weight: 500;
+    color: var(--md-sys-color-on-surface, #1D1B20);
+    white-space: nowrap;
+  }
+
+  mat-chip-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .active-filter-chip {
+    background-color: var(--md-sys-color-primary, #0D62FF);
+    color: var(--md-sys-color-on-primary, #FFFFFF);
+    font-weight: 400;
+
+    mat-icon {
+      color: var(--md-sys-color-on-primary, #FFFFFF);
+      opacity: 0.8;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+// ============================================================================
+// BULK ACTIONS BAR
+// ============================================================================
+
+.bulk-actions-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 24px;
+  background-color: var(--md-sys-color-primary-container, #E8F0FE);
+  border-bottom: 1px solid var(--md-sys-color-outline-variant, #E0E0E0);
+  animation: slideDown 0.3s ease;
+
+  .selection-count {
+    color: var(--md-sys-color-on-primary-container, #001A41);
+    font-weight: 600;
+  }
+
+  .bulk-actions {
+    display: flex;
+    gap: 8px;
+
+    button {
+      mat-icon {
+        margin-right: 4px;
+      }
+    }
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// ============================================================================
+// TABLE
+// ============================================================================
+
+.table-container {
+  overflow-x: auto;
+  padding: 0 24px 24px 24px;
+}
+
+.circuits-table {
+  width: 100%;
+  background-color: var(--md-sys-color-surface, #FFFFFF);
+
+  th {
+    background-color: var(--md-sys-color-surface-container, #F5F5F5);
+    color: var(--md-sys-color-on-surface-variant, #49454F);
+    font-weight: 600;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 12px 16px;
+    border-bottom: 2px solid var(--md-sys-color-outline-variant, #E0E0E0);
+  }
+
+  td {
+    padding: 12px 16px;
+    color: var(--md-sys-color-on-surface, #1D1B20);
+    font-size: 14px;
+    border-bottom: 1px solid var(--md-sys-color-outline-variant, #E0E0E0);
+  }
+
+  tr:hover {
+    background-color: var(--md-sys-color-surface-variant, #F5F5F5);
+  }
+
+  .selected-row {
+    background-color: var(--md-sys-color-primary-container, #E8F0FE) !important;
+  }
+
+  .actions-cell {
+    white-space: nowrap;
+
+    button {
+      margin-right: 4px;
+
+      mat-icon {
+        margin-right: 4px;
+        font-size: 18px;
+        width: 18px;
+        height: 18px;
+      }
+    }
+  }
+
+  // Empty State
+  .empty-state {
+    padding: 48px 24px;
+    text-align: center;
+    border: none;
+
+    .empty-state-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+
+      .empty-icon {
+        font-size: 64px;
+        width: 64px;
+        height: 64px;
+        color: var(--md-sys-color-outline, #79747E);
+        opacity: 0.5;
+      }
+
+      p {
+        margin: 0;
+        color: var(--md-sys-color-on-surface-variant, #49454F);
+
+        &:first-of-type {
+          color: var(--md-sys-color-on-surface, #1D1B20);
+        }
+      }
+
+      button {
+        margin-top: 8px;
+
+        mat-icon {
+          margin-right: 4px;
+        }
+      }
+    }
+  }
+}
+
+// ============================================================================
+// IMPROVEMENTS CARD
+// ============================================================================
+
+.improvements-card {
+  background-color: var(--md-sys-color-surface-container-highest, #E8E8E8);
+
+  .improvements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    padding: 16px 0;
+
+    .improvement-item {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+
+      .improvement-icon {
+        font-size: 32px;
+        width: 32px;
+        height: 32px;
+        margin-bottom: 4px;
+      }
+
+      h3 {
+        margin: 0;
+        color: var(--md-sys-color-on-surface, #1D1B20);
+      }
+
+      p {
+        margin: 0;
+        color: var(--md-sys-color-on-surface-variant, #49454F);
+        line-height: 1.5;
+      }
+    }
+  }
+}
+
+// ============================================================================
+// RESPONSIVE
+// ============================================================================
+
+@media (max-width: 768px) {
+  .circuits-improved-container {
+    padding: 16px;
+  }
+
+  .table-header {
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 12px;
+
+    .header-actions {
+      width: 100%;
+      justify-content: flex-end;
+    }
+  }
+
+  .filter-pills {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .filter-controls {
+    flex-direction: column;
+    align-items: stretch;
+
+    .search-field {
+      max-width: 100%;
+    }
+  }
+
+  .bulk-actions-bar {
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+
+    .bulk-actions {
+      width: 100%;
+      flex-direction: column;
+
+      button {
+        width: 100%;
+      }
+    }
+  }
+
+  .improvements-grid {
+    grid-template-columns: 1fr;
+  }
+}

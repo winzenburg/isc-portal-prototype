@@ -1,0 +1,76 @@
+<div class="command-palette-backdrop" *ngIf="isOpen" (click)="onBackdropClick()">
+  <div class="command-palette-dialog" (click)="onDialogClick($event)">
+    <!-- Search Input -->
+    <div class="command-search">
+      <mat-icon class="search-icon">search</mat-icon>
+      <input
+        #searchInput
+        type="text"
+        class="search-input"
+        placeholder="Type a command or search..."
+        [(ngModel)]="searchQuery"
+        (input)="onSearchChange()"
+        autocomplete="off"
+      />
+      <div class="search-hint">
+        <kbd class="kbd">Esc</kbd> to close
+      </div>
+    </div>
+
+    <!-- Commands List -->
+    <div class="commands-container">
+      <ng-container *ngIf="filteredCommands.length > 0">
+        <div *ngFor="let group of getCommandsByGroup()" class="command-group">
+          <div class="group-label">{{ getGroupLabel(group.key) }}</div>
+
+          <div class="command-items">
+            <div
+              *ngFor="let command of group.value"
+              class="command-item"
+              [class.selected]="getCommandIndex(command) === selectedIndex"
+              (click)="execute(command)"
+              (mouseenter)="selectCommand(getCommandIndex(command))">
+
+              <mat-icon class="command-icon">{{ command.icon }}</mat-icon>
+
+              <div class="command-content">
+                <div class="command-label">{{ command.label }}</div>
+                <div class="command-description" *ngIf="command.description">
+                  {{ command.description }}
+                </div>
+              </div>
+
+              <div class="command-shortcut" *ngIf="command.shortcut">
+                <kbd class="kbd">{{ command.shortcut }}</kbd>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+
+      <!-- No Results -->
+      <div class="no-results" *ngIf="filteredCommands.length === 0 && searchQuery">
+        <mat-icon>search_off</mat-icon>
+        <p>No commands found for "{{ searchQuery }}"</p>
+        <span class="hint">Try a different search term</span>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="command-footer">
+      <div class="footer-hint">
+        <kbd class="kbd">�</kbd>
+        <kbd class="kbd">�</kbd>
+        to navigate
+      </div>
+      <div class="footer-hint">
+        <kbd class="kbd">Enter</kbd>
+        to select
+      </div>
+      <div class="footer-hint">
+        <kbd class="kbd">Esc</kbd>
+        to close
+      </div>
+    </div>
+  </div>
+</div>

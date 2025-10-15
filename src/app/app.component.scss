@@ -1,0 +1,21 @@
+.app-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidenav-container {
+  flex: 1;
+  height: calc(100vh - 64px);
+}
+
+.app-sidenav {
+  width: 240px;
+  background-color: white;
+  border-right: 1px solid var(--color-neutral-200);
+}
+
+.main-content {
+  background-color: var(--color-neutral-50);
+  // No padding here - let individual page components handle their own layout
+}

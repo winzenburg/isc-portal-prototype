@@ -1,0 +1,69 @@
+<!-- M3 Enhanced Header with Brand Colors -->
+<mat-toolbar class="app-header"
+             [style.color]="'var(--md-sys-color-on-primary)'">
+  <div class="header-left">
+    <button mat-icon-button
+            class="menu-button"
+            aria-label="Open navigation menu"
+            [style.color]="'var(--md-sys-color-on-primary)'">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span class="app-title md3-title-large"
+          [style.color]="'var(--md-sys-color-on-primary)'">
+      ISC Portal
+    </span>
+  </div>
+
+  <div class="header-center">
+    <!-- Global Search - Issue #3 Solution with M3 Styling -->
+    <mat-form-field class="global-search" appearance="outline">
+      <mat-icon matPrefix
+                class="search-icon"
+                [style.color]="'var(--md-sys-color-on-primary)'">
+        search
+      </mat-icon>
+      <input matInput
+             placeholder="Search sites, circuits, contacts... (Cmd+K)"
+             (keydown.meta.k)="onSearch()"
+             (keydown.control.k)="onSearch()"
+             [style.color]="'var(--md-sys-color-on-primary)'"
+             aria-label="Global search">
+    </mat-form-field>
+  </div>
+
+  <div class="header-right">
+    <!-- Customer Switcher - Issue #8 Solution with M3 Styling -->
+    <mat-form-field class="customer-selector" appearance="outline">
+      <mat-select [value]="currentCustomer"
+                  (selectionChange)="onCustomerChange($event.value)"
+                  [style.color]="'var(--md-sys-color-on-primary)'"
+                  aria-label="Select customer account">
+        <mat-option *ngFor="let customer of customers" [value]="customer">
+          {{ customer }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button mat-icon-button
+            [matMenuTriggerFor]="menu"
+            aria-label="User menu"
+            [style.color]="'var(--md-sys-color-on-primary)'">
+      <mat-icon>account_circle</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>
+        <mat-icon>settings</mat-icon>
+        <span class="md3-label-large">Settings</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>help</mat-icon>
+        <span class="md3-label-large">Help</span>
+      </button>
+      <mat-divider></mat-divider>
+      <button mat-menu-item>
+        <mat-icon>logout</mat-icon>
+        <span class="md3-label-large">Logout</span>
+      </button>
+    </mat-menu>
+  </div>
+</mat-toolbar>

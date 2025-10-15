@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ISC Portal - Access Control & Error States Demo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #f5f5f5;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #1976d2 0%, #1565c0 100%);
+      color: white;
+      padding: 48px 32px;
+      border-radius: 8px;
+      margin-bottom: 32px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .header h1 {
+      font-size: 32px;
+      font-weight: 500;
+      margin-bottom: 12px;
+    }
+
+    .header p {
+      font-size: 16px;
+      opacity: 0.9;
+      max-width: 800px;
+    }
+
+    .intro {
+      background: white;
+      padding: 24px;
+      border-radius: 8px;
+      margin-bottom: 32px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .intro h2 {
+      color: #212121;
+      font-size: 20px;
+      margin-bottom: 12px;
+    }
+
+    .intro p {
+      color: #616161;
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+
+    .demo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+
+    .demo-card {
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      transition: all 0.3s;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    .demo-card:hover {
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      transform: translateY(-2px);
+    }
+
+    .demo-card-header {
+      padding: 20px;
+      background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .demo-card-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .icon-error {
+      background-color: #ffebee;
+    }
+
+    .icon-warning {
+      background-color: #fff3e0;
+    }
+
+    .icon-info {
+      background-color: #e3f2fd;
+    }
+
+    .icon-empty {
+      background-color: #f5f5f5;
+    }
+
+    .demo-card-icon .material-icons {
+      font-size: 32px;
+    }
+
+    .icon-error .material-icons {
+      color: #d32f2f;
+    }
+
+    .icon-warning .material-icons {
+      color: #f57c00;
+    }
+
+    .icon-info .material-icons {
+      color: #1976d2;
+    }
+
+    .icon-empty .material-icons {
+      color: #9e9e9e;
+    }
+
+    .demo-card-title {
+      flex: 1;
+    }
+
+    .demo-card-title h3 {
+      font-size: 18px;
+      color: #212121;
+      margin-bottom: 4px;
+    }
+
+    .demo-card-title .subtitle {
+      font-size: 13px;
+      color: #757575;
+    }
+
+    .demo-card-body {
+      padding: 20px;
+    }
+
+    .demo-card-body p {
+      color: #616161;
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    .demo-meta {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .meta-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 12px;
+      background-color: #f5f5f5;
+      border-radius: 12px;
+      font-size: 12px;
+      color: #616161;
+    }
+
+    .meta-badge .material-icons {
+      font-size: 16px;
+    }
+
+    .view-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #1976d2;
+      font-weight: 500;
+      margin-top: 12px;
+    }
+
+    .view-link .material-icons {
+      font-size: 20px;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 24px;
+      color: #9e9e9e;
+      font-size: 14px;
+    }
+
+    .footer a {
+      color: #1976d2;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>ISC Portal - Access Control & Error States</h1>
+      <p>Comprehensive demonstration of access control, empty states, and error handling in the ISC Portal prototype.</p>
+    </div>
+
+    <div class="intro">
+      <h2>About These Demos</h2>
+      <p>These pages demonstrate the various states and error conditions users may encounter in the ISC Portal. Each state provides clear messaging, helpful guidance, and actionable next steps to ensure users understand what's happening and how to proceed.</p>
+      <p><strong>Key Features:</strong> Standardized error codes, role-based access control, adaptive UI based on error type, and actionable buttons for common user tasks.</p>
+    </div>
+
+    <div class="demo-grid">
+      <!-- Access Denied - No License -->
+      <a href="./01-access-denied-no-license.html" class="demo-card" target="_blank">
+        <div class="demo-card-header">
+          <div class="demo-card-icon icon-warning">
+            <span class="material-icons">workspace_premium</span>
+          </div>
+          <div class="demo-card-title">
+            <h3>Access Denied - No License</h3>
+            <div class="subtitle">Feature Not In Plan</div>
+          </div>
+        </div>
+        <div class="demo-card-body">
+          <p>Shows when a user tries to access a feature that's not included in their subscription plan. Includes an "Upgrade Plan" button.</p>
+          <div class="demo-meta">
+            <span class="meta-badge">
+              <span class="material-icons">code</span>
+              LIC_002
+            </span>
+            <span class="meta-badge">
+              <span class="material-icons">category</span>
+              Access Control
+            </span>
+          </div>
+          <div class="view-link">
+            <span>View Demo</span>
+            <span class="material-icons">arrow_forward</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Access Denied - Insufficient Role -->
+      <a href="./02-access-denied-insufficient-role.html" class="demo-card" target="_blank">
+        <div class="demo-card-header">
+          <div class="demo-card-icon icon-info">
+            <span class="material-icons">lock</span>
+          </div>
+          <div class="demo-card-title">
+            <h3>Access Denied - Insufficient Role</h3>
+            <div class="subtitle">Permission Error</div>
+          </div>
+        </div>
+        <div class="demo-card-body">
+          <p>Displayed when a user's role doesn't have permission to access a feature. Includes a "Request Access" button to contact administrators.</p>
+          <div class="demo-meta">
+            <span class="meta-badge">
+              <span class="material-icons">code</span>
+              FEAT_006
+            </span>
+            <span class="meta-badge">
+              <span class="material-icons">category</span>
+              Access Control
+            </span>
+          </div>
+          <div class="view-link">
+            <span>View Demo</span>
+            <span class="material-icons">arrow_forward</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Empty State - No Data -->
+      <a href="./03-empty-state-no-data.html" class="demo-card" target="_blank">
+        <div class="demo-card-header">
+          <div class="demo-card-icon icon-empty">
+            <span class="material-icons">inbox</span>
+          </div>
+          <div class="demo-card-title">
+            <h3>Empty State - No Data</h3>
+            <div class="subtitle">No Records Available</div>
+          </div>
+        </div>
+        <div class="demo-card-body">
+          <p>Shown when no data exists for a feature (no invoices, no circuits, etc.). Helps users understand there's nothing to display yet.</p>
+          <div class="demo-meta">
+            <span class="meta-badge">
+              <span class="material-icons">category</span>
+              Empty State
+            </span>
+          </div>
+          <div class="view-link">
+            <span>View Demo</span>
+            <span class="material-icons">arrow_forward</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- No Results - Filtered -->
+      <a href="./04-no-results-filtered.html" class="demo-card" target="_blank">
+        <div class="demo-card-header">
+          <div class="demo-card-icon icon-info">
+            <span class="material-icons">search_off</span>
+          </div>
+          <div class="demo-card-title">
+            <h3>No Results - Filtered State</h3>
+            <div class="subtitle">Search/Filter Returned Nothing</div>
+          </div>
+        </div>
+        <div class="demo-card-body">
+          <p>Appears when filters or search criteria return no matching results. Distinct from "No Data" state - data exists but doesn't match filters.</p>
+          <div class="demo-meta">
+            <span class="meta-badge">
+              <span class="material-icons">category</span>
+              Empty State
+            </span>
+          </div>
+          <div class="view-link">
+            <span>View Demo</span>
+            <span class="material-icons">arrow_forward</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- API Error State -->
+      <a href="./05-api-error-state.html" class="demo-card" target="_blank">
+        <div class="demo-card-header">
+          <div class="demo-card-icon icon-error">
+            <span class="material-icons">error_outline</span>
+          </div>
+          <div class="demo-card-title">
+            <h3>API Error State</h3>
+            <div class="subtitle">Server/Technical Error</div>
+          </div>
+        </div>
+        <div class="demo-card-body">
+          <p>Displayed when API calls fail due to server errors, network issues, or technical problems. Includes error details and retry functionality.</p>
+          <div class="demo-meta">
+            <span class="meta-badge">
+              <span class="material-icons">code</span>
+              API_500
+            </span>
+            <span class="meta-badge">
+              <span class="material-icons">category</span>
+              Error State
+            </span>
+          </div>
+          <div class="view-link">
+            <span>View Demo</span>
+            <span class="material-icons">arrow_forward</span>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div class="footer">
+      <p>ISC Portal Prototype - Access Control & Error States Demo | <a href="../ACCESS_CONTROL_GUIDE.md">View Documentation</a></p>
+    </div>
+  </div>
+</body>
+</html>

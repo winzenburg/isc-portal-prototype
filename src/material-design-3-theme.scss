@@ -1,0 +1,484 @@
+/**
+ * Material Design 3 Theme for ISC Portal
+ *
+ * This implements Material Design 3 principles while working with Angular Material 13.
+ * Key M3 concepts:
+ * - Dynamic color system with tonal palettes
+ * - Emphasis on surfaces and containers
+ * - Refined elevation system
+ * - Enhanced state layers
+ * - Improved accessibility
+ */
+
+@use '@angular/material' as mat;
+
+// Material Design 3 Color System
+// Based on ISC Portal colors but organized using M3 tonal palette structure
+
+// Primary Tonal Palette (Interactive Blue)
+$md3-primary-palette: (
+  0: #000000,
+  10: #001A41,
+  20: #002F65,
+  25: #003A7A,
+  30: #00458F,
+  35: #0051A5,
+  40: #0D62FF,      // Primary (ISC Interactive Blue)
+  50: #4B8FFF,
+  60: #78A9FF,
+  70: #A0C3FF,
+  80: #C8DDFF,
+  90: #E3EFFF,
+  95: #F2F7FF,
+  98: #F9FBFF,
+  99: #FCFDFF,
+  100: #FFFFFF,
+);
+
+// Secondary Tonal Palette (Neutral)
+$md3-secondary-palette: (
+  0: #000000,
+  10: #191C1E,
+  20: #2E3133,
+  25: #393C3F,
+  30: #44474A,
+  35: #505356,
+  40: #5C5F62,
+  50: #757779,
+  60: #8E9193,
+  70: #A9ABAD,
+  80: #C4C6C8,
+  90: #E0E2E4,
+  95: #EFF0F2,
+  98: #F8F9FB,
+  99: #FBFCFE,
+  100: #FFFFFF,
+);
+
+// Tertiary Tonal Palette (Accent for data visualization)
+$md3-tertiary-palette: (
+  0: #000000,
+  10: #001F29,
+  20: #00344A,
+  25: #003F5B,
+  30: #004B6D,
+  35: #00577F,
+  40: #006491,
+  50: #007EB7,
+  60: #4D9ACF,
+  70: #70B5E9,
+  80: #97D0FF,
+  90: #CEE7FF,
+  95: #E8F3FF,
+  98: #F5FAFF,
+  99: #FBFCFF,
+  100: #FFFFFF,
+);
+
+// Error Tonal Palette
+$md3-error-palette: (
+  0: #000000,
+  10: #410002,
+  20: #690005,
+  25: #7E0007,
+  30: #93000A,
+  35: #A80710,
+  40: #BA1A1A,
+  50: #D32F2F,      // Error (ISC Error Red)
+  60: #E57373,
+  70: #EF9A9A,
+  80: #FFCDD2,
+  90: #FFEBEE,
+  95: #FFF5F5,
+  98: #FFF8F7,
+  99: #FFFBFF,
+  100: #FFFFFF,
+);
+
+// Neutral Tonal Palette (for surfaces)
+$md3-neutral-palette: (
+  0: #000000,
+  10: #1A1C1E,
+  20: #2F3133,
+  25: #3A3C3F,
+  30: #46474A,
+  35: #515356,
+  40: #5D5F62,
+  50: #76777A,
+  60: #8F9193,
+  70: #AAABAD,
+  80: #C5C6C9,
+  90: #E1E2E5,
+  95: #EFF1F3,
+  98: #F8F9FB,
+  99: #FBFCFE,
+  100: #FFFFFF,
+);
+
+// Neutral Variant Tonal Palette (for outlines and dividers)
+$md3-neutral-variant-palette: (
+  0: #000000,
+  10: #191C20,
+  20: #2E3135,
+  25: #393C40,
+  30: #44474C,
+  35: #505357,
+  40: #5C5F63,
+  50: #74777C,
+  60: #8E9095,
+  70: #A9AAAF,
+  80: #C4C6CA,
+  90: #E0E2E6,
+  95: #EEF0F4,
+  98: #F7F9FD,
+  99: #FAFCFF,
+  100: #FFFFFF,
+);
+
+// Material Design 3 Semantic Color Roles
+:root {
+  // --- PRIMARY COLORS ---
+  --md-sys-color-primary: #0D62FF;                    // Primary buttons, FABs, active states (Interactive Blue - RGB 13,98,255)
+  --md-sys-color-on-primary: #FFFFFF;                 // Text/icons on primary
+  --md-sys-color-primary-container: #E3EFFF;          // Tinted containers
+  --md-sys-color-on-primary-container: #001A41;       // Text on primary container
+
+  // --- SECONDARY COLORS ---
+  --md-sys-color-secondary: #5C5F62;                  // Less prominent buttons
+  --md-sys-color-on-secondary: #FFFFFF;               // Text on secondary
+  --md-sys-color-secondary-container: #E0E2E4;        // Secondary tinted containers
+  --md-sys-color-on-secondary-container: #191C1E;     // Text on secondary container
+
+  // --- TERTIARY COLORS ---
+  --md-sys-color-tertiary: #006491;                   // Accent elements
+  --md-sys-color-on-tertiary: #FFFFFF;                // Text on tertiary
+  --md-sys-color-tertiary-container: #CEE7FF;         // Tertiary containers
+  --md-sys-color-on-tertiary-container: #001F29;      // Text on tertiary container
+
+  // --- ERROR COLORS ---
+  --md-sys-color-error: #D32F2F;                      // Error states
+  --md-sys-color-on-error: #FFFFFF;                   // Text on error
+  --md-sys-color-error-container: #FFEBEE;            // Error containers
+  --md-sys-color-on-error-container: #410002;         // Text on error container
+
+  // --- SUCCESS COLORS (Custom for ISC) ---
+  --md-sys-color-success: #1E8500;                    // Success states
+  --md-sys-color-on-success: #FFFFFF;                 // Text on success
+  --md-sys-color-success-container: #E8F5E9;          // Success containers
+  --md-sys-color-on-success-container: #0A3300;       // Text on success container
+
+  // --- WARNING COLORS (Custom for ISC) ---
+  --md-sys-color-warning: #E65100;                    // Warning states
+  --md-sys-color-on-warning: #FFFFFF;                 // Text on warning
+  --md-sys-color-warning-container: #FFF3E0;          // Warning containers
+  --md-sys-color-on-warning-container: #2E1500;       // Text on warning container
+
+  // --- INFO COLORS (Custom for ISC) ---
+  --md-sys-color-info: #00838F;                       // Info states
+  --md-sys-color-on-info: #FFFFFF;                    // Text on info
+  --md-sys-color-info-container: #E0F7FA;             // Info containers
+  --md-sys-color-on-info-container: #001F24;          // Text on info container
+
+  // --- SURFACE COLORS ---
+  --md-sys-color-surface: #FBFCFE;                    // Main surface (cards, sheets)
+  --md-sys-color-on-surface: #191C1E;                 // Text on surface
+  --md-sys-color-surface-variant: #E0E2E6;            // Variant surface (less emphasis)
+  --md-sys-color-on-surface-variant: #44474C;         // Text on surface variant
+
+  // --- SURFACE TINTS (M3 Elevation System) ---
+  --md-sys-color-surface-tint: #0D62FF;               // Primary color for elevation tint
+  --md-sys-color-surface-dim: #D9DBDD;                // Dimmed surface
+  --md-sys-color-surface-bright: #FBFCFE;             // Bright surface
+
+  // --- SURFACE CONTAINERS (M3 Emphasis Levels) ---
+  --md-sys-color-surface-container-lowest: #FFFFFF;   // Lowest elevation
+  --md-sys-color-surface-container-low: #F3F4F6;      // Low elevation
+  --md-sys-color-surface-container: #EEF0F2;          // Default elevation
+  --md-sys-color-surface-container-high: #E8EAEC;     // High elevation
+  --md-sys-color-surface-container-highest: #E3E5E7;  // Highest elevation
+
+  // --- OUTLINE COLORS ---
+  --md-sys-color-outline: #74777C;                    // Standard outline
+  --md-sys-color-outline-variant: #C4C6CA;            // Lighter outline
+
+  // --- INVERSE COLORS ---
+  --md-sys-color-inverse-surface: #2E3133;            // Dark surface for contrast
+  --md-sys-color-inverse-on-surface: #EFF0F2;         // Text on inverse surface
+  --md-sys-color-inverse-primary: #78A9FF;            // Primary in dark mode
+
+  // --- SHADOW COLORS ---
+  --md-sys-color-shadow: #000000;                     // Drop shadow
+  --md-sys-color-scrim: rgba(0, 0, 0, 0.32);          // Overlay scrim
+
+  // --- STATE LAYER OPACITIES (M3 Interaction States) ---
+  --md-sys-state-hover-opacity: 0.08;
+  --md-sys-state-focus-opacity: 0.12;
+  --md-sys-state-pressed-opacity: 0.12;
+  --md-sys-state-dragged-opacity: 0.16;
+
+  // --- ELEVATION (M3 Shadow System) ---
+  --md-sys-elevation-level0: none;
+  --md-sys-elevation-level1: 0px 1px 2px 0px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+  --md-sys-elevation-level2: 0px 1px 2px 0px rgba(0, 0, 0, 0.3), 0px 2px 6px 2px rgba(0, 0, 0, 0.15);
+  --md-sys-elevation-level3: 0px 1px 3px 0px rgba(0, 0, 0, 0.3), 0px 4px 8px 3px rgba(0, 0, 0, 0.15);
+  --md-sys-elevation-level4: 0px 2px 3px 0px rgba(0, 0, 0, 0.3), 0px 6px 10px 4px rgba(0, 0, 0, 0.15);
+  --md-sys-elevation-level5: 0px 4px 4px 0px rgba(0, 0, 0, 0.3), 0px 8px 12px 6px rgba(0, 0, 0, 0.15);
+
+  // --- TYPOGRAPHY SCALE (M3 Type Scale) ---
+  --md-sys-typescale-display-large-font-size: 57px;
+  --md-sys-typescale-display-large-line-height: 64px;
+  --md-sys-typescale-display-large-weight: 400;
+
+  --md-sys-typescale-display-medium-font-size: 45px;
+  --md-sys-typescale-display-medium-line-height: 52px;
+  --md-sys-typescale-display-medium-weight: 400;
+
+  --md-sys-typescale-display-small-font-size: 36px;
+  --md-sys-typescale-display-small-line-height: 44px;
+  --md-sys-typescale-display-small-weight: 400;
+
+  --md-sys-typescale-headline-large-font-size: 32px;
+  --md-sys-typescale-headline-large-line-height: 40px;
+  --md-sys-typescale-headline-large-weight: 400;
+
+  --md-sys-typescale-headline-medium-font-size: 28px;
+  --md-sys-typescale-headline-medium-line-height: 36px;
+  --md-sys-typescale-headline-medium-weight: 400;
+
+  --md-sys-typescale-headline-small-font-size: 24px;
+  --md-sys-typescale-headline-small-line-height: 32px;
+  --md-sys-typescale-headline-small-weight: 400;
+
+  --md-sys-typescale-title-large-font-size: 22px;
+  --md-sys-typescale-title-large-line-height: 28px;
+  --md-sys-typescale-title-large-weight: 400;
+
+  --md-sys-typescale-title-medium-font-size: 16px;
+  --md-sys-typescale-title-medium-line-height: 24px;
+  --md-sys-typescale-title-medium-weight: 500;
+
+  --md-sys-typescale-title-small-font-size: 14px;
+  --md-sys-typescale-title-small-line-height: 20px;
+  --md-sys-typescale-title-small-weight: 500;
+
+  --md-sys-typescale-label-large-font-size: 14px;
+  --md-sys-typescale-label-large-line-height: 20px;
+  --md-sys-typescale-label-large-weight: 500;
+
+  --md-sys-typescale-label-medium-font-size: 12px;
+  --md-sys-typescale-label-medium-line-height: 16px;
+  --md-sys-typescale-label-medium-weight: 500;
+
+  --md-sys-typescale-label-small-font-size: 11px;
+  --md-sys-typescale-label-small-line-height: 16px;
+  --md-sys-typescale-label-small-weight: 500;
+
+  --md-sys-typescale-body-large-font-size: 16px;
+  --md-sys-typescale-body-large-line-height: 24px;
+  --md-sys-typescale-body-large-weight: 400;
+
+  --md-sys-typescale-body-medium-font-size: 14px;
+  --md-sys-typescale-body-medium-line-height: 20px;
+  --md-sys-typescale-body-medium-weight: 400;
+
+  --md-sys-typescale-body-small-font-size: 12px;
+  --md-sys-typescale-body-small-line-height: 16px;
+  --md-sys-typescale-body-small-weight: 400;
+
+  // --- SHAPE SYSTEM (M3 Border Radius) ---
+  --md-sys-shape-corner-none: 0px;
+  --md-sys-shape-corner-extra-small: 4px;
+  --md-sys-shape-corner-small: 8px;
+  --md-sys-shape-corner-medium: 12px;
+  --md-sys-shape-corner-large: 16px;
+  --md-sys-shape-corner-extra-large: 28px;
+  --md-sys-shape-corner-full: 9999px;
+
+  // --- MOTION (M3 Animation Durations) ---
+  --md-sys-motion-duration-short1: 50ms;
+  --md-sys-motion-duration-short2: 100ms;
+  --md-sys-motion-duration-short3: 150ms;
+  --md-sys-motion-duration-short4: 200ms;
+  --md-sys-motion-duration-medium1: 250ms;
+  --md-sys-motion-duration-medium2: 300ms;
+  --md-sys-motion-duration-medium3: 350ms;
+  --md-sys-motion-duration-medium4: 400ms;
+  --md-sys-motion-duration-long1: 450ms;
+  --md-sys-motion-duration-long2: 500ms;
+  --md-sys-motion-duration-long3: 550ms;
+  --md-sys-motion-duration-long4: 600ms;
+
+  // --- MOTION EASING ---
+  --md-sys-motion-easing-standard: cubic-bezier(0.2, 0, 0, 1);
+  --md-sys-motion-easing-emphasized: cubic-bezier(0.2, 0, 0, 1);
+  --md-sys-motion-easing-decelerated: cubic-bezier(0, 0, 0, 1);
+  --md-sys-motion-easing-accelerated: cubic-bezier(0.3, 0, 1, 1);
+  --md-sys-motion-easing-linear: cubic-bezier(0, 0, 1, 1);
+}
+
+// Material Design 3 Component Styles
+// These classes implement M3 patterns using the semantic tokens above
+
+// M3 Button Styles (Filled, Filled Tonal, Outlined, Text)
+.md3-button-filled {
+  background-color: var(--md-sys-color-primary);
+  color: var(--md-sys-color-on-primary);
+  border-radius: var(--md-sys-shape-corner-full);
+  padding: 10px 24px;
+  font-size: var(--md-sys-typescale-label-large-font-size);
+  font-weight: var(--md-sys-typescale-label-large-weight);
+  line-height: var(--md-sys-typescale-label-large-line-height);
+  border: none;
+  cursor: pointer;
+  transition: background-color var(--md-sys-motion-duration-short2) var(--md-sys-motion-easing-standard),
+              box-shadow var(--md-sys-motion-duration-short2) var(--md-sys-motion-easing-standard);
+  box-shadow: var(--md-sys-elevation-level0);
+
+  &:hover {
+    background-color: color-mix(in srgb, var(--md-sys-color-primary) 92%, var(--md-sys-color-on-primary) 8%);
+    box-shadow: var(--md-sys-elevation-level1);
+  }
+
+  &:focus-visible {
+    background-color: color-mix(in srgb, var(--md-sys-color-primary) 88%, var(--md-sys-color-on-primary) 12%);
+    outline: 3px solid var(--md-sys-color-primary);
+    outline-offset: 2px;
+  }
+
+  &:active {
+    background-color: color-mix(in srgb, var(--md-sys-color-primary) 88%, var(--md-sys-color-on-primary) 12%);
+    box-shadow: var(--md-sys-elevation-level0);
+  }
+
+  &:disabled {
+    background-color: color-mix(in srgb, var(--md-sys-color-on-surface) 12%, transparent);
+    color: color-mix(in srgb, var(--md-sys-color-on-surface) 38%, transparent);
+    cursor: not-allowed;
+  }
+}
+
+.md3-button-filled-tonal {
+  background-color: var(--md-sys-color-secondary-container);
+  color: var(--md-sys-color-on-secondary-container);
+  border-radius: var(--md-sys-shape-corner-full);
+  padding: 10px 24px;
+  font-size: var(--md-sys-typescale-label-large-font-size);
+  font-weight: var(--md-sys-typescale-label-large-weight);
+  border: none;
+  cursor: pointer;
+  transition: background-color var(--md-sys-motion-duration-short2) var(--md-sys-motion-easing-standard);
+
+  &:hover {
+    background-color: color-mix(in srgb, var(--md-sys-color-secondary-container) 92%, var(--md-sys-color-on-secondary-container) 8%);
+    box-shadow: var(--md-sys-elevation-level1);
+  }
+
+  &:focus-visible {
+    outline: 3px solid var(--md-sys-color-secondary);
+    outline-offset: 2px;
+  }
+}
+
+.md3-button-outlined {
+  background-color: transparent;
+  color: var(--md-sys-color-primary);
+  border: 1px solid var(--md-sys-color-outline);
+  border-radius: var(--md-sys-shape-corner-full);
+  padding: 10px 24px;
+  font-size: var(--md-sys-typescale-label-large-font-size);
+  font-weight: var(--md-sys-typescale-label-large-weight);
+  cursor: pointer;
+  transition: background-color var(--md-sys-motion-duration-short2) var(--md-sys-motion-easing-standard);
+
+  &:hover {
+    background-color: color-mix(in srgb, var(--md-sys-color-primary) 8%, transparent);
+  }
+
+  &:focus-visible {
+    background-color: color-mix(in srgb, var(--md-sys-color-primary) 12%, transparent);
+    outline: 3px solid var(--md-sys-color-primary);
+    outline-offset: 2px;
+  }
+}
+
+.md3-button-text {
+  background-color: transparent;
+  color: var(--md-sys-color-primary);
+  border: none;
+  border-radius: var(--md-sys-shape-corner-full);
+  padding: 10px 24px;
+  font-size: var(--md-sys-typescale-label-large-font-size);
+  font-weight: var(--md-sys-typescale-label-large-weight);
+  cursor: pointer;
+  transition: background-color var(--md-sys-motion-duration-short2) var(--md-sys-motion-easing-standard);
+
+  &:hover {
+    background-color: color-mix(in srgb, var(--md-sys-color-primary) 8%, transparent);
+  }
+
+  &:focus-visible {
+    background-color: color-mix(in srgb, var(--md-sys-color-primary) 12%, transparent);
+  }
+}
+
+// M3 Card Styles (Elevated, Filled, Outlined)
+.md3-card-elevated {
+  background-color: var(--md-sys-color-surface-container-low);
+  color: var(--md-sys-color-on-surface);
+  border-radius: var(--md-sys-shape-corner-medium);
+  box-shadow: var(--md-sys-elevation-level1);
+  transition: box-shadow var(--md-sys-motion-duration-short2) var(--md-sys-motion-easing-standard);
+
+  &:hover {
+    box-shadow: var(--md-sys-elevation-level2);
+  }
+}
+
+.md3-card-filled {
+  background-color: var(--md-sys-color-surface-container-highest);
+  color: var(--md-sys-color-on-surface);
+  border-radius: var(--md-sys-shape-corner-medium);
+}
+
+.md3-card-outlined {
+  background-color: var(--md-sys-color-surface);
+  color: var(--md-sys-color-on-surface);
+  border: 1px solid var(--md-sys-color-outline-variant);
+  border-radius: var(--md-sys-shape-corner-medium);
+}
+
+// M3 Typography Classes
+.md3-display-large {
+  font-size: var(--md-sys-typescale-display-large-font-size);
+  line-height: var(--md-sys-typescale-display-large-line-height);
+  font-weight: var(--md-sys-typescale-display-large-weight);
+  color: var(--md-sys-color-on-surface);
+}
+
+.md3-headline-medium {
+  font-size: var(--md-sys-typescale-headline-medium-font-size);
+  line-height: var(--md-sys-typescale-headline-medium-line-height);
+  font-weight: var(--md-sys-typescale-headline-medium-weight);
+  color: var(--md-sys-color-on-surface);
+}
+
+.md3-title-large {
+  font-size: var(--md-sys-typescale-title-large-font-size);
+  line-height: var(--md-sys-typescale-title-large-line-height);
+  font-weight: var(--md-sys-typescale-title-large-weight);
+  color: var(--md-sys-color-on-surface);
+}
+
+.md3-body-medium {
+  font-size: var(--md-sys-typescale-body-medium-font-size);
+  line-height: var(--md-sys-typescale-body-medium-line-height);
+  font-weight: var(--md-sys-typescale-body-medium-weight);
+  color: var(--md-sys-color-on-surface);
+}
+
+.md3-label-large {
+  font-size: var(--md-sys-typescale-label-large-font-size);
+  line-height: var(--md-sys-typescale-label-large-line-height);
+  font-weight: var(--md-sys-typescale-label-large-weight);
+  color: var(--md-sys-color-on-surface);
+}

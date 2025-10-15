@@ -1,0 +1,10 @@
+<!-- M3 Status Badge with Container Colors (WCAG: Icon + Text, not color alone) -->
+<span [class]="badgeClass"
+      class="md3-label-medium"
+      [attr.role]="'status'"
+      [attr.aria-label]="label">
+  <mat-icon *ngIf="iconName" class="badge-icon" aria-hidden="true">
+    {{ iconName }}
+  </mat-icon>
+  {{ label }}
+</span>

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API Error State</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #f5f5f5;
+      padding: 20px;
+    }
+
+    .page-header {
+      background: #1976d2;
+      color: white;
+      padding: 16px 24px;
+      margin: -20px -20px 20px -20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .page-header h1 {
+      font-size: 20px;
+      font-weight: 500;
+    }
+
+    .table-container {
+      background: white;
+      border-radius: 4px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      padding: 16px;
+    }
+
+    .error-container {
+      border-radius: 8px;
+      role: alert;
+      padding: 32px;
+      margin: 24px;
+      background: white;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .error-icon {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 24px;
+    }
+
+    .error-icon .material-icons {
+      font-size: 80px;
+      color: #d32f2f;
+    }
+
+    .error-content {
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .error-title {
+      font-size: 24px;
+      font-weight: 500;
+      color: #212121;
+      margin-bottom: 16px;
+    }
+
+    .error-meta {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .error-code {
+      background-color: #ffebee;
+      padding: 8px 16px;
+      border-radius: 16px;
+      font-size: 13px;
+    }
+
+    .error-code strong {
+      color: #c62828;
+      font-family: 'Roboto Mono', monospace;
+    }
+
+    .error-timestamp {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: #616161;
+      font-size: 13px;
+    }
+
+    .error-timestamp .material-icons {
+      font-size: 16px;
+    }
+
+    .error-details {
+      background-color: #fafafa;
+      padding: 16px;
+      border-radius: 4px;
+      border-left: 4px solid #d32f2f;
+      margin-bottom: 24px;
+      text-align: left;
+    }
+
+    .error-details p {
+      color: #424242;
+      font-size: 14px;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .error-actions {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      padding: 10px 24px;
+      border: none;
+      border-radius: 4px;
+      font-family: 'Roboto', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+
+    .btn-primary {
+      background-color: #1976d2;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background-color: #1565c0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
+    .btn-outlined {
+      background-color: white;
+      color: #1976d2;
+      border: 1px solid #1976d2;
+    }
+
+    .btn-outlined:hover {
+      background-color: #e3f2fd;
+    }
+
+    .btn-text {
+      background-color: transparent;
+      color: #616161;
+    }
+
+    .btn-text:hover {
+      background-color: #f5f5f5;
+    }
+
+    .error-help {
+      background-color: #e3f2fd;
+      padding: 16px;
+      border-radius: 4px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      text-align: left;
+    }
+
+    .error-help .material-icons {
+      color: #1976d2;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .error-help span {
+      color: #0d47a1;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+  <div class="page-header">
+    <h1>ISC Portal - Support Tickets</h1>
+  </div>
+
+  <div class="table-container">
+    <div class="error-container">
+      <div class="error-icon">
+        <span class="material-icons">error_outline</span>
+      </div>
+
+      <div class="error-content">
+        <h2 class="error-title">Failed to Load Data</h2>
+
+        <div class="error-meta">
+          <span class="error-code">
+            <strong>Error Code:</strong> API_500
+          </span>
+          <span class="error-timestamp">
+            <span class="material-icons">schedule</span>
+            Oct 15, 2025, 1:23 PM
+          </span>
+        </div>
+
+        <div class="error-details">
+          <p><strong>Error Details:</strong> The server encountered an internal error and was unable to complete your request. This is likely a temporary issue.</p>
+          <p style="margin-top: 8px;"><strong>Technical Info:</strong> HTTP 500 - Internal Server Error (api.isc.com/v1/tickets)</p>
+        </div>
+
+        <div class="error-actions">
+          <button class="btn-primary">
+            <span class="material-icons">refresh</span>
+            <span>Try Again</span>
+          </button>
+
+          <button class="btn-outlined">
+            <span class="material-icons">support</span>
+            <span>Contact Support</span>
+          </button>
+
+          <button class="btn-text">
+            <span class="material-icons">content_copy</span>
+            <span>Copy Details</span>
+          </button>
+        </div>
+
+        <div class="error-help">
+          <span class="material-icons">info</span>
+          <span>If this problem persists, please contact support with the error code above. Our team can investigate the issue and help restore service.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

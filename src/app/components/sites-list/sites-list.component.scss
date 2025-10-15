@@ -1,0 +1,158 @@
+// M3 Enhanced Sites List Styles
+.sites-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.sites-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-xl);
+
+  h1 {
+    // M3 typography applied via class in template (md3-headline-large)
+    margin: 0;
+  }
+}
+
+.filters-card {
+  margin-bottom: var(--spacing-lg);
+  // M3 card variant applied via class in template (md3-card-filled)
+}
+
+.filters-row {
+  display: flex;
+  gap: var(--spacing-md);
+  align-items: center;
+
+  .search-field {
+    flex: 1;
+    max-width: 400px;
+  }
+
+  mat-form-field {
+    min-width: 150px;
+  }
+}
+
+// M3 Bulk Actions Bar (Issue #4 Solution)
+.bulk-actions-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-md) var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+  border-radius: var(--md-sys-shape-corner-medium);
+  transition: background-color var(--md-sys-motion-duration-short2) var(--md-sys-motion-easing-standard);
+}
+
+.md3-surface-info {
+  background-color: var(--md-sys-color-info-container);
+  border-left: 4px solid var(--md-sys-color-info);
+}
+
+.bulk-actions-info {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  // M3 typography and color applied via inline styles in template
+}
+
+.bulk-actions-buttons {
+  display: flex;
+  gap: var(--spacing-md);
+}
+
+// M3 Confirmation Dialog (Issue #5 Solution)
+.confirmation-dialog {
+  margin-bottom: var(--spacing-lg);
+  border-radius: var(--md-sys-shape-corner-medium);
+  box-shadow: var(--md-sys-elevation-level1);
+}
+
+.md3-surface-warning {
+  background-color: var(--md-sys-color-warning-container);
+  border-left: 4px solid var(--md-sys-color-warning);
+}
+
+.confirmation-content {
+  display: flex;
+  gap: var(--spacing-md);
+  align-items: flex-start;
+  margin-bottom: var(--spacing-lg);
+
+  .confirmation-icon {
+    // M3 color applied via inline style in template (var(--md-sys-color-warning))
+    font-size: 32px;
+    width: 32px;
+    height: 32px;
+  }
+
+  h3 {
+    margin: 0 0 var(--spacing-sm) 0;
+    // M3 typography and color applied via classes in template
+  }
+
+  p {
+    margin: 0;
+    // M3 typography and color applied via classes in template
+  }
+}
+
+.confirmation-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-md);
+}
+
+// M3 Table Card
+.table-card {
+  overflow: hidden;
+  border-radius: var(--md-sys-shape-corner-medium);
+  // M3 card variant applied via class in template (md3-card-outlined)
+
+  table {
+    width: 100%;
+  }
+}
+
+.sites-table {
+  th {
+    background-color: var(--md-sys-color-surface-variant);
+    color: var(--md-sys-color-on-surface);
+    // M3 typography applied via class in template (md3-label-large)
+  }
+
+  td {
+    // M3 typography and color applied via inline styles in template
+  }
+}
+
+.site-name {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  strong {
+    // M3 typography and color applied via classes in template
+  }
+
+  .site-id {
+    font-family: 'Roboto Mono', 'Courier New', monospace;
+    // M3 typography and color applied via classes in template
+  }
+}
+
+// M3 Destructive Menu Item
+.destructive-menu-item {
+  color: var(--md-sys-color-error);
+
+  mat-icon {
+    color: var(--md-sys-color-error);
+  }
+
+  &:hover {
+    background-color: var(--md-sys-color-error-container);
+  }
+}

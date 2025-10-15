@@ -1,0 +1,98 @@
+<div class="no-access-container">
+  <div class="no-access-content">
+    <!-- Visual Icon -->
+    <div class="icon-container">
+      <mat-icon class="no-access-icon" color="primary">{{ config.icon }}</mat-icon>
+    </div>
+
+    <!-- Heading and Description -->
+    <h1 class="no-access-title">{{ config.title }}</h1>
+    <p class="no-access-description">{{ config.description }}</p>
+
+    <!-- Action Buttons -->
+    <div class="action-buttons">
+      <button
+        *ngFor="let btn of config.actionButtons"
+        mat-raised-button
+        [color]="btn.primary ? 'primary' : 'accent'"
+        (click)="onAction(btn.action)"
+        class="action-button">
+        {{ btn.label }}
+      </button>
+    </div>
+
+    <!-- Contextual Help Section -->
+    <mat-card class="help-card">
+      <mat-card-header>
+        <mat-icon mat-card-avatar class="help-icon">help_outline</mat-icon>
+        <mat-card-title>What is SD-WAN Orchestration?</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>SD-WAN Orchestration provides:</p>
+        <ul class="feature-list">
+          <li>
+            <mat-icon class="feature-icon">check_circle</mat-icon>
+            <span>Centralized network management and visibility</span>
+          </li>
+          <li>
+            <mat-icon class="feature-icon">check_circle</mat-icon>
+            <span>Traffic optimization and policy control</span>
+          </li>
+          <li>
+            <mat-icon class="feature-icon">check_circle</mat-icon>
+            <span>Real-time performance monitoring and analytics</span>
+          </li>
+          <li>
+            <mat-icon class="feature-icon">check_circle</mat-icon>
+            <span>Automated provisioning and configuration</span>
+          </li>
+        </ul>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Support Information -->
+    <div class="support-section">
+      <h3 class="support-title">{{ config.supportInfo.title }}</h3>
+      <p class="support-subtitle">Contact our Network Operations Center for assistance</p>
+
+      <div class="support-regions">
+        <mat-card
+          *ngFor="let region of config.supportInfo.regions"
+          class="support-card">
+          <mat-card-header>
+            <mat-icon mat-card-avatar class="region-icon">public</mat-icon>
+            <mat-card-title>{{ region.name }}</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <div class="contact-info">
+              <div class="contact-item">
+                <mat-icon class="contact-icon">phone</mat-icon>
+                <a [href]="getPhoneHref(region.phone)" class="contact-link">
+                  {{ region.phone }}
+                </a>
+              </div>
+              <div class="contact-item" *ngIf="region.email">
+                <mat-icon class="contact-icon">email</mat-icon>
+                <a [href]="getEmailHref(region.email)" class="contact-link">
+                  {{ region.email }}
+                </a>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+
+    <!-- Additional Resources -->
+    <div class="resources-section">
+      <mat-divider></mat-divider>
+      <div class="resources-content">
+        <mat-icon class="resources-icon">library_books</mat-icon>
+        <span class="resources-text">
+          Learn more about SD-WAN solutions in our
+          <a [href]="config.learnMoreUrl" target="_blank" class="inline-link">documentation</a>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

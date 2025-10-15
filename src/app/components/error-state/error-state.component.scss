@@ -1,0 +1,104 @@
+// M3 Enhanced Error State (Issue #1 Solution)
+.error-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-2xl);
+  background-color: var(--md-sys-color-surface);
+  border-radius: var(--md-sys-shape-corner-large);
+  max-width: 600px;
+  margin: var(--spacing-2xl) auto;
+  text-align: center;
+  // M3 card elevation applied via class in template (md3-card-elevated)
+}
+
+.error-icon {
+  margin-bottom: var(--spacing-lg);
+
+  mat-icon {
+    font-size: 64px;
+    width: 64px;
+    height: 64px;
+    // M3 color applied via inline style in template (var(--md-sys-color-error))
+  }
+}
+
+.error-content {
+  width: 100%;
+}
+
+.error-title {
+  margin-bottom: var(--spacing-md);
+  // M3 typography and color applied via classes in template
+}
+
+.error-meta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-md);
+  // M3 typography and color applied via classes in template
+}
+
+.error-code {
+  padding: 4px 12px;
+  background-color: var(--md-sys-color-surface-variant);
+  color: var(--md-sys-color-on-surface-variant);
+  border-radius: var(--md-sys-shape-corner-small);
+  font-family: 'Roboto Mono', 'Courier New', monospace;
+}
+
+.error-timestamp {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
+  mat-icon {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.error-details {
+  margin: var(--spacing-lg) 0;
+  padding: var(--spacing-md);
+  background-color: var(--md-sys-color-error-container);
+  color: var(--md-sys-color-on-error-container);
+  border-left: 4px solid var(--md-sys-color-error);
+  border-radius: var(--md-sys-shape-corner-small);
+  text-align: left;
+  line-height: 1.6;
+}
+
+.error-actions {
+  display: flex;
+  gap: var(--spacing-md);
+  justify-content: center;
+  margin: var(--spacing-xl) 0;
+  flex-wrap: wrap;
+}
+
+// M3 Error Help Section
+.error-help {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md);
+  border-radius: var(--md-sys-shape-corner-small);
+  text-align: left;
+
+  mat-icon {
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    // M3 color applied via inline style in template
+  }
+}
+
+.md3-surface-info {
+  background-color: var(--md-sys-color-info-container);
+}

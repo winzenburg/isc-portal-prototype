@@ -1,0 +1,26 @@
+<div class="status-indicator"
+     [attr.aria-label]="config.label"
+     [title]="config.tooltip || config.label">
+
+  <!-- Material Icon (if specified) -->
+  <mat-icon *ngIf="config.materialIcon"
+            [style.color]="config.color"
+            class="status-icon">
+    {{ config.materialIcon }}
+  </mat-icon>
+
+  <!-- Custom Shape Icon (circle, triangle, square) -->
+  <svg *ngIf="!config.materialIcon && config.icon !== 'none'"
+       class="status-shape"
+       [attr.class]="getIconClass()"
+       width="16"
+       height="16"
+       viewBox="0 0 24 24"
+       [attr.aria-hidden]="true">
+    <path [attr.d]="getShapePath()"
+          [attr.fill]="config.color" />
+  </svg>
+
+  <!-- Text Label (always shown for accessibility) -->
+  <span class="status-label">{{ config.label }}</span>
+</div>

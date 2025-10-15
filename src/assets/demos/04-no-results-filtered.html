@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>No Results - Filtered State</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #f5f5f5;
+      padding: 20px;
+    }
+
+    .page-header {
+      background: #1976d2;
+      color: white;
+      padding: 16px 24px;
+      margin: -20px -20px 20px -20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .page-header h1 {
+      font-size: 20px;
+      font-weight: 500;
+    }
+
+    .table-container {
+      background: white;
+      border-radius: 4px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      padding: 16px;
+    }
+
+    .table-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .table-title {
+      font-size: 18px;
+      font-weight: 500;
+      color: #212121;
+    }
+
+    .search-box {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border: 1px solid #1976d2;
+      border-radius: 4px;
+      background-color: #e3f2fd;
+    }
+
+    .search-box input {
+      border: none;
+      background: transparent;
+      outline: none;
+      font-family: 'Roboto', sans-serif;
+      font-size: 14px;
+      width: 250px;
+      color: #212121;
+    }
+
+    .active-filters {
+      padding: 12px 16px;
+      background-color: #fff3e0;
+      border-left: 4px solid #ff9800;
+      margin: 16px 0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .active-filters .material-icons {
+      color: #ff9800;
+    }
+
+    .filter-text {
+      flex: 1;
+      font-size: 14px;
+      color: #e65100;
+    }
+
+    .clear-button {
+      background-color: white;
+      color: #ff9800;
+      border: 1px solid #ff9800;
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-family: 'Roboto', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    .no-results {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 24px;
+      text-align: center;
+    }
+
+    .no-results-icon {
+      margin-bottom: 24px;
+    }
+
+    .no-results-icon .material-icons {
+      font-size: 120px;
+      color: #9e9e9e;
+    }
+
+    .no-results-title {
+      font-size: 24px;
+      font-weight: 500;
+      color: #616161;
+      margin-bottom: 8px;
+    }
+
+    .no-results-message {
+      font-size: 14px;
+      color: #9e9e9e;
+      margin-bottom: 24px;
+      max-width: 400px;
+    }
+
+    .no-results-action {
+      background-color: #1976d2;
+      color: white;
+      border: none;
+      padding: 10px 24px;
+      border-radius: 4px;
+      font-family: 'Roboto', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .no-results-action:hover {
+      background-color: #1565c0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+  </style>
+</head>
+<body>
+  <div class="page-header">
+    <h1>ISC Portal - Network Circuits</h1>
+  </div>
+
+  <div class="table-container">
+    <div class="table-header">
+      <div class="table-title">All Circuits</div>
+      <div class="search-box">
+        <span class="material-icons" style="color: #1976d2;">search</span>
+        <input type="text" placeholder="Search circuits..." value="NONEXISTENT12345">
+      </div>
+    </div>
+
+    <div class="active-filters">
+      <span class="material-icons">filter_list</span>
+      <span class="filter-text">Showing results for: "NONEXISTENT12345"</span>
+      <button class="clear-button">Clear Filters</button>
+    </div>
+
+    <div class="no-results">
+      <div class="no-results-icon">
+        <span class="material-icons">search_off</span>
+      </div>
+      <div class="no-results-title">No Results Found</div>
+      <div class="no-results-message">
+        No circuits match your current search or filter criteria. Try adjusting your filters or search term.
+      </div>
+      <button class="no-results-action">
+        <span class="material-icons">clear</span>
+        <span>Clear Filters</span>
+      </button>
+    </div>
+  </div>
+</body>
+</html>

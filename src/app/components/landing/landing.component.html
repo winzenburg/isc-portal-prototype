@@ -1,0 +1,358 @@
+<!-- M3 Enhanced Landing Page - Heuristic Issues Overview -->
+<div class="landing-container">
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-content">
+      <h1 class="md3-display-large hero-title"
+          [style.color]="'var(--md-sys-color-on-surface)'">
+        ISC Portal Usability Analysis
+      </h1>
+      <p class="md3-headline-small hero-subtitle"
+         [style.color]="'var(--md-sys-color-on-surface-variant)'">
+        Comprehensive Heuristic Evaluation & Solutions
+      </p>
+      <p class="md3-body-large hero-description"
+         [style.color]="'var(--md-sys-color-on-surface-variant)'">
+        Based on Nielsen's 10 Usability Heuristics, Q2 2025 Employee Survey (pNPS: -4, 81% system issues),
+        and ISC Portal Focus Group findings. This prototype demonstrates actionable solutions to critical usability problems.
+      </p>
+
+      <!-- Key Metrics -->
+      <div class="metrics-grid">
+        <mat-card class="metric-card md3-card-filled">
+          <div class="metric-value md3-display-medium"
+               [style.color]="'var(--md-sys-color-error)'">
+            {{ issues.length }}
+          </div>
+          <div class="metric-label md3-label-large"
+               [style.color]="'var(--md-sys-color-on-surface-variant)'">
+            Critical Issues
+          </div>
+        </mat-card>
+
+        <mat-card class="metric-card md3-card-filled">
+          <div class="metric-value md3-display-medium"
+               [style.color]="'var(--md-sys-color-warning)'">
+            {{ highImpactIssues.length }}
+          </div>
+          <div class="metric-label md3-label-large"
+               [style.color]="'var(--md-sys-color-on-surface-variant)'">
+            High Impact
+          </div>
+        </mat-card>
+
+        <mat-card class="metric-card md3-card-filled">
+          <div class="metric-value md3-display-medium"
+               [style.color]="'var(--md-sys-color-success)'">
+            {{ quickWins.length }}
+          </div>
+          <div class="metric-label md3-label-large"
+               [style.color]="'var(--md-sys-color-on-surface-variant)'">
+            Quick Wins
+          </div>
+        </mat-card>
+
+        <mat-card class="metric-card md3-card-filled">
+          <div class="metric-value md3-display-medium"
+               [style.color]="'var(--md-sys-color-primary)'">
+            -4
+          </div>
+          <div class="metric-label md3-label-large"
+               [style.color]="'var(--md-sys-color-on-surface-variant)'">
+            Current pNPS
+          </div>
+        </mat-card>
+      </div>
+    </div>
+  </section>
+
+  <!-- Access Control & Error States Demo Section -->
+  <section class="demo-section" style="margin: 32px 0; padding: 24px; background: linear-gradient(135deg, #e3f2fd 0%, #f5f5f5 100%); border-radius: 8px;">
+    <div style="max-width: 900px; margin: 0 auto;">
+      <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 16px;">
+        <mat-icon style="font-size: 48px; width: 48px; height: 48px; color: #1976d2;">security</mat-icon>
+        <div>
+          <h2 class="md3-headline-medium" style="margin: 0; color: #212121;">
+            Access Control & Error States Demo
+          </h2>
+          <p class="md3-body-medium" style="margin: 4px 0 0 0; color: #616161;">
+            Interactive demonstrations of access control, empty states, and error handling
+          </p>
+        </div>
+      </div>
+      <p class="md3-body-medium" style="color: #424242; margin-bottom: 20px;">
+        Explore comprehensive error states and access control scenarios including license restrictions, permission errors, empty states, filtered results, and API failures. Each demo shows how the ISC Portal provides clear messaging and actionable next steps.
+      </p>
+      <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+        <a href="assets/demos/index.html" target="_blank"
+           style="text-decoration: none;">
+          <button mat-raised-button color="primary" class="md3-button-filled">
+            <mat-icon>open_in_new</mat-icon>
+            <span>View All Demos</span>
+          </button>
+        </a>
+        <a href="assets/ACCESS_CONTROL_GUIDE.md" target="_blank"
+           style="text-decoration: none;">
+          <button mat-stroked-button class="md3-button-outlined">
+            <mat-icon>description</mat-icon>
+            <span>Read Documentation</span>
+          </button>
+        </a>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin-top: 20px;">
+        <div style="padding: 12px; background: white; border-radius: 4px; text-align: center;">
+          <div style="color: #f57c00; font-weight: 500; font-size: 14px;">License Required</div>
+          <div style="color: #757575; font-size: 12px; margin-top: 4px;">Upgrade prompts</div>
+        </div>
+        <div style="padding: 12px; background: white; border-radius: 4px; text-align: center;">
+          <div style="color: #616161; font-weight: 500; font-size: 14px;">No Permission</div>
+          <div style="color: #757575; font-size: 12px; margin-top: 4px;">Role-based access</div>
+        </div>
+        <div style="padding: 12px; background: white; border-radius: 4px; text-align: center;">
+          <div style="color: #9e9e9e; font-weight: 500; font-size: 14px;">Empty States</div>
+          <div style="color: #757575; font-size: 12px; margin-top: 4px;">No data available</div>
+        </div>
+        <div style="padding: 12px; background: white; border-radius: 4px; text-align: center;">
+          <div style="color: #1976d2; font-weight: 500; font-size: 14px;">No Results</div>
+          <div style="color: #757575; font-size: 12px; margin-top: 4px;">Filtered out</div>
+        </div>
+        <div style="padding: 12px; background: white; border-radius: 4px; text-align: center;">
+          <div style="color: #d32f2f; font-weight: 500; font-size: 14px;">API Errors</div>
+          <div style="color: #757575; font-size: 12px; margin-top: 4px;">Server failures</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick Wins Section -->
+  <section class="quick-wins-section">
+    <h2 class="md3-headline-medium section-title"
+        [style.color]="'var(--md-sys-color-on-surface)'">
+      <mat-icon class="section-icon"
+                [style.color]="'var(--md-sys-color-success)'">
+        bolt
+      </mat-icon>
+      Quick Wins: High Impact, Low Effort
+    </h2>
+    <p class="md3-body-medium section-description"
+       [style.color]="'var(--md-sys-color-on-surface-variant)'">
+      These issues have the highest ROI - significant user impact with minimal implementation effort.
+    </p>
+
+    <div class="issues-grid">
+      <mat-card *ngFor="let issue of quickWins"
+                class="issue-card md3-card-elevated quick-win-card"
+                [routerLink]="issue.demoRoute">
+        <div class="issue-header">
+          <mat-icon class="issue-icon"
+                    [style.color]="'var(--md-sys-color-success)'">
+            {{ issue.icon }}
+          </mat-icon>
+          <div class="issue-badges">
+            <app-status-badge type="success" label="Quick Win" icon="bolt"></app-status-badge>
+          </div>
+        </div>
+
+        <h3 class="md3-title-large issue-title"
+            [style.color]="'var(--md-sys-color-on-surface)'">
+          {{ issue.issue }}
+        </h3>
+
+        <p class="md3-label-small heuristic-label"
+           [style.color]="'var(--md-sys-color-primary)'">
+          {{ issue.heuristicNumber }}: {{ issue.heuristic }}
+        </p>
+
+        <p class="md3-body-medium issue-description"
+           [style.color]="'var(--md-sys-color-on-surface-variant)'">
+          {{ issue.description }}
+        </p>
+
+        <div class="issue-evidence md3-surface-info">
+          <mat-icon aria-hidden="true"
+                    [style.color]="'var(--md-sys-color-info)'">
+            format_quote
+          </mat-icon>
+          <span class="md3-label-medium"
+                [style.color]="'var(--md-sys-color-on-info-container)'">
+            {{ issue.evidence }}
+          </span>
+        </div>
+
+        <div class="issue-solution">
+          <mat-icon class="solution-icon"
+                    [style.color]="'var(--md-sys-color-success)'"
+                    aria-hidden="true">
+            check_circle
+          </mat-icon>
+          <span class="md3-body-medium"
+                [style.color]="'var(--md-sys-color-on-surface)'">
+            {{ issue.solution }}
+          </span>
+        </div>
+
+        <div class="issue-footer">
+          <div class="issue-metrics">
+            <span [class]="'impact-badge ' + getImpactClass(issue.impact)"
+                  class="md3-label-small">
+              Impact: {{ issue.impact }}
+            </span>
+            <span [class]="'effort-badge ' + getEffortClass(issue.effort)"
+                  class="md3-label-small">
+              Effort: {{ issue.effort }}
+            </span>
+          </div>
+          <button mat-raised-button class="md3-button-filled demo-button">
+            <span class="md3-label-large">View Solution</span>
+            <mat-icon>arrow_forward</mat-icon>
+          </button>
+        </div>
+      </mat-card>
+    </div>
+  </section>
+
+  <!-- All Issues Section -->
+  <section class="all-issues-section">
+    <h2 class="md3-headline-medium section-title"
+        [style.color]="'var(--md-sys-color-on-surface)'">
+      <mat-icon class="section-icon"
+                [style.color]="'var(--md-sys-color-primary)'">
+        list
+      </mat-icon>
+      All Identified Issues
+    </h2>
+    <p class="md3-body-medium section-description"
+       [style.color]="'var(--md-sys-color-on-surface-variant)'">
+      Complete list of usability issues identified through heuristic evaluation, employee surveys, and focus groups.
+    </p>
+
+    <div class="issues-grid">
+      <mat-card *ngFor="let issue of issues"
+                class="issue-card md3-card-outlined"
+                [routerLink]="issue.demoRoute">
+        <div class="issue-header">
+          <mat-icon class="issue-icon"
+                    [style.color]="issue.impact === 'High' ? 'var(--md-sys-color-error)' : 'var(--md-sys-color-warning)'">
+            {{ issue.icon }}
+          </mat-icon>
+          <div class="issue-number md3-label-small"
+               [style.color]="'var(--md-sys-color-on-surface-variant)'">
+            Issue #{{ issue.id }}
+          </div>
+        </div>
+
+        <h3 class="md3-title-large issue-title"
+            [style.color]="'var(--md-sys-color-on-surface)'">
+          {{ issue.issue }}
+        </h3>
+
+        <p class="md3-label-small heuristic-label"
+           [style.color]="'var(--md-sys-color-primary)'">
+          {{ issue.heuristicNumber }}: {{ issue.heuristic }}
+        </p>
+
+        <p class="md3-body-medium issue-description"
+           [style.color]="'var(--md-sys-color-on-surface-variant)'">
+          {{ issue.description }}
+        </p>
+
+        <div class="issue-evidence md3-surface-info">
+          <mat-icon aria-hidden="true"
+                    [style.color]="'var(--md-sys-color-info)'">
+            format_quote
+          </mat-icon>
+          <span class="md3-label-medium"
+                [style.color]="'var(--md-sys-color-on-info-container)'">
+            {{ issue.evidence }}
+          </span>
+        </div>
+
+        <div class="issue-solution">
+          <mat-icon class="solution-icon"
+                    [style.color]="'var(--md-sys-color-success)'"
+                    aria-hidden="true">
+            check_circle
+          </mat-icon>
+          <span class="md3-body-medium"
+                [style.color]="'var(--md-sys-color-on-surface)'">
+            {{ issue.solution }}
+          </span>
+        </div>
+
+        <div class="issue-footer">
+          <div class="issue-metrics">
+            <span [class]="'impact-badge ' + getImpactClass(issue.impact)"
+                  class="md3-label-small">
+              Impact: {{ issue.impact }}
+            </span>
+            <span [class]="'effort-badge ' + getEffortClass(issue.effort)"
+                  class="md3-label-small">
+              Effort: {{ issue.effort }}
+            </span>
+          </div>
+          <button mat-stroked-button class="md3-button-outlined demo-button">
+            <span class="md3-label-large">View Solution</span>
+            <mat-icon>arrow_forward</mat-icon>
+          </button>
+        </div>
+      </mat-card>
+    </div>
+  </section>
+
+  <!-- Context Section -->
+  <section class="context-section">
+    <mat-card class="context-card md3-card-filled">
+      <h2 class="md3-headline-small"
+          [style.color]="'var(--md-sys-color-on-surface)'">
+        <mat-icon class="section-icon"
+                  [style.color]="'var(--md-sys-color-primary)'">
+          info
+        </mat-icon>
+        About This Analysis
+      </h2>
+
+      <div class="context-content">
+        <div class="context-item">
+          <h3 class="md3-title-medium"
+              [style.color]="'var(--md-sys-color-on-surface)'">
+            Methodology
+          </h3>
+          <p class="md3-body-medium"
+             [style.color]="'var(--md-sys-color-on-surface-variant)'">
+            This analysis uses Nielsen Norman Group's 10 Usability Heuristics as a framework to evaluate the ISC Portal.
+            Each issue is supported by direct evidence from the Q2 2025 Employee Survey and January 2025 Focus Group Report.
+          </p>
+        </div>
+
+        <div class="context-item">
+          <h3 class="md3-title-medium"
+              [style.color]="'var(--md-sys-color-on-surface)'">
+            Data Sources
+          </h3>
+          <ul class="md3-body-medium"
+              [style.color]="'var(--md-sys-color-on-surface-variant)'">
+            <li>Q2 2025 Employee Survey (pNPS: -4, 81% system issues reported)</li>
+            <li>ISC Portal Focus Group Report (January 30, 2025)</li>
+            <li>Design System Analysis (4 blues problem identified)</li>
+            <li>Direct customer and Account Manager feedback</li>
+          </ul>
+        </div>
+
+        <div class="context-item">
+          <h3 class="md3-title-medium"
+              [style.color]="'var(--md-sys-color-on-surface)'">
+            Prototype Features
+          </h3>
+          <ul class="md3-body-medium"
+              [style.color]="'var(--md-sys-color-on-surface-variant)'">
+            <li>Material Design 3 systematic color system (single primary blue)</li>
+            <li>WCAG 2.1 Level AA accessibility compliance</li>
+            <li>Structured error messages with recovery actions</li>
+            <li>Contextual empty states and help documentation</li>
+            <li>Bulk actions and confirmation dialogs</li>
+          </ul>
+        </div>
+      </div>
+    </mat-card>
+  </section>
+</div>

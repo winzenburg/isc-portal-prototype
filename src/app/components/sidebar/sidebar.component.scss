@@ -1,0 +1,135 @@
+// M3 Enhanced Sidebar Styles (ISC Portal Structure)
+.sidebar-nav {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing-sm) 0;
+  background-color: var(--md-sys-color-surface);
+  overflow-y: auto;
+}
+
+mat-nav-list {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+// General nav item styles
+.nav-item {
+  margin: 0;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: 0;
+  min-height: 48px;
+  cursor: pointer;
+  transition: background-color var(--md-sys-motion-duration-short2) var(--md-sys-motion-easing-standard);
+
+  // Fix icon spacing
+  mat-icon[matListItemIcon] {
+    margin-right: 16px;
+  }
+
+  // M3 state layer for hover
+  &:hover {
+    background-color: color-mix(
+      in srgb,
+      var(--md-sys-color-on-surface) 8%,
+      transparent
+    );
+  }
+
+  // M3 active state uses primary-container
+  &.active-nav-item {
+    background-color: var(--md-sys-color-primary-container);
+
+    mat-icon {
+      color: var(--md-sys-color-on-primary-container) !important;
+    }
+
+    span {
+      color: var(--md-sys-color-on-primary-container) !important;
+      font-weight: 600;
+    }
+  }
+}
+
+// Parent item (with children) - not clickable for navigation
+.parent-item {
+  cursor: pointer;
+
+  &:hover {
+    background-color: color-mix(
+      in srgb,
+      var(--md-sys-color-on-surface) 8%,
+      transparent
+    );
+  }
+
+  .expand-icon {
+    transition: transform var(--md-sys-motion-duration-short2) var(--md-sys-motion-easing-standard);
+  }
+}
+
+// Expandable section
+.expandable-section {
+  margin: 0;
+}
+
+// Submenu container
+.submenu {
+  background-color: color-mix(
+    in srgb,
+    var(--md-sys-color-surface-variant) 50%,
+    transparent
+  );
+  padding: 0;
+  margin: 0;
+}
+
+// Child item (submenu item)
+.child-item {
+  padding-left: var(--spacing-xl);
+  min-height: 40px;
+
+  mat-icon[matListItemIcon] {
+    margin-right: 16px;
+  }
+
+  .child-icon {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+  }
+
+  span {
+    font-size: 13px;
+  }
+}
+
+.nav-divider {
+  margin: var(--spacing-md) var(--spacing-md);
+  border-color: var(--md-sys-color-outline-variant);
+}
+
+.quick-actions {
+  padding: 0 var(--spacing-md);
+  margin-top: var(--spacing-md);
+}
+
+.section-title {
+  // Typography and color applied via inline style and class in template
+  // md3-label-small + var(--md-sys-color-on-surface-variant)
+  text-transform: uppercase;
+  margin-bottom: var(--spacing-md);
+  letter-spacing: 0.5px;
+}
+
+.action-button {
+  width: 100%;
+  justify-content: flex-start;
+  margin-bottom: var(--spacing-sm);
+
+  mat-icon {
+    margin-right: var(--spacing-sm);
+  }
+
+  // M3 button styles applied via md3-button-outlined class
+}

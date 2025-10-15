@@ -1,0 +1,160 @@
+<div class="dashboard-container">
+  <!-- M3 Enhanced Header -->
+  <div class="dashboard-header">
+    <h1 class="md3-headline-large" style="color: var(--md-sys-color-on-surface);">
+      Dashboard
+    </h1>
+    <button mat-stroked-button class="md3-button-outlined" (click)="refreshData()">
+      <mat-icon>refresh</mat-icon>
+      <span class="md3-label-large">Refresh</span>
+    </button>
+  </div>
+
+  <!-- Top Row: Charts Grid -->
+  <div class="charts-grid">
+    <!-- Clouds Doughnut Chart -->
+    <mat-card class="chart-card md3-card-elevated">
+      <mat-card-header>
+        <mat-card-title class="md3-title-medium">Clouds</mat-card-title>
+        <div class="card-actions">
+          <button mat-icon-button class="refresh-btn">
+            <mat-icon>refresh</mat-icon>
+          </button>
+          <button mat-icon-button class="expand-btn">
+            <mat-icon>open_in_new</mat-icon>
+          </button>
+        </div>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="chart-content">
+          <div class="doughnut-chart-container">
+            <div class="doughnut-center-text">
+              <div class="doughnut-total">44</div>
+              <div class="doughnut-label">Total</div>
+            </div>
+            <canvas baseChart
+                    [data]="cloudsChartData"
+                    [options]="cloudsChartOptions"
+                    [type]="cloudsChartType">
+            </canvas>
+          </div>
+          <div class="chart-legend">
+            <div *ngFor="let item of cloudsBreakdown" class="legend-item">
+              <div class="legend-color" [style.background-color]="item.color"></div>
+              <div class="legend-details">
+                <div class="legend-count">{{ item.count }}</div>
+                <div class="legend-label">{{ item.label }}</div>
+                <div class="legend-percentage">{{ item.percentage }}%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Circuits Overview -->
+    <mat-card class="chart-card md3-card-elevated">
+      <mat-card-header>
+        <mat-card-title class="md3-title-medium">Circuits Overview</mat-card-title>
+        <div class="card-actions">
+          <button mat-icon-button class="refresh-btn">
+            <mat-icon>refresh</mat-icon>
+          </button>
+          <button mat-icon-button class="expand-btn">
+            <mat-icon>open_in_new</mat-icon>
+          </button>
+        </div>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="circuits-content">
+          <div class="circuits-grid">
+            <div *ngFor="let circuit of circuitsOverview" class="circuit-item">
+              <div class="circuit-percentage">{{ circuit.percentage }}%</div>
+              <div class="circuit-label">{{ circuit.label }}</div>
+              <div class="circuit-total">Total: {{ circuit.total }}</div>
+            </div>
+          </div>
+          <div class="circuits-total">
+            <strong>Total Circuits:</strong> {{ totalCircuits }}
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <!-- Tickets Overview Bar Chart -->
+  <mat-card class="tickets-card md3-card-elevated">
+    <mat-card-header>
+      <mat-card-title class="md3-title-medium">Tickets Overview - Past 7 days</mat-card-title>
+      <div class="card-actions">
+        <button mat-icon-button class="refresh-btn">
+          <mat-icon>refresh</mat-icon>
+        </button>
+        <button mat-icon-button class="expand-btn">
+          <mat-icon>open_in_new</mat-icon>
+        </button>
+      </div>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="tickets-content">
+        <div *ngFor="let ticket of ticketsData" class="ticket-item">
+          <div class="ticket-count">{{ ticket.count }}</div>
+          <div class="ticket-bar">
+            <div class="ticket-bar-fill"
+                 [style.background-color]="ticket.color"
+                 [style.width]="(ticket.count > 0 ? ticket.count * 50 : 0) + '%'">
+            </div>
+          </div>
+          <div class="ticket-label">{{ ticket.label }}</div>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Bottom Row: Network Map and News -->
+  <div class="bottom-grid">
+    <!-- Network Map Placeholder -->
+    <mat-card class="map-card md3-card-elevated">
+      <mat-card-header>
+        <mat-card-title class="md3-title-medium">Network Map</mat-card-title>
+        <div class="card-actions">
+          <button mat-icon-button class="refresh-btn">
+            <mat-icon>refresh</mat-icon>
+          </button>
+          <button mat-icon-button class="expand-btn">
+            <mat-icon>open_in_new</mat-icon>
+          </button>
+        </div>
+      </mat-card-header>
+      <mat-card-content>
+        <div id="network-map" class="network-map"></div>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- News Feed -->
+    <mat-card class="news-card md3-card-elevated">
+      <mat-card-header>
+        <mat-card-title class="md3-title-medium">Masergy News</mat-card-title>
+        <div class="card-actions">
+          <button mat-icon-button class="refresh-btn">
+            <mat-icon>refresh</mat-icon>
+          </button>
+        </div>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="news-list">
+          <div *ngFor="let news of newsItems" class="news-item">
+            <mat-icon class="news-icon">article</mat-icon>
+            <div class="news-content">
+              <div class="news-header">
+                <strong class="news-title">{{ news.title }}</strong>
+                <span class="news-date">{{ news.date }}</span>
+              </div>
+              <p class="news-message">{{ news.message }}</p>
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

@@ -1,0 +1,55 @@
+// M3 Status Badge Styles
+// Uses M3 container colors for accessible, consistent status indication
+// WCAG 2.1: Color is not the only indicator (icon + text required)
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--md-sys-shape-corner-full);
+  transition: background-color var(--md-sys-motion-duration-short2) var(--md-sys-motion-easing-standard);
+  white-space: nowrap;
+
+  // M3 typography applied via class in template (md3-label-medium)
+}
+
+.badge-icon {
+  font-size: 14px;
+  width: 14px;
+  height: 14px;
+  line-height: 14px;
+}
+
+// M3 Status Badge Variants (using container colors)
+.badge-m3 {
+  &.badge-success {
+    background-color: var(--md-sys-color-success-container);
+    color: var(--md-sys-color-on-success-container);
+    border: 1px solid var(--md-sys-color-success);
+  }
+
+  &.badge-warning {
+    background-color: var(--md-sys-color-warning-container);
+    color: var(--md-sys-color-on-warning-container);
+    border: 1px solid var(--md-sys-color-warning);
+  }
+
+  &.badge-error {
+    background-color: var(--md-sys-color-error-container);
+    color: var(--md-sys-color-on-error-container);
+    border: 1px solid var(--md-sys-color-error);
+  }
+
+  &.badge-info {
+    background-color: var(--md-sys-color-info-container);
+    color: var(--md-sys-color-on-info-container);
+    border: 1px solid var(--md-sys-color-info);
+  }
+
+  &.badge-neutral {
+    background-color: var(--md-sys-color-surface-variant);
+    color: var(--md-sys-color-on-surface-variant);
+    border: 1px solid var(--md-sys-color-outline);
+  }
+}

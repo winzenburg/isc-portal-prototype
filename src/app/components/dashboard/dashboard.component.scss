@@ -1,0 +1,464 @@
+.dashboard-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: var(--spacing-lg);
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-xl);
+
+  h1 {
+    font-size: 32px;
+    font-weight: 600;
+    color: var(--color-neutral-900);
+    margin: 0;
+  }
+}
+
+/* Charts Grid Layout */
+.charts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-xl);
+}
+
+.chart-card {
+  mat-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-md);
+    border-bottom: 1px solid var(--md-sys-color-outline-variant);
+
+    mat-card-title {
+      flex: 1;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--md-sys-color-on-surface);
+      margin: 0;
+    }
+
+    .card-actions {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+
+      .refresh-btn,
+      .expand-btn {
+        width: 32px;
+        height: 32px;
+
+        mat-icon {
+          font-size: 18px;
+          width: 18px;
+          height: 18px;
+        }
+      }
+    }
+  }
+
+  mat-card-content {
+    padding: var(--spacing-lg);
+  }
+}
+
+/* Doughnut Chart Styles */
+.chart-content {
+  display: flex;
+  gap: var(--spacing-lg);
+  align-items: center;
+}
+
+.doughnut-chart-container {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  flex-shrink: 0;
+}
+
+.doughnut-center-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  pointer-events: none;
+
+  .doughnut-total {
+    font-size: 48px;
+    font-weight: 700;
+    color: var(--md-sys-color-on-surface);
+    line-height: 1;
+  }
+
+  .doughnut-label {
+    font-size: 14px;
+    color: var(--md-sys-color-on-surface-variant);
+    margin-top: 4px;
+  }
+}
+
+.chart-legend {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  flex: 1;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.legend-color {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.legend-details {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+
+  .legend-count {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--md-sys-color-on-surface);
+    line-height: 1;
+  }
+
+  .legend-label {
+    font-size: 12px;
+    color: var(--md-sys-color-on-surface-variant);
+  }
+
+  .legend-percentage {
+    font-size: 14px;
+    color: var(--md-sys-color-on-surface-variant);
+  }
+}
+
+/* Circuits Overview Styles */
+.circuits-content {
+  padding: var(--spacing-md) 0;
+}
+
+.circuits-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+}
+
+.circuit-item {
+  text-align: center;
+
+  .circuit-percentage {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--md-sys-color-on-surface);
+    line-height: 1;
+  }
+
+  .circuit-label {
+    font-size: 13px;
+    color: var(--md-sys-color-on-surface-variant);
+    margin-top: 4px;
+  }
+
+  .circuit-total {
+    font-size: 12px;
+    color: var(--md-sys-color-on-surface-variant);
+    margin-top: 2px;
+  }
+}
+
+.circuits-total {
+  text-align: center;
+  padding-top: var(--spacing-md);
+  border-top: 1px solid var(--md-sys-color-outline-variant);
+  font-size: 14px;
+  color: var(--md-sys-color-on-surface);
+}
+
+/* Tickets Overview Styles */
+.tickets-card {
+  margin-bottom: var(--spacing-xl);
+
+  mat-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-md);
+    border-bottom: 1px solid var(--md-sys-color-outline-variant);
+
+    mat-card-title {
+      flex: 1;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--md-sys-color-on-surface);
+      margin: 0;
+    }
+
+    .card-actions {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+
+      .refresh-btn,
+      .expand-btn {
+        width: 32px;
+        height: 32px;
+
+        mat-icon {
+          font-size: 18px;
+          width: 18px;
+          height: 18px;
+        }
+      }
+    }
+  }
+
+  mat-card-content {
+    padding: var(--spacing-lg);
+  }
+}
+
+.tickets-content {
+  display: flex;
+  gap: var(--spacing-xl);
+}
+
+.ticket-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-sm);
+
+  .ticket-count {
+    font-size: 64px;
+    font-weight: 700;
+    color: var(--md-sys-color-on-surface);
+    line-height: 1;
+  }
+
+  .ticket-bar {
+    width: 100%;
+    height: 8px;
+    background-color: var(--md-sys-color-surface-variant);
+    border-radius: 4px;
+    overflow: hidden;
+
+    .ticket-bar-fill {
+      height: 100%;
+      transition: width 300ms ease;
+      border-radius: 4px;
+    }
+  }
+
+  .ticket-label {
+    font-size: 12px;
+    color: var(--md-sys-color-on-surface-variant);
+    text-align: center;
+    margin-top: 4px;
+  }
+}
+
+/* Bottom Grid Layout */
+.bottom-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: var(--spacing-lg);
+}
+
+/* Network Map Placeholder */
+.map-card {
+  mat-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-md);
+    border-bottom: 1px solid var(--md-sys-color-outline-variant);
+
+    mat-card-title {
+      flex: 1;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--md-sys-color-on-surface);
+      margin: 0;
+    }
+
+    .card-actions {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+
+      .refresh-btn,
+      .expand-btn {
+        width: 32px;
+        height: 32px;
+
+        mat-icon {
+          font-size: 18px;
+          width: 18px;
+          height: 18px;
+        }
+      }
+    }
+  }
+
+  mat-card-content {
+    padding: 0;
+    min-height: 400px;
+  }
+}
+
+.network-map {
+  width: 100%;
+  height: 400px;
+  z-index: 1;
+}
+
+/* News Feed Styles */
+.news-card {
+  mat-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-md);
+    border-bottom: 1px solid var(--md-sys-color-outline-variant);
+
+    mat-card-title {
+      flex: 1;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--md-sys-color-on-surface);
+      margin: 0;
+    }
+
+    .card-actions {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+
+      .refresh-btn {
+        width: 32px;
+        height: 32px;
+
+        mat-icon {
+          font-size: 18px;
+          width: 18px;
+          height: 18px;
+        }
+      }
+    }
+  }
+
+  mat-card-content {
+    padding: 0;
+  }
+}
+
+.news-list {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.news-item {
+  display: flex;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+  border-bottom: 1px solid var(--md-sys-color-outline-variant);
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &:hover {
+    background-color: var(--md-sys-color-surface-variant);
+  }
+
+  .news-icon {
+    font-size: 24px;
+    width: 24px;
+    height: 24px;
+    color: var(--md-sys-color-primary);
+    flex-shrink: 0;
+  }
+
+  .news-content {
+    flex: 1;
+
+    .news-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: var(--spacing-xs);
+
+      .news-title {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--md-sys-color-on-surface);
+      }
+
+      .news-date {
+        font-size: 12px;
+        color: var(--md-sys-color-on-surface-variant);
+        white-space: nowrap;
+        margin-left: var(--spacing-sm);
+      }
+    }
+
+    .news-message {
+      font-size: 13px;
+      color: var(--md-sys-color-on-surface-variant);
+      line-height: 1.5;
+      margin: 0;
+    }
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .bottom-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tickets-content {
+    flex-wrap: wrap;
+  }
+
+  .ticket-item {
+    min-width: 150px;
+  }
+}
+
+@media (max-width: 768px) {
+  .charts-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .chart-content {
+    flex-direction: column;
+  }
+
+  .doughnut-chart-container {
+    margin: 0 auto;
+  }
+
+  .tickets-content {
+    flex-direction: column;
+  }
+
+  .circuits-grid {
+    grid-template-columns: 1fr;
+  }
+}

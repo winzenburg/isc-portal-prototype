@@ -1,0 +1,52 @@
+.status-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  line-height: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  .status-icon {
+    width: 16px;
+    height: 16px;
+    font-size: 16px;
+    line-height: 16px;
+  }
+
+  .status-shape {
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+
+    &.status-circle {
+      // Circle is default
+    }
+
+    &.status-triangle {
+      // Triangle warning shape
+    }
+
+    &.status-square {
+      // Square for disabled/neutral
+      border-radius: 2px;
+    }
+  }
+
+  .status-label {
+    color: var(--md-sys-color-on-surface, #1D1B20);
+    font-weight: 400;
+  }
+}
+
+// Compact mode (when used in dense tables)
+.compact .status-indicator {
+  gap: 6px;
+  font-size: 13px;
+
+  .status-icon,
+  .status-shape {
+    width: 14px;
+    height: 14px;
+    font-size: 14px;
+  }
+}

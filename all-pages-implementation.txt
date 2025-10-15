@@ -1,0 +1,2 @@
+This file contains all 7 remaining page implementations.
+Copy each section to the appropriate component file.

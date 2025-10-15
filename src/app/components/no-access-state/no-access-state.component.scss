@@ -1,0 +1,328 @@
+// No Access State Component Styles
+// Demonstrates best practices for empty/no-access states
+
+.no-access-container {
+  min-height: calc(100vh - 64px); // Account for header
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e8eef5 100%);
+  padding: 2rem;
+}
+
+.no-access-content {
+  max-width: 800px;
+  width: 100%;
+  text-align: center;
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Icon Section
+.icon-container {
+  margin-bottom: 2rem;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.no-access-icon {
+  font-size: 120px;
+  width: 120px;
+  height: 120px;
+  opacity: 0.9;
+}
+
+// Typography
+.no-access-title {
+  font-size: 2rem;
+  font-weight: 500;
+  color: #1a237e;
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
+
+.no-access-description {
+  font-size: 1.125rem;
+  color: #546e7a;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// Action Buttons
+.action-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+}
+
+.action-button {
+  min-width: 160px;
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  text-transform: none;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+// Help Card
+.help-card {
+  text-align: left;
+  margin-bottom: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  background: white;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  }
+
+  mat-card-header {
+    margin-bottom: 1rem;
+  }
+
+  mat-card-title {
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: #1a237e;
+  }
+}
+
+.help-icon {
+  background-color: #e3f2fd;
+  color: #1976d2;
+}
+
+.feature-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 0;
+    color: #546e7a;
+    font-size: 1rem;
+
+    &:not(:last-child) {
+      border-bottom: 1px solid #e0e0e0;
+    }
+  }
+}
+
+.feature-icon {
+  color: #4caf50;
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+// Support Section
+.support-section {
+  margin-bottom: 2rem;
+}
+
+.support-title {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #1a237e;
+  margin-bottom: 0.5rem;
+}
+
+.support-subtitle {
+  font-size: 1rem;
+  color: #546e7a;
+  margin-bottom: 1.5rem;
+}
+
+.support-regions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.support-card {
+  text-align: left;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  background: white;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+  }
+
+  mat-card-header {
+    margin-bottom: 1rem;
+  }
+
+  mat-card-title {
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: #1a237e;
+  }
+}
+
+.region-icon {
+  background-color: #e8f5e9;
+  color: #4caf50;
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.contact-icon {
+  color: #1976d2;
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.contact-link {
+  color: #1976d2;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: #0d47a1;
+    text-decoration: underline;
+  }
+}
+
+// Resources Section
+.resources-section {
+  margin-top: 2rem;
+}
+
+.resources-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1.5rem 0 0.5rem;
+  color: #546e7a;
+}
+
+.resources-icon {
+  color: #1976d2;
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+}
+
+.resources-text {
+  font-size: 0.95rem;
+}
+
+.inline-link {
+  color: #1976d2;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: #0d47a1;
+    text-decoration: underline;
+  }
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+  .no-access-container {
+    padding: 1.5rem;
+  }
+
+  .no-access-icon {
+    font-size: 80px;
+    width: 80px;
+    height: 80px;
+  }
+
+  .no-access-title {
+    font-size: 1.5rem;
+  }
+
+  .no-access-description {
+    font-size: 1rem;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .action-button {
+    width: 100%;
+  }
+
+  .support-regions {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .no-access-icon {
+    font-size: 64px;
+    width: 64px;
+    height: 64px;
+  }
+
+  .no-access-title {
+    font-size: 1.25rem;
+  }
+
+  .no-access-description {
+    font-size: 0.9375rem;
+  }
+}

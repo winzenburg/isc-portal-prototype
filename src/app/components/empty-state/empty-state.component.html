@@ -1,0 +1,31 @@
+<!-- Issue #2 Solution: Contextual Empty States (M3 Enhanced) -->
+<div class="empty-state-container"
+     role="status"
+     aria-live="polite">
+  <div class="empty-state-icon">
+    <mat-icon [style.color]="'var(--md-sys-color-on-surface-variant)'"
+              aria-hidden="true">
+      {{ icon }}
+    </mat-icon>
+  </div>
+
+  <h3 class="empty-state-title md3-title-large"
+      [style.color]="'var(--md-sys-color-on-surface)'">
+    {{ title }}
+  </h3>
+
+  <p class="empty-state-message md3-body-medium" *ngIf="message"
+     [style.color]="'var(--md-sys-color-on-surface-variant)'">
+    {{ message }}
+  </p>
+
+  <button
+    *ngIf="actionLabel"
+    mat-raised-button
+    (click)="onAction()"
+    class="empty-state-action md3-button-filled"
+    [attr.aria-label]="actionLabel">
+    <mat-icon *ngIf="actionIcon">{{ actionIcon }}</mat-icon>
+    <span class="md3-label-large">{{ actionLabel }}</span>
+  </button>
+</div>

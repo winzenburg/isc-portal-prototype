@@ -1,0 +1,110 @@
+.page-container {
+  padding: var(--spacing-lg);
+  position: relative;
+  min-height: calc(100vh - 64px);
+}
+
+// Loading Overlay Styles
+.loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e8eef5 100%);
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.loading-content {
+  text-align: center;
+  max-width: 500px;
+  padding: var(--spacing-2xl);
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  animation: slideUp 0.4s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.loading-icon {
+  font-size: 80px;
+  width: 80px;
+  height: 80px;
+  color: var(--md-sys-color-primary);
+  margin-bottom: var(--spacing-lg);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
+}
+
+.loading-title {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--md-sys-color-on-surface);
+  margin-bottom: var(--spacing-lg);
+  min-height: 2rem; // Prevent layout shift when text changes
+}
+
+.loading-progress-bar {
+  margin-bottom: var(--spacing-md);
+  height: 8px;
+  border-radius: 4px;
+
+  // Override Material Design colors for better visibility
+  ::ng-deep {
+    .mat-progress-bar-fill::after {
+      background-color: var(--md-sys-color-primary);
+    }
+
+    .mat-progress-bar-buffer {
+      background-color: rgba(13, 98, 255, 0.1);
+    }
+  }
+}
+
+.loading-percentage {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--md-sys-color-primary);
+  margin-bottom: var(--spacing-lg);
+  font-variant-numeric: tabular-nums; // Prevent layout shift as numbers change
+}
+
+.loading-hint {
+  font-size: 0.95rem;
+  color: var(--md-sys-color-on-surface-variant);
+  line-height: 1.5;
+  margin-top: var(--spacing-md);
+}

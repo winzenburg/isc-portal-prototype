@@ -1,0 +1,146 @@
+// M3 Enhanced Header Styles
+.app-header {
+  // Override to use darker Comcast Blue for header only (RGB 16,47,101)
+  background-color: #102F65;
+  color: var(--md-sys-color-on-primary);
+  height: 64px;
+  padding: 0 var(--spacing-lg);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: var(--md-sys-elevation-level2); // M3 elevation (header is elevated)
+  position: relative;
+  z-index: 1000;
+
+  // M3 state layers for interactive elements
+  button:hover {
+    background-color: color-mix(
+      in srgb,
+      var(--md-sys-color-on-primary) var(--md-sys-state-hover-opacity),
+      transparent
+    );
+  }
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.app-title {
+  // M3 typography applied via class in template
+  // Font size: 22px (title-large)
+  // Fallback styling removed (uses M3 class)
+  letter-spacing: -0.5px;
+}
+
+.menu-button {
+  // Color applied via inline style in template
+  // Uses var(--md-sys-color-on-primary)
+}
+
+.header-center {
+  flex: 1;
+  max-width: 600px;
+  margin: 0 var(--spacing-xl);
+}
+
+.global-search {
+  width: 100%;
+
+  ::ng-deep {
+    .mat-form-field-wrapper {
+      padding-bottom: 0;
+    }
+
+    .mat-form-field-infix {
+      display: flex;
+      align-items: center;
+    }
+
+    // M3: Use on-primary color with opacity for outlines
+    .mat-form-field-outline {
+      color: color-mix(
+        in srgb,
+        var(--md-sys-color-on-primary) 30%,
+        transparent
+      );
+    }
+
+    .mat-form-field-outline-thick {
+      color: var(--md-sys-color-on-primary);
+    }
+
+    input {
+      color: var(--md-sys-color-on-primary);
+
+      &::placeholder {
+        color: color-mix(
+          in srgb,
+          var(--md-sys-color-on-primary) 70%,
+          transparent
+        );
+      }
+    }
+
+    .mat-icon {
+      color: color-mix(
+        in srgb,
+        var(--md-sys-color-on-primary) 70%,
+        transparent
+      );
+    }
+  }
+}
+
+.search-icon {
+  margin-right: var(--spacing-sm);
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.customer-selector {
+  min-width: 200px;
+
+  ::ng-deep {
+    .mat-form-field-wrapper {
+      padding-bottom: 0;
+    }
+
+    .mat-form-field-infix {
+      display: flex;
+      align-items: center;
+    }
+
+    // M3: Use on-primary color with opacity
+    .mat-form-field-outline {
+      color: color-mix(
+        in srgb,
+        var(--md-sys-color-on-primary) 30%,
+        transparent
+      );
+    }
+
+    .mat-form-field-outline-thick {
+      color: var(--md-sys-color-on-primary);
+    }
+
+    .mat-select-value {
+      color: var(--md-sys-color-on-primary);
+    }
+
+    .mat-select-arrow {
+      color: var(--md-sys-color-on-primary);
+    }
+  }
+}
+
+mat-icon {
+  // Color applied via inline styles in template
+  // Uses var(--md-sys-color-on-primary)
+}
