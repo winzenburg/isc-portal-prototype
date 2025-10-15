@@ -55,15 +55,66 @@ export class CircuitsUnifiedComponent implements OnInit, OnDestroy {
       tableId: 'circuits-table',
 
       columns: [
-        { field: 'bundleId', header: 'Bundle ID', sortable: true, width: '140px' },
-        { field: 'bundleStatus', header: 'Status', sortable: true, width: '150px', type: 'status' },
-        { field: 'bundleAlias', header: 'Bundle Alias', sortable: true },
-        { field: 'streetAddress', header: 'Street Address', sortable: true },
-        { field: 'city', header: 'City', sortable: true, width: '120px' },
-        { field: 'state', header: 'State', sortable: true, width: '80px' },
-        { field: 'bundleProductType', header: 'Product Type', sortable: true, width: '150px' },
-        { field: 'circuitType', header: 'Circuit Type', sortable: true, width: '130px' },
-        { field: 'bandwidth', header: 'Bandwidth', sortable: true, width: '120px' },
+        {
+          field: 'bundleId',
+          header: 'Bundle ID',
+          sortable: true,
+          width: '140px',
+          tooltip: 'Unique identifier for the circuit bundle'
+        },
+        {
+          field: 'bundleStatus',
+          header: 'Status',
+          sortable: true,
+          width: '150px',
+          type: 'status',
+          tooltip: 'Current operational status of the circuit'
+        },
+        {
+          field: 'bundleAlias',
+          header: 'Bundle Alias',
+          sortable: true,
+          tooltip: 'Human-readable name for the circuit'
+        },
+        {
+          field: 'streetAddress',
+          header: 'Street Address',
+          sortable: true,
+          tooltip: 'Physical location of the circuit endpoint'
+        },
+        {
+          field: 'city',
+          header: 'City',
+          sortable: true,
+          width: '120px'
+        },
+        {
+          field: 'state',
+          header: 'State',
+          sortable: true,
+          width: '80px'
+        },
+        {
+          field: 'bundleProductType',
+          header: 'Product Type',
+          sortable: true,
+          width: '150px',
+          tooltip: 'Type of network service (e.g., SD-WAN, DIA, MPLS)'
+        },
+        {
+          field: 'circuitType',
+          header: 'Circuit Type',
+          sortable: true,
+          width: '130px',
+          tooltip: 'Physical connection type for the circuit'
+        },
+        {
+          field: 'bandwidth',
+          header: 'Bandwidth',
+          sortable: true,
+          width: '120px',
+          tooltip: 'Maximum data transfer capacity of the circuit'
+        },
       ],
 
       statusColumn: {

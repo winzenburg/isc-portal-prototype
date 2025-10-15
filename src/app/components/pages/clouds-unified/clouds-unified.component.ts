@@ -66,12 +66,52 @@ export class CloudsUnifiedComponent implements OnInit {
       tableId: 'clouds-table',
 
       columns: [
-        { field: 'cloudId', header: 'Cloud ID', sortable: true, width: '150px', type: 'custom', cellClass: 'link-cell' },
-        { field: 'cloudAlias', header: 'Cloud Alias', sortable: true, width: '200px', type: 'custom', cellClass: 'editable-cell' },
-        { field: 'cloudType', header: 'Cloud Type', sortable: true },
-        { field: 'status', header: 'Status', sortable: true, width: '120px' },
-        { field: 'createdDate', header: 'Created Date', sortable: true, width: '140px' },
-        { field: 'connections', header: 'Connections', sortable: true, width: '120px', align: 'right' }
+        {
+          field: 'cloudId',
+          header: 'Cloud ID',
+          sortable: true,
+          width: '150px',
+          type: 'custom',
+          cellClass: 'link-cell',
+          tooltip: 'Unique identifier for the cloud network'
+        },
+        {
+          field: 'cloudAlias',
+          header: 'Cloud Alias',
+          sortable: true,
+          width: '200px',
+          type: 'custom',
+          cellClass: 'editable-cell',
+          tooltip: 'Custom name for the cloud network'
+        },
+        {
+          field: 'cloudType',
+          header: 'Cloud Type',
+          sortable: true,
+          tooltip: 'Network layer and protocol type (Layer 2/Layer 3)'
+        },
+        {
+          field: 'status',
+          header: 'Status',
+          sortable: true,
+          width: '120px',
+          tooltip: 'Current operational status of the cloud'
+        },
+        {
+          field: 'createdDate',
+          header: 'Created Date',
+          sortable: true,
+          width: '140px',
+          tooltip: 'Date when the cloud was provisioned'
+        },
+        {
+          field: 'connections',
+          header: 'Connections',
+          sortable: true,
+          width: '120px',
+          align: 'right',
+          tooltip: 'Number of active connections to this cloud'
+        }
       ],
 
       filtering: {

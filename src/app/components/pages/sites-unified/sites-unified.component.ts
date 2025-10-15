@@ -96,10 +96,41 @@ export class SitesUnifiedComponent implements OnInit, OnDestroy {
       tableId: 'sites-table',
 
       columns: [
-        { field: 'siteAlias', header: 'Site Alias', sortable: true, width: '250px', type: 'custom', cellClass: 'site-alias-cell' },
-        { field: 'address', header: 'Address', sortable: true },
-        { field: 'contacts', header: 'Contacts', sortable: false, width: '100px', align: 'center', type: 'custom', cellClass: 'contacts-cell' },
-        { field: 'circuits', header: 'Circuits Health', sortable: false, width: '150px', align: 'center', type: 'custom', cellClass: 'circuits-health-cell' }
+        {
+          field: 'siteAlias',
+          header: 'Site Alias',
+          sortable: true,
+          width: '250px',
+          type: 'custom',
+          cellClass: 'site-alias-cell',
+          tooltip: 'Unique identifier for each network site or location'
+        },
+        {
+          field: 'address',
+          header: 'Address',
+          sortable: true,
+          tooltip: 'Physical location of the network site'
+        },
+        {
+          field: 'contacts',
+          header: 'Contacts',
+          sortable: false,
+          width: '100px',
+          align: 'center',
+          type: 'custom',
+          cellClass: 'contacts-cell',
+          tooltip: 'Number of designated contacts for this site'
+        },
+        {
+          field: 'circuits',
+          header: 'Circuits Health',
+          sortable: false,
+          width: '150px',
+          align: 'center',
+          type: 'custom',
+          cellClass: 'circuits-health-cell',
+          tooltip: 'Current status of network circuits at this site'
+        }
       ],
 
       filtering: {

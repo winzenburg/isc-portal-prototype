@@ -91,7 +91,7 @@
                   [class.active]="siteTypeFilter === 'SD-WAN'"
                   (click)="onSiteTypeFilterChange('SD-WAN')">
             <mat-icon *ngIf="siteTypeFilter === 'SD-WAN'">check</mat-icon>
-            SD-WAN Sites
+            <span appHelpTooltip="sd-wan">SD-WAN</span> Sites
           </button>
         </div>
       </div>
