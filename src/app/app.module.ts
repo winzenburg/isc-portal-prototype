@@ -68,6 +68,8 @@ import { NoAccessStateComponent } from './components/no-access-state/no-access-s
 import { NetworkAnalystUnifiedComponent } from './components/pages/network-analyst-unified/network-analyst-unified.component';
 import { SparklineComponent } from './components/shared/sparkline/sparkline.component';
 import { HelpTooltipDirective } from './directives/help-tooltip.directive';
+import { GlossaryModalComponent } from './components/help/glossary-modal/glossary-modal.component';
+import { Nl2brPipe } from './pipes/nl2br.pipe';
 
 @NgModule({
   declarations: [
@@ -106,7 +108,9 @@ import { HelpTooltipDirective } from './directives/help-tooltip.directive';
     NoAccessStateComponent,
     NetworkAnalystUnifiedComponent,
     SparklineComponent,
-    HelpTooltipDirective
+    HelpTooltipDirective,
+    GlossaryModalComponent,
+    Nl2brPipe
   ],
   imports: [
     BrowserModule,

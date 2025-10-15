@@ -44,6 +44,15 @@
       </mat-select>
     </mat-form-field>
 
+    <!-- Help/Glossary Button -->
+    <button mat-icon-button
+            (click)="openGlossary()"
+            matTooltip="Open glossary and help center"
+            aria-label="Open help"
+            [style.color]="'var(--md-sys-color-on-primary)'">
+      <mat-icon>help_outline</mat-icon>
+    </button>
+
     <button mat-icon-button
             [matMenuTriggerFor]="menu"
             aria-label="User menu"

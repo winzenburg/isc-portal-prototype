@@ -1,0 +1,157 @@
+<div class="glossary-modal">
+  <!-- Header -->
+  <div class="modal-header">
+    <div class="header-content">
+      <mat-icon class="header-icon">menu_book</mat-icon>
+      <h2>ISC Portal Glossary</h2>
+    </div>
+    <button mat-icon-button (click)="close()" aria-label="Close glossary">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <!-- Search & Filters -->
+  <div class="filters-section">
+    <!-- Search Bar -->
+    <mat-form-field appearance="outline" class="search-field">
+      <mat-label>Search terms...</mat-label>
+      <input
+        matInput
+        [(ngModel)]="searchQuery"
+        (ngModelChange)="onSearchChange()"
+        placeholder="e.g., SD-WAN, MPLS, bandwidth"
+        autocomplete="off">
+      <mat-icon matPrefix>search</mat-icon>
+      <button
+        mat-icon-button
+        matSuffix
+        *ngIf="searchQuery"
+        (click)="clearSearch()"
+        aria-label="Clear search">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <!-- Filter Chips -->
+    <div class="filter-chips">
+      <!-- Category Filter -->
+      <div class="filter-group">
+        <span class="filter-label">Category:</span>
+        <mat-chip-list aria-label="Category selection">
+          <mat-chip
+            *ngFor="let cat of categories"
+            [selected]="selectedCategory === cat.value"
+            (click)="$event.stopPropagation(); onCategoryChange(cat.value)"
+            class="filter-chip">
+            <mat-icon>{{ cat.icon }}</mat-icon>
+            {{ cat.label }}
+          </mat-chip>
+        </mat-chip-list>
+      </div>
+
+      <!-- Priority Filter -->
+      <div class="filter-group">
+        <span class="filter-label">Priority:</span>
+        <mat-chip-list aria-label="Priority selection">
+          <mat-chip
+            *ngFor="let tier of tiers"
+            [selected]="selectedTier === tier.value"
+            (click)="$event.stopPropagation(); onTierChange(tier.value)"
+            class="filter-chip">
+            {{ tier.label }}
+          </mat-chip>
+        </mat-chip-list>
+      </div>
+    </div>
+
+    <!-- Results Count & Reset -->
+    <div class="filter-actions">
+      <span class="results-count">
+        {{ filteredContent.length }} term{{ filteredContent.length !== 1 ? 's' : '' }} found
+      </span>
+      <button
+        mat-button
+        (click)="resetFilters()"
+        *ngIf="searchQuery || selectedCategory !== 'all' || selectedTier !== 'all'">
+        <mat-icon>clear_all</mat-icon>
+        Reset Filters
+      </button>
+    </div>
+  </div>
+
+  <!-- Terms List -->
+  <div class="terms-list">
+    <div
+      *ngFor="let term of filteredContent"
+      class="term-card"
+      [class.expanded]="isExpanded(term.id)">
+
+      <!-- Term Header (Always Visible) -->
+      <div class="term-header" (click)="toggleTerm(term.id)">
+        <div class="term-title">
+          <mat-icon *ngIf="term.icon" class="term-icon">{{ term.icon }}</mat-icon>
+          <h3>{{ term.term }}</h3>
+          <span class="tier-badge" [ngClass]="getTierBadgeClass(term.tier)">
+            {{ getTierLabel(term.tier) }}
+          </span>
+        </div>
+        <mat-icon class="expand-icon">
+          {{ isExpanded(term.id) ? 'expand_less' : 'expand_more' }}
+        </mat-icon>
+      </div>
+
+      <!-- Quick Description (Always Visible) -->
+      <div class="term-summary">
+        <p class="category-label">
+          <mat-icon class="category-icon">label</mat-icon>
+          {{ term.category }}
+        </p>
+        <p class="short-description">{{ term.shortDescription }}</p>
+      </div>
+
+      <!-- Expanded Details -->
+      <div class="term-details" *ngIf="isExpanded(term.id)">
+        <div class="detailed-description">
+          <h4>Detailed Explanation</h4>
+          <div [innerHTML]="term.detailedDescription | nl2br"></div>
+        </div>
+
+        <!-- Examples (if available) -->
+        <div class="examples-section" *ngIf="term.examples && term.examples.length > 0">
+          <h4>Examples</h4>
+          <ul>
+            <li *ngFor="let example of term.examples">{{ example }}</li>
+          </ul>
+        </div>
+
+        <!-- Related Terms (if available) -->
+        <div class="related-terms" *ngIf="term.relatedTerms && term.relatedTerms.length > 0">
+          <h4>Related Terms</h4>
+          <div class="related-chips">
+            <mat-chip *ngFor="let relatedId of term.relatedTerms">
+              {{ relatedId }}
+            </mat-chip>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- No Results -->
+    <div class="no-results" *ngIf="filteredContent.length === 0">
+      <mat-icon>search_off</mat-icon>
+      <h3>No terms found</h3>
+      <p>Try adjusting your search or filters</p>
+      <button mat-raised-button color="primary" (click)="resetFilters()">
+        Reset Filters
+      </button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="modal-footer">
+    <p class="footer-hint">
+      <mat-icon>tips_and_updates</mat-icon>
+      <strong>Pro Tip:</strong> Look for <span class="help-indicator">dotted underlines</span> throughout the portal for quick explanations
+    </p>
+  </div>
+</div>
