@@ -1,0 +1,75 @@
+<div class="help-popover" *ngIf="helpContent">
+  <!-- Header -->
+  <div class="popover-header">
+    <div class="header-content">
+      <mat-icon *ngIf="helpContent.icon" class="term-icon">{{ helpContent.icon }}</mat-icon>
+      <h2>{{ helpContent.term }}</h2>
+      <span class="tier-badge" [ngClass]="getTierBadgeClass(helpContent.tier)">
+        {{ getTierLabel(helpContent.tier) }}
+      </span>
+    </div>
+    <button mat-icon-button (click)="close()" aria-label="Close help">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <!-- Content -->
+  <div class="popover-content">
+    <!-- Category -->
+    <div class="category-label">
+      <mat-icon>label</mat-icon>
+      <span>{{ helpContent.category }}</span>
+    </div>
+
+    <!-- Short Description -->
+    <div class="short-description">
+      <p>{{ helpContent.shortDescription }}</p>
+    </div>
+
+    <!-- Detailed Description -->
+    <div class="detailed-description">
+      <h3>Detailed Explanation</h3>
+      <div [innerHTML]="helpContent.detailedDescription | nl2br"></div>
+    </div>
+
+    <!-- Examples -->
+    <div class="examples-section" *ngIf="helpContent.examples && helpContent.examples.length > 0">
+      <h3>Examples</h3>
+      <ul>
+        <li *ngFor="let example of helpContent.examples">{{ example }}</li>
+      </ul>
+    </div>
+
+    <!-- Related Terms -->
+    <div class="related-terms" *ngIf="relatedContent.length > 0">
+      <h3>Related Terms</h3>
+      <div class="related-chips">
+        <mat-chip-list>
+          <mat-chip
+            *ngFor="let related of relatedContent"
+            (click)="openRelatedTerm(related.id)"
+            class="related-chip">
+            <mat-icon *ngIf="related.icon">{{ related.icon }}</mat-icon>
+            {{ related.term }}
+          </mat-chip>
+        </mat-chip-list>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="popover-footer">
+    <button mat-button color="primary" (click)="close()">
+      <mat-icon>check</mat-icon>
+      Got it
+    </button>
+  </div>
+</div>
+
+<!-- Error State -->
+<div class="help-popover-error" *ngIf="!helpContent">
+  <mat-icon>error_outline</mat-icon>
+  <h3>Help content not found</h3>
+  <p>Sorry, we couldn't find help information for this topic.</p>
+  <button mat-raised-button color="primary" (click)="close()">Close</button>
+</div>

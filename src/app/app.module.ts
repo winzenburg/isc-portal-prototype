@@ -70,6 +70,7 @@ import { SparklineComponent } from './components/shared/sparkline/sparkline.comp
 import { HelpTooltipDirective } from './directives/help-tooltip.directive';
 import { GlossaryModalComponent } from './components/help/glossary-modal/glossary-modal.component';
 import { Nl2brPipe } from './pipes/nl2br.pipe';
+import { HelpPopoverComponent } from './components/help/help-popover/help-popover.component';
 
 @NgModule({
   declarations: [
@@ -110,7 +111,8 @@ import { Nl2brPipe } from './pipes/nl2br.pipe';
     SparklineComponent,
     HelpTooltipDirective,
     GlossaryModalComponent,
-    Nl2brPipe
+    Nl2brPipe,
+    HelpPopoverComponent
   ],
   imports: [
     BrowserModule,
