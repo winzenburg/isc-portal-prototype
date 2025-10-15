@@ -1,4 +1,7 @@
 .page-container {
+  padding: var(--spacing-lg);
+  background-color: var(--md-sys-color-surface);
+  min-height: calc(100vh - 64px);
   display: flex;
   flex-direction: column;
   gap: 16px;

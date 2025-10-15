@@ -2,7 +2,8 @@
   display: flex;
   gap: 16px;
   height: calc(100vh - 120px);
-  padding: 0;
+  padding: var(--spacing-lg);
+  background-color: var(--md-sys-color-surface);
 }
 
 .site-tree-panel {
