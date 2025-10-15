@@ -1,37 +1,98 @@
-# ISC Portal Prototype
+# ISC Portal Usability Analysis Prototype
 
-**Purpose**: Functional prototype matching the exact tech stack of the Comcast Business ISC Portal for UX testing and solution validation.
+> **Interactive prototype demonstrating solutions to critical usability issues in the Comcast Business ISC Portal**
 
-**Status**: ✅ Complete - Ready for development and testing
-
----
-
-## Tech Stack
-
-This prototype uses the **exact verified tech stack** from the ISC Portal:
-
-| Component | Version | Purpose |
-|-----------|---------|---------|
-| **Angular** | 13.3.2 | Core framework |
-| **Angular Material** | 13.x | UI component library (315+ elements) |
-| **TypeScript** | 4.5+ | Type-safe development |
-| **Leaflet** | 1.7.1 | Interactive mapping (future integration) |
-| **Webpack** | 5 | Module bundler with Module Federation support |
-| **SCSS** | - | Styling with design tokens |
+[![Angular](https://img.shields.io/badge/Angular-13.3.2-DD0031?logo=angular)](https://angular.io/)
+[![Material Design](https://img.shields.io/badge/Material%20Design-3-757575?logo=material-design)](https://material.angular.io/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-4.5+-3178C6?logo=typescript)](https://www.typescriptlang.org/)
+[![License](https://img.shields.io/badge/License-Internal-blue)]()
 
 ---
 
-## Quick Start
+## 📋 Table of Contents
+
+- [Overview](#overview)
+- [Key Features](#key-features)
+- [Quick Start](#quick-start)
+- [Usability Improvements Demonstrated](#usability-improvements-demonstrated)
+- [Tech Stack](#tech-stack)
+- [Project Structure](#project-structure)
+- [Screenshots](#screenshots)
+- [Testing](#testing)
+- [Documentation](#documentation)
+- [Contributing](#contributing)
+
+---
+
+## 🎯 Overview
+
+This prototype addresses critical usability issues identified in the Comcast Business ISC Portal (formerly Masergy) through comprehensive heuristic analysis based on:
+
+- **Nielsen's 10 Usability Heuristics**
+- **Q2 2025 Employee Survey** (pNPS: -4, 81% reporting system issues)
+- **ISC Portal Focus Group Findings**
+
+The prototype is built with the **exact same tech stack** as the production ISC Portal, ensuring solutions are immediately implementable.
+
+### Business Impact
+
+| Metric | Current | Target |
+|--------|---------|--------|
+| System Issues | 81% | 50% |
+| pNPS Score | -4 | +5 |
+| Task Completion Time | Baseline | -30% |
+
+---
+
+## ✨ Key Features
+
+### 🎨 Material Design 3 Implementation
+- Complete M3 design system with color tokens
+- Consistent component styling across all pages
+- Dark header (RGB 16,47,101) with light primary actions (RGB 13,98,255)
+
+### 🔐 Access Control & Error States
+- No-access state pages with contextual help
+- Structured error handling with recovery actions
+- Empty states with actionable next steps
+
+### 📊 Enhanced Data Tables
+- Unified table component with filtering, sorting, and pagination
+- Row actions with kebab menus
+- Bulk operations with selection
+- CSV export functionality
+- Editable inline rows
+
+### ⏳ Loading Progress Indicators
+- Progressive loading screens (3-5 seconds)
+- Status messages and percentage displays
+- Prevents user confusion about frozen screens
+
+### 🔍 Command Palette
+- Quick access to all major features (Cmd/Ctrl+K)
+- Fuzzy search across sites, circuits, contacts
+- Keyboard shortcuts for power users
+
+### 📱 Responsive Design
+- Mobile-friendly layouts
+- Adaptive navigation
+- Touch-optimized interactions
+
+---
+
+## 🚀 Quick Start
 
 ### Prerequisites
 
-- Node.js 14.x or 16.x (required for Angular 13.3.2)
-- npm 6+ or yarn 1.22+
+- **Node.js**: 14.x or 16.x (required for Angular 13.3.2)
+- **npm**: 6+ or yarn 1.22+
 
 ### Installation
 
 ```bash
-cd prototype
+# Clone the repository
+git clone https://github.com/winzenburg/isc-portal-prototype.git
+cd isc-portal-prototype
 
 # Install dependencies
 npm install
@@ -42,548 +103,351 @@ npm start
 # Open browser to http://localhost:4200
 ```
 
-### Build
+### Build for Production
 
 ```bash
-# Development build
-npm run build
-
-# Production build
+# Production build with optimizations
 npm run build --configuration=production
+
+# Output will be in dist/ directory
 ```
 
 ---
 
-## Project Structure
+## 🎨 Usability Improvements Demonstrated
+
+### 1. Access Control & Error States
+
+**Heuristics Addressed**: #9 (Error Recovery), #10 (Help & Documentation)
+
+**Features**:
+- No-access state page (e.g., SD-WAN Orchestrator) with clear explanation
+- Support contact information with click-to-call and email
+- "Request Access" action buttons
+- Contextual help explaining why access is denied
+
+**Demo**: Navigate to `/sd-wan-orchestrator`
+
+---
+
+### 2. Loading Progress Indicators
+
+**Heuristics Addressed**: #1 (Visibility of System Status)
+
+**Features**:
+- 5-stage progressive loading with realistic messages
+- Visual progress bar with percentage
+- Animated icons and smooth transitions
+- Prevents "is it frozen?" confusion
+
+**Demo**: Navigate to `/contacts` - watch the 4.5-second loading sequence
+
+---
+
+### 3. Enhanced Table Interactions
+
+**Heuristics Addressed**: #7 (Flexibility & Efficiency), #4 (Consistency)
+
+**Features**:
+- Unified table component used across all data pages
+- Advanced filtering with drawer
+- Column sorting
+- Row actions (edit, delete, custom actions)
+- Bulk operations with selection
+- CSV export
+- Persistent filter state
+- Editable inline rows
+
+**Demo**: Navigate to `/circuits`, `/sites`, `/clouds`, `/contacts`, etc.
+
+---
+
+### 4. Command Palette
+
+**Heuristics Addressed**: #7 (Flexibility & Efficiency), #6 (Recognition vs Recall)
+
+**Features**:
+- Global search accessible via Cmd/Ctrl+K
+- Fuzzy search across all major entities
+- Keyboard shortcuts for common actions
+- Recent searches
+
+**Demo**: Press `Cmd+K` (Mac) or `Ctrl+K` (Windows) from any page
+
+---
+
+### 5. Empty & Error States
+
+**Heuristics Addressed**: #9 (Error Recovery), #2 (System/Real World Match)
+
+**Features**:
+- Contextual empty states with helpful explanations
+- Actionable next steps
+- Appropriate icons and messaging
+- Error states with retry and support options
+
+**Demo**: Filter tables to show no results, or check error state demos
+
+---
+
+### 6. Consistent Navigation
+
+**Heuristics Addressed**: #4 (Consistency & Standards), #6 (Recognition vs Recall)
+
+**Features**:
+- Left sidebar navigation always visible
+- Expandable sections (Network Services, SD-WAN, Tickets & Events)
+- Active page highlighting
+- Logical information architecture
+
+**Demo**: Navigate through sidebar menu items
+
+---
+
+## 🛠️ Tech Stack
+
+| Technology | Version | Purpose |
+|-----------|---------|---------|
+| **Angular** | 13.3.2 | Core framework (matches ISC Portal) |
+| **Angular Material** | 13.x | UI component library (315+ elements) |
+| **Material Design 3** | Latest | Design system |
+| **TypeScript** | 4.5+ | Type-safe development |
+| **SCSS** | - | Styling with CSS custom properties |
+| **Leaflet** | 1.7.1 | Map visualization |
+| **Chart.js** | via ng2-charts | Dashboard charts |
+| **Playwright** | Latest | E2E testing & visual verification |
+
+---
+
+## 📁 Project Structure
 
 ```
-prototype/
+isc-portal-prototype/
 ├── src/
 │   ├── app/
 │   │   ├── components/
-│   │   │   ├── dashboard/           # Dashboard with widgets (Issue #1 solution demo)
-│   │   │   ├── sites-list/          # Sites table with bulk actions (Issues #4, #5)
-│   │   │   ├── header/              # Global search + customer switcher (Issues #3, #8)
-│   │   │   ├── sidebar/             # Navigation menu
-│   │   │   ├── status-badge/        # Reusable status badges (Design system)
-│   │   │   ├── error-state/         # Structured error component (Issue #1)
-│   │   │   └── empty-state/         # Contextual empty states (Issue #2)
-│   │   ├── app.component.*          # Root component with layout
-│   │   ├── app.module.ts            # Module configuration
-│   │   └── app-routing.module.ts    # Route definitions
-│   ├── styles.scss                  # Global styles + design tokens
-│   ├── index.html                   # App entry point
-│   └── main.ts                      # Bootstrap file
-├── angular.json                     # Angular CLI configuration
-├── package.json                     # Dependencies (Angular 13.3.2)
-├── tsconfig.json                    # TypeScript configuration
-└── README.md                        # This file
+│   │   │   ├── header/                    # Global header with search
+│   │   │   ├── sidebar/                   # Navigation sidebar
+│   │   │   ├── landing/                   # Landing page with issue demos
+│   │   │   ├── dashboard/                 # Dashboard with charts
+│   │   │   ├── no-access-state/           # No-access page component
+│   │   │   ├── shared/
+│   │   │   │   ├── base-table/            # Unified table component
+│   │   │   │   ├── command-palette/       # Global search (Cmd+K)
+│   │   │   │   ├── confirmation-dialog/   # Confirmation modals
+│   │   │   │   ├── access-denied/         # Access denied component
+│   │   │   │   └── sync-status-indicator/ # Loading status
+│   │   │   └── pages/
+│   │   │       ├── circuits-unified/      # Circuits page
+│   │   │       ├── sites-unified/         # Sites page
+│   │   │       ├── clouds-unified/        # Clouds page
+│   │   │       ├── contacts-unified/      # Contacts page (with loading demo)
+│   │   │       ├── tickets-unified/       # Tickets page
+│   │   │       └── ... (more pages)
+│   │   ├── services/
+│   │   │   ├── csv-export.service.ts      # CSV export functionality
+│   │   │   ├── table-state.service.ts     # Persist table filters
+│   │   │   └── access-control.service.ts  # Access control logic
+│   │   ├── app.module.ts                  # Main module
+│   │   └── app-routing.module.ts          # Routing configuration
+│   ├── styles.scss                        # Global styles + design tokens
+│   ├── material-design-3-theme.scss       # M3 theme configuration
+│   └── index.html
+├── test-*.spec.ts                         # Playwright test files
+├── ALIGNMENT_ANALYSIS.md                  # Alignment testing report
+├── ACCESS_CONTROL_GUIDE.md                # Access control documentation
+├── MATERIAL_DESIGN_3_GUIDE.md             # M3 implementation guide
+├── package.json
+└── README.md
 ```
 
 ---
 
-## Design System Implementation
+## 📸 Screenshots
 
-### Color Tokens
+### Landing Page - Heuristic Issues Overview
+Interactive landing page showcasing all identified usability issues with live demos.
 
-The prototype implements the full ISC Portal design token system identified in the design system analysis:
+### Enhanced Data Tables
+Unified table component with filtering, sorting, pagination, and bulk actions.
 
-```css
-/* Interactive Colors - Single blue for consistency */
---color-interactive-default: #0D62FF;  /* Primary actions */
---color-interactive-hover: #0A4ECC;    /* Hover states */
---color-interactive-pressed: #102F65;  /* Pressed states */
+### Loading Progress Indicator
+Progressive 5-stage loading screen with status messages preventing user confusion.
 
-/* Status Colors */
---color-success: #1E8500;  /* Active, healthy states */
---color-warning: #E65100;  /* Pending, attention needed */
---color-error: #D32F2F;    /* Errors, critical issues */
---color-info: #00838F;     /* Informational messages */
+### No-Access State Page
+Clear messaging with contextual help and action buttons for requesting access.
 
-/* Focus Ring - WCAG 2.1 Compliance */
---color-focus-ring: #0D62FF;
---focus-ring-width: 3px;
---focus-ring-offset: 2px;
-```
-
-**Key Design System Features**:
-- ✅ Single blue (#0D62FF) for ALL interactive elements (solves button hierarchy issue)
-- ✅ Error Red (#D32F2F) defined and implemented
-- ✅ Focus ring specification for accessibility
-- ✅ CSS custom properties enforced throughout
-- ✅ No hard-coded hex values in components
-
-### Button Hierarchy
-
-The prototype implements the recommended button hierarchy from the design system analysis:
-
-| Button Type | Use Case | Class | Example |
-|-------------|----------|-------|---------|
-| **Primary** | Main action per page | `.btn-primary` | "Create Ticket", "Save" |
-| **Secondary** | Supporting actions | `.btn-secondary` | "Cancel", "Filter" |
-| **Tertiary** | Low-emphasis actions | `.btn-tertiary` | "Learn More", "Skip" |
-| **Destructive** | Delete/remove actions | `.btn-destructive` | "Delete Site", "Remove" |
-
-**Usage**:
-```html
-<button mat-raised-button class="btn-primary">Primary Action</button>
-<button mat-stroked-button class="btn-secondary">Secondary Action</button>
-<button mat-button class="btn-tertiary">Tertiary Action</button>
-<button mat-raised-button class="btn-destructive">Delete</button>
-```
+### Command Palette (Cmd+K)
+Quick access to all major features with fuzzy search.
 
 ---
 
-## UX Issue Solutions Demonstrated
+## 🧪 Testing
 
-This prototype includes working examples of solutions for the critical issues identified in the heuristic analysis:
+### Run Development Server
 
-### ✅ Issue #1: Error Handling & Recovery
-
-**Component**: `ErrorStateComponent`
-
-**Location**: `src/app/components/error-state/`
-
-**Features**:
-- Structured error messages with error codes
-- Timestamps for support reference
-- Clear recovery actions (Retry, Contact Support)
-- Copy error details to clipboard
-- Contextual help text
-
-**Demo**:
-```html
-<app-error-state
-  errorCode="SD-WAN-503"
-  errorMessage="Unable to load SD-WAN configuration"
-  errorDetails="The SD-WAN service is temporarily unavailable. This is usually resolved within a few minutes."
-  [timestamp]="now"
-  [showRetry]="true"
-  [showContact]="true"
-  (retry)="onRetry()"
-  (contactSupport)="onContactSupport()">
-</app-error-state>
-```
-
----
-
-### ✅ Issue #2: Empty State Communication
-
-**Component**: `EmptyStateComponent`
-
-**Location**: `src/app/components/empty-state/`
-
-**Features**:
-- Contextual explanations (not just "No data found")
-- Action buttons to resolve the empty state
-- Appropriate icons for context
-- Used in Sites table when no results
-
-**Demo**:
-```html
-<app-empty-state
-  icon="location_on"
-  title="No sites found"
-  message="Try adjusting your search or filters to find what you're looking for."
-  actionLabel="Add Site"
-  actionIcon="add"
-  (action)="onAddSite()">
-</app-empty-state>
-```
-
----
-
-### ✅ Issue #3: Global Search
-
-**Component**: `HeaderComponent`
-
-**Location**: `src/app/components/header/`
-
-**Features**:
-- Global search bar in header (always accessible)
-- Keyboard shortcut (Cmd/Ctrl + K)
-- Placeholder shows searchable entity types
-- Search icon for visibility
-
-**Implementation**: `header.component.html` lines 9-19
-
----
-
-### ✅ Issue #4: Bulk Operations
-
-**Component**: `SitesListComponent`
-
-**Location**: `src/app/components/sites-list/`
-
-**Features**:
-- Checkboxes for row selection
-- Bulk actions bar appears when items selected
-- Shows count of selected items
-- Export and Delete actions enabled
-- Master checkbox for select all
-
-**Implementation**: `sites-list.component.html` lines 33-46
-
----
-
-### ✅ Issue #5: Confirmation Dialogs
-
-**Component**: `SitesListComponent` (embedded confirmation)
-
-**Location**: `src/app/components/sites-list/`
-
-**Features**:
-- Warning icon and color scheme
-- Clear description of destructive action
-- Confirmation required before delete
-- Cancel and Delete buttons with distinct styling
-
-**Implementation**: `sites-list.component.html` lines 48-62
-
----
-
-### ✅ Issue #6: Button Hierarchy
-
-**Solution**: Design token system + button classes
-
-**Location**: `src/styles.scss` lines 165-232
-
-**Features**:
-- Clear visual hierarchy (Primary > Secondary > Tertiary > Destructive)
-- Consistent styling across all components
-- CSS custom properties enforce design tokens
-- No hard-coded colors
-
-**Examples**: Dashboard Quick Actions, Sites List Actions
-
----
-
-### ✅ Issue #8: Customer Switching
-
-**Component**: `HeaderComponent`
-
-**Location**: `src/app/components/header/`
-
-**Features**:
-- Customer selector in header (always visible)
-- Dropdown with customer list
-- No need to logout/login to switch
-- Immediately updates context
-
-**Implementation**: `header.component.html` lines 25-35
-
----
-
-## Angular Material Components Used
-
-The prototype uses the same Angular Material components detected in the ISC Portal:
-
-| Component | Usage | Location |
-|-----------|-------|----------|
-| `mat-toolbar` | Header | `HeaderComponent` |
-| `mat-sidenav` | Sidebar navigation | `AppComponent` |
-| `mat-nav-list` | Navigation menu | `SidebarComponent` |
-| `mat-icon` | Icons throughout | All components |
-| `mat-menu` | Dropdown menus | Header, Sites table actions |
-| `mat-form-field` | Form inputs | Search, filters |
-| `mat-select` | Dropdowns | Customer selector, filters |
-| `mat-table` | Data tables | Sites list |
-| `mat-paginator` | Table pagination | Sites list |
-| `mat-card` | Content containers | Dashboard widgets |
-| `mat-chip` | Status badges | Via `StatusBadgeComponent` |
-| `mat-button` | Buttons | All components |
-| `mat-checkbox` | Bulk selection | Sites table |
-
----
-
-## Customization & Extension
-
-### Adding New Components
-
-1. Generate component:
 ```bash
-ng generate component components/my-component
+npm start
+# Open http://localhost:4200
 ```
-
-2. Import required Material modules in `app.module.ts`
-
-3. Use design tokens from `styles.scss`:
-```scss
-.my-component {
-  color: var(--color-interactive-default);
-  padding: var(--spacing-md);
-  border-radius: var(--radius-md);
-}
-```
-
-### Extending Design Tokens
-
-Edit `src/styles.scss`:
-
-```scss
-:root {
-  /* Add new tokens */
-  --color-my-new-color: #HEXCODE;
-  --spacing-my-spacing: 20px;
-}
-```
-
-### Adding Routes
-
-Edit `src/app/app-routing.module.ts`:
-
-```typescript
-const routes: Routes = [
-  { path: 'my-route', component: MyComponent }
-];
-```
-
----
-
-## Material Theme Customization
-
-The prototype uses a custom Angular Material theme matching ISC Portal colors.
-
-**Location**: `src/styles.scss` lines 1-70
-
-**Customization**:
-
-```scss
-// Primary palette (Interactive Blue)
-$isc-primary: mat.define-palette((
-  500: #0D62FF,  // Main interactive color
-  600: #0A4ECC,  // Hover
-  700: #102F65,  // Pressed
-));
-
-// Warn palette (Error Red)
-$isc-warn: mat.define-palette((
-  500: #D32F2F,  // Error color
-));
-```
-
----
-
-## Testing UX Solutions
 
 ### Manual Testing Checklist
 
-**Error Handling** (Issue #1):
-- [ ] Navigate to a page with error state
-- [ ] Verify error code is displayed
-- [ ] Verify timestamp is shown
-- [ ] Click "Try Again" - verify retry behavior
-- [ ] Click "Copy Details" - verify clipboard
+**Access Control**:
+- [ ] Navigate to `/sd-wan-orchestrator`
+- [ ] Verify no-access state displays with support information
+- [ ] Test "Request Access" and support contact buttons
 
-**Empty States** (Issue #2):
-- [ ] Clear all sites from table (or search with no results)
-- [ ] Verify contextual message appears
-- [ ] Verify "Add Site" action button is present
-- [ ] Click action - verify behavior
+**Loading Indicators**:
+- [ ] Navigate to `/contacts`
+- [ ] Observe 5-stage loading progression
+- [ ] Verify progress bar and percentage display
+- [ ] Confirm smooth transition to loaded state
 
-**Global Search** (Issue #3):
+**Table Interactions**:
+- [ ] Navigate to any data page (circuits, sites, clouds)
+- [ ] Test filtering, sorting, and pagination
+- [ ] Select rows and test bulk actions
+- [ ] Export table to CSV
+- [ ] Test row actions (kebab menu)
+
+**Command Palette**:
 - [ ] Press Cmd+K (Mac) or Ctrl+K (Windows)
-- [ ] Verify search field receives focus
 - [ ] Type search query
-- [ ] Verify placeholder text is helpful
+- [ ] Verify fuzzy matching works
+- [ ] Test keyboard navigation (arrow keys, enter)
 
-**Bulk Operations** (Issue #4):
-- [ ] Select 2+ sites using checkboxes
-- [ ] Verify bulk actions bar appears
-- [ ] Verify selected count is correct
-- [ ] Click "Export" - verify behavior
-- [ ] Click "Delete" - verify confirmation appears
+### Automated Testing with Playwright
 
-**Confirmation Dialogs** (Issue #5):
-- [ ] Select sites and click "Delete"
-- [ ] Verify warning icon and message appear
-- [ ] Click "Cancel" - verify dialog closes
-- [ ] Click "Delete" - verify action executes
-
-**Button Hierarchy** (Issue #6):
-- [ ] Navigate to Dashboard
-- [ ] Verify primary buttons are visually distinct (blue background)
-- [ ] Verify secondary buttons are outlined
-- [ ] Verify no two primary buttons compete for attention
-
-**Customer Switching** (Issue #8):
-- [ ] Click customer selector in header
-- [ ] Select different customer from dropdown
-- [ ] Verify customer name updates
-- [ ] Verify no page reload required
-
----
-
-## Accessibility (WCAG 2.1)
-
-The prototype implements accessibility features from the design system analysis:
-
-- ✅ **Focus Rings**: 3px solid blue with 2px white offset
-- ✅ **Color Contrast**: All text meets AA minimum (4.5:1 for normal text)
-- ✅ **Keyboard Navigation**: All interactive elements accessible via Tab
-- ✅ **Icon + Text**: Status badges use both icon and text (not color alone)
-- ✅ **ARIA Labels**: Angular Material components include built-in ARIA
-
-**Testing**:
 ```bash
-# Navigate entire app using only keyboard
-Tab, Shift+Tab, Enter, Space, Arrow keys
+# Install Playwright browsers
+npx playwright install
 
-# Use browser DevTools Lighthouse for accessibility audit
-# Target: WCAG 2.1 Level AA compliance
+# Run alignment tests
+npx playwright test test-alignment.spec.ts
+
+# Run visual verification tests
+npx playwright test test-visual-center.spec.ts
+
+# Run loading progress tests
+npx playwright test test-loading-progress.spec.ts
 ```
 
 ---
 
-## Leaflet Integration (Future)
+## 📚 Documentation
 
-The prototype includes Leaflet 1.7.1 for future map integration.
+### Design & Analysis Documents
 
-**Example Integration**:
+- **ALIGNMENT_ANALYSIS.md** - Comprehensive alignment testing report
+- **ACCESS_CONTROL_GUIDE.md** - Access control implementation guide
+- **MATERIAL_DESIGN_3_GUIDE.md** - M3 design system implementation
+- **EMPTY_STATES_GUIDE.md** - Empty state patterns
+- **TABLE_IMPROVEMENTS_SUMMARY.md** - Table component documentation
+- **WCAG_ACCESSIBILITY_REQUIREMENTS.md** - Accessibility compliance
 
-```typescript
-import * as L from 'leaflet';
+### Key Implementation Guides
 
-export class SiteMapComponent implements OnInit {
-  ngOnInit() {
-    const map = L.map('map').setView([37.7749, -122.4194], 13);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
-  }
-}
+1. **Creating New Pages**: Use the unified table component as a base
+2. **Adding Routes**: Update `app-routing.module.ts`
+3. **Styling**: Use CSS custom properties from `styles.scss`
+4. **Access Control**: Use `AccessControlService` for permissions
+
+---
+
+## 🎨 Design System
+
+### Color Palette
+
+```scss
+/* Primary - Comcast Blue */
+--md-sys-color-primary: rgb(13, 98, 255);        // Buttons, links, active states
+--md-sys-color-primary-hover: rgb(10, 78, 204);  // Hover states
+
+/* Header - Dark Blue */
+--header-background: rgb(16, 47, 101);           // Header bar
+
+/* Status Colors */
+--md-sys-color-success: rgb(36, 161, 72);        // Active, healthy
+--md-sys-color-warning: rgb(241, 194, 27);       // Pending, attention
+--md-sys-color-error: rgb(218, 30, 40);          // Errors, critical
+--md-sys-color-info: rgb(13, 98, 255);           // Informational
+```
+
+### Typography
+
+- **Display**: 57px / 400 weight - Hero titles
+- **Headline**: 32px / 400 weight - Section headers
+- **Title**: 22px / 500 weight - Card titles
+- **Body**: 16px / 400 weight - Standard text
+- **Label**: 14px / 500 weight - Form labels
+
+### Spacing Scale
+
+```scss
+--spacing-xs: 4px;
+--spacing-sm: 8px;
+--spacing-md: 16px;
+--spacing-lg: 24px;
+--spacing-xl: 32px;
+--spacing-2xl: 48px;
 ```
 
 ---
 
-## Module Federation (Future)
+## 🤝 Contributing
 
-The prototype is configured for Webpack 5 Module Federation for micro-frontend architecture.
+This is an internal prototype for demonstrating usability improvements. For questions or suggestions:
 
-**Configuration**: `angular.json`
-
-**Future Use Cases**:
-- Split portal into independent micro-apps (Dashboard, Sites, Reports)
-- Independent deployment per micro-app
-- Shared component libraries
-- Reduced bundle sizes
+1. Review the analysis documents in the `/docs` folder (if available)
+2. Reference specific heuristic violations or issues
+3. Test proposed solutions in the prototype
+4. Gather feedback from stakeholders
 
 ---
 
-## Common Issues & Solutions
+## 📊 Alignment Testing
 
-### Issue: `npm install` fails
+Comprehensive alignment testing has been performed using Playwright:
 
-**Solution**:
-```bash
-# Verify Node.js version (must be 14.x or 16.x for Angular 13)
-node -v
+- **8 pages tested**
+- **6 pages** with perfect alignment
+- **2 pages** flagged (false positives - containers are properly centered)
+- See `ALIGNMENT_ANALYSIS.md` for detailed report
 
-# Clear npm cache
-npm cache clean --force
-
-# Delete node_modules and package-lock.json
-rm -rf node_modules package-lock.json
-
-# Reinstall
-npm install
-```
+Visual verification screenshots available in project root showing proper centering with overlay guidelines.
 
 ---
 
-### Issue: Port 4200 already in use
-
-**Solution**:
-```bash
-# Use different port
-ng serve --port 4201
-
-# Or kill process using port 4200
-lsof -ti:4200 | xargs kill -9
-```
-
----
-
-### Issue: Material styles not loading
-
-**Solution**:
-Verify `angular.json` includes Material CSS:
-```json
-"styles": [
-  "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
-  "src/styles.scss"
-]
-```
-
----
-
-## Next Steps
-
-### Immediate (Prototyping Phase)
-
-1. **Run the prototype**:
-   ```bash
-   cd prototype
-   npm install
-   npm start
-   ```
-
-2. **Test UX solutions** using checklist above
-
-3. **Gather feedback** from stakeholders:
-   - Design team: Does this solve the button hierarchy issue?
-   - Account Managers: Is customer switching intuitive?
-   - Product team: Are empty states contextual enough?
-
-4. **Iterate** based on feedback
-
-### Short-Term (Implementation Phase)
-
-1. **Validate solutions** with usability testing
-
-2. **Create detailed specifications** for each solution
-
-3. **Estimate development effort** with engineering team
-
-4. **Integrate** validated solutions into ISC Portal codebase
-
-5. **Measure improvement**:
-   - System issues: 81% → 50% (target)
-   - pNPS: -4 → +5 (target)
-   - Task completion time: Baseline → -30%
-
----
-
-## Support & Resources
-
-### Documentation
-
-- [Angular 13 Documentation](https://v13.angular.io/docs)
-- [Angular Material 13 Components](https://v13.material.angular.io/components/categories)
-- [Leaflet Documentation](https://leafletjs.com/reference-1.7.1.html)
-
-### Analysis Documents
-
-- **Master Synthesis**: `/MASTER_SYNTHESIS_FINAL.md` - Complete heuristic analysis
-- **Design System**: `/DESIGN_SYSTEM_ANALYSIS.md` - Color palette & design tokens
-- **Tech Stack**: `/ISC_PORTAL_TECH_STACK_ANALYSIS.md` - Verified tech stack details
-- **Complete Index**: `/COMPLETE_ANALYSIS_INDEX.md` - Navigation guide
-
-### Contact
-
-For questions about the prototype or analysis:
-- Review analysis documents in `/Users/rwinze026/Projects/ISC Analysis/`
-- Reference issue numbers (e.g., "Issue #1: Error Handling")
-- Check `MASTER_SYNTHESIS_FINAL.md` for complete recommendations
-
----
-
-## License
+## 📝 License
 
 This prototype is for internal evaluation and testing purposes only.
 
 ---
 
-**Last Updated**: 2025-10-14
-**Prototype Version**: 1.0.0
-**Angular Version**: 13.3.2 ✅
-**Material Version**: 13.x ✅
-**Status**: ✅ Ready for Testing
+## 🙏 Acknowledgments
+
+- Built with Angular 13.3.2 to match ISC Portal production stack
+- Material Design 3 implementation following Google's guidelines
+- Analysis based on Nielsen's 10 Usability Heuristics
+- Employee survey data (Q2 2025) and focus group findings
+
+---
+
+## 📞 Support
+
+For questions about the prototype or implementation:
+
+- Review documentation in project root
+- Check specific component README files
+- Reference `MASTER_SYNTHESIS_FINAL.md` for complete analysis
+
+---
+
+**Last Updated**: 2025-10-15
+**Version**: 1.0.0
+**Status**: ✅ Ready for stakeholder review and testing
+
+---
+
+**Built with ❤️ using Angular 13 + Material Design 3**
