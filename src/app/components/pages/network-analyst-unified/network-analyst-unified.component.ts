@@ -12,8 +12,8 @@ interface ProtocolData {
   peakIn: string;
   peakOut: string;
   selected: boolean;
-  sparklineInData?: number[];
-  sparklineOutData?: number[];
+  totalInData?: number[];
+  totalOutData?: number[];
 }
 
 @Component({
@@ -210,8 +210,8 @@ export class NetworkAnalystUnifiedComponent implements OnInit {
         peakIn: '20.9 Kbps',
         peakOut: '55.2 Kbps',
         selected: true,
-        sparklineInData: this.generateSparklineData(12, 21, 15),
-        sparklineOutData: this.generateSparklineData(28, 56, 15)
+        totalInData: this.generateSparklineData(12, 21, 15),
+        totalOutData: this.generateSparklineData(28, 56, 15)
       },
       {
         protocol: '*Other*',
@@ -222,8 +222,8 @@ export class NetworkAnalystUnifiedComponent implements OnInit {
         peakIn: '48.9 Kbps',
         peakOut: '10.9 Kbps',
         selected: true,
-        sparklineInData: this.generateSparklineData(6, 49, 15),
-        sparklineOutData: this.generateSparklineData(7, 11, 15)
+        totalInData: this.generateSparklineData(6, 49, 15),
+        totalOutData: this.generateSparklineData(7, 11, 15)
       },
       {
         protocol: 'Telnet',
@@ -234,8 +234,8 @@ export class NetworkAnalystUnifiedComponent implements OnInit {
         peakIn: '291.2 bps',
         peakOut: '0',
         selected: true,
-        sparklineInData: this.generateSparklineData(5, 291, 15),
-        sparklineOutData: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        totalInData: this.generateSparklineData(5, 291, 15),
+        totalOutData: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
       },
       {
         protocol: 'SSH',
@@ -246,8 +246,8 @@ export class NetworkAnalystUnifiedComponent implements OnInit {
         peakIn: '299.5 bps',
         peakOut: '0',
         selected: false,
-        sparklineInData: this.generateSparklineData(3, 300, 15),
-        sparklineOutData: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        totalInData: this.generateSparklineData(3, 300, 15),
+        totalOutData: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
       },
       {
         protocol: 'TerminalSvcs',
@@ -258,8 +258,8 @@ export class NetworkAnalystUnifiedComponent implements OnInit {
         peakIn: '291.2 bps',
         peakOut: '0',
         selected: false,
-        sparklineInData: this.generateSparklineData(2, 291, 15),
-        sparklineOutData: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        totalInData: this.generateSparklineData(2, 291, 15),
+        totalOutData: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
       },
       {
         protocol: 'SMB CIFS NetBIOS',
@@ -270,8 +270,8 @@ export class NetworkAnalystUnifiedComponent implements OnInit {
         peakIn: '873.6 bps',
         peakOut: '0',
         selected: false,
-        sparklineInData: this.generateSparklineData(2, 874, 15),
-        sparklineOutData: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        totalInData: this.generateSparklineData(2, 874, 15),
+        totalOutData: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
       }
     ];
   }
