@@ -1,0 +1,17 @@
+<svg
+  [attr.width]="width"
+  [attr.height]="height"
+  class="sparkline"
+  *ngIf="pathData">
+  <path
+    [attr.d]="fillPathData"
+    [attr.fill]="color"
+    [attr.fill-opacity]="0.1"
+    class="sparkline-fill" />
+  <path
+    [attr.d]="pathData"
+    [attr.stroke]="color"
+    [attr.stroke-width]="lineWidth"
+    fill="none"
+    class="sparkline-line" />
+</svg>

@@ -15,6 +15,7 @@ import { ContactsUnifiedComponent } from './components/pages/contacts-unified/co
 import { TicketsUnifiedComponent } from './components/pages/tickets-unified/tickets-unified.component';
 import { ApplicationPerformanceUnifiedComponent } from './components/pages/application-performance-unified/application-performance-unified.component';
 import { NoAccessStateComponent } from './components/no-access-state/no-access-state.component';
+import { NetworkAnalystUnifiedComponent } from './components/pages/network-analyst-unified/network-analyst-unified.component';
 
 const routes: Routes = [
   { path: '', component: LandingComponent },
@@ -35,6 +36,7 @@ const routes: Routes = [
   { path: 'contacts', component: ContactsUnifiedComponent },
   { path: 'tickets', component: TicketsUnifiedComponent },
   { path: 'application-performance', component: ApplicationPerformanceUnifiedComponent },
+  { path: 'network-analyst', component: NetworkAnalystUnifiedComponent },
 
   // No Access State Demo
   { path: 'sd-wan-orchestrator', component: NoAccessStateComponent },

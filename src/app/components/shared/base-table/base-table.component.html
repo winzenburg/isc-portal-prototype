@@ -282,6 +282,21 @@
             </div>
           </ng-container>
 
+          <!-- Custom Column: Sparkline Cell -->
+          <ng-container *ngIf="column.type === 'custom' && column.cellClass === 'sparkline-cell'">
+            <div class="sparkline-cell-container">
+              <span class="sparkline-value">{{ getColumnValue(row, column) }}</span>
+              <app-sparkline
+                *ngIf="row[column.field + 'Data'] && row[column.field + 'Data'].length > 0"
+                [data]="row[column.field + 'Data']"
+                [width]="60"
+                [height]="20"
+                [color]="column.field.includes('In') ? '#24A148' : '#0D62FF'"
+                class="sparkline-inline"
+              ></app-sparkline>
+            </div>
+          </ng-container>
+
           <!-- Regular Column -->
           <ng-container *ngIf="column.type !== 'status' && column.type !== 'custom' && (!config.editing?.enabled || !isRowEditing(rowIndex))">
             {{ getColumnValue(row, column) }}

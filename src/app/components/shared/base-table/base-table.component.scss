@@ -704,6 +704,29 @@ tr:hover .site-alias-value .edit-icon {
 }
 
 // ============================================================================
+// SPARKLINE CELL
+// ============================================================================
+
+.sparkline-cell-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-width: 140px;
+}
+
+.sparkline-value {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--md-sys-color-on-surface);
+  white-space: nowrap;
+}
+
+.sparkline-inline {
+  flex-shrink: 0;
+}
+
+// ============================================================================
 // RESPONSIVE DESIGN
 // ============================================================================
 

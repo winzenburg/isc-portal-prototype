@@ -43,7 +43,9 @@ export class SidebarComponent {
       icon: 'insert_chart',
       route: '/network-analytics',
       expanded: false,
-      children: []
+      children: [
+        { label: 'Network Analyst', icon: 'analytics', route: '/network-analyst' }
+      ]
     },
 
     // SD-WAN (expandable section from portal)

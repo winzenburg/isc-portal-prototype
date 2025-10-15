@@ -65,6 +65,8 @@ import { AccessDeniedComponent } from './components/shared/access-denied/access-
 import { SyncStatusIndicatorComponent } from './components/shared/sync-status-indicator/sync-status-indicator.component';
 import { CommandPaletteComponent } from './components/shared/command-palette/command-palette.component';
 import { NoAccessStateComponent } from './components/no-access-state/no-access-state.component';
+import { NetworkAnalystUnifiedComponent } from './components/pages/network-analyst-unified/network-analyst-unified.component';
+import { SparklineComponent } from './components/shared/sparkline/sparkline.component';
 
 @NgModule({
   declarations: [
@@ -100,7 +102,9 @@ import { NoAccessStateComponent } from './components/no-access-state/no-access-s
     AccessDeniedComponent,
     SyncStatusIndicatorComponent,
     CommandPaletteComponent,
-    NoAccessStateComponent
+    NoAccessStateComponent,
+    NetworkAnalystUnifiedComponent,
+    SparklineComponent
   ],
   imports: [
     BrowserModule,

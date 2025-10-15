@@ -1,0 +1,224 @@
+.network-analyst-container {
+  padding: var(--spacing-lg);
+  background-color: var(--md-sys-color-surface);
+  min-height: calc(100vh - 64px);
+}
+
+.page-header {
+  margin-bottom: var(--spacing-lg);
+
+  h1 {
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--md-sys-color-on-surface);
+    margin: 0;
+  }
+}
+
+.circuit-info-card {
+  margin-bottom: var(--spacing-lg);
+  border-radius: var(--md-sys-shape-corner-large);
+  box-shadow: var(--md-sys-elevation-level1);
+
+  ::ng-deep .mat-mdc-card-content {
+    padding: 0 !important;
+  }
+}
+
+.circuit-header {
+  padding: var(--spacing-lg);
+  border-bottom: 1px solid var(--md-sys-color-outline-variant);
+
+  .circuit-title {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
+
+    h2 {
+      font-size: 20px;
+      font-weight: 500;
+      margin: 0;
+      color: var(--md-sys-color-on-surface);
+    }
+
+    .live-badge {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 12px;
+      background-color: var(--md-sys-color-success-container);
+      color: var(--md-sys-color-on-success-container);
+      border-radius: var(--md-sys-shape-corner-full);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+
+      mat-icon {
+        font-size: 10px;
+        width: 10px;
+        height: 10px;
+        animation: pulse 2s ease-in-out infinite;
+      }
+
+      @keyframes pulse {
+        0%, 100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.5;
+        }
+      }
+    }
+  }
+
+  .circuit-details {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    color: var(--md-sys-color-on-surface-variant);
+    font-size: 14px;
+
+    .location-icon {
+      font-size: 18px;
+      width: 18px;
+      height: 18px;
+      color: var(--md-sys-color-primary);
+    }
+  }
+}
+
+.chart-tabs {
+  ::ng-deep {
+    .mat-mdc-tab-header {
+      border-bottom: 1px solid var(--md-sys-color-outline-variant);
+    }
+
+    .mat-mdc-tab-labels {
+      padding: 0 var(--spacing-lg);
+    }
+
+    .mat-mdc-tab-label {
+      min-width: 120px;
+      padding: 0 var(--spacing-md);
+      color: var(--md-sys-color-on-surface-variant);
+      font-size: 14px;
+      font-weight: 500;
+      text-transform: none;
+
+      &.mdc-tab--active {
+        color: var(--md-sys-color-primary);
+      }
+    }
+
+    .mat-mdc-tab-body-wrapper {
+      padding: var(--spacing-lg);
+    }
+
+    .mat-ink-bar {
+      background-color: var(--md-sys-color-primary);
+      height: 3px;
+    }
+  }
+}
+
+.date-range-info {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md);
+  background-color: var(--md-sys-color-surface-variant);
+  border-radius: var(--md-sys-shape-corner-small);
+  margin-bottom: var(--spacing-lg);
+  font-size: 13px;
+  color: var(--md-sys-color-on-surface-variant);
+
+  mat-icon {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+  }
+}
+
+.chart-container {
+  position: relative;
+  height: 400px;
+  margin-bottom: var(--spacing-2xl);
+  padding: var(--spacing-md);
+  background: white;
+  border-radius: var(--md-sys-shape-corner-small);
+  border: 1px solid var(--md-sys-color-outline-variant);
+}
+
+.protocol-table-section {
+  margin-top: var(--spacing-xl);
+
+  ::ng-deep {
+    .table-header {
+      h2 {
+        font-size: 18px;
+        font-weight: 500;
+      }
+    }
+  }
+}
+
+.tab-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-2xl);
+  text-align: center;
+  min-height: 300px;
+
+  mat-icon {
+    font-size: 64px;
+    width: 64px;
+    height: 64px;
+    color: var(--md-sys-color-primary);
+    opacity: 0.5;
+    margin-bottom: var(--spacing-lg);
+  }
+
+  p {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--md-sys-color-on-surface);
+    margin: 0 0 var(--spacing-sm);
+  }
+
+  .placeholder-hint {
+    font-size: 14px;
+    color: var(--md-sys-color-on-surface-variant);
+    max-width: 400px;
+  }
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+  .network-analyst-container {
+    padding: var(--spacing-md);
+  }
+
+  .circuit-header {
+    .circuit-title {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  .chart-container {
+    height: 300px;
+  }
+
+  .chart-tabs {
+    ::ng-deep {
+      .mat-mdc-tab-label {
+        min-width: 80px;
+        padding: 0 var(--spacing-sm);
+        font-size: 12px;
+      }
+    }
+  }
+}

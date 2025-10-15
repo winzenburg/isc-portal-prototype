@@ -1,0 +1,13 @@
+.sparkline {
+  display: inline-block;
+  vertical-align: middle;
+  shape-rendering: geometricPrecision;
+
+  .sparkline-line {
+    vector-effect: non-scaling-stroke;
+  }
+
+  .sparkline-fill {
+    opacity: 0.1;
+  }
+}

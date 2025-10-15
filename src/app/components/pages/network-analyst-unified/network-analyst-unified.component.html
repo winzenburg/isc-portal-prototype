@@ -1,0 +1,117 @@
+<div class="network-analyst-container">
+  <!-- Page Header -->
+  <div class="page-header">
+    <h1>Network Analyst</h1>
+  </div>
+
+  <!-- Circuit Information Card -->
+  <mat-card class="circuit-info-card">
+    <mat-card-content>
+      <div class="circuit-header">
+        <div class="circuit-title">
+          <h2>{{ circuitName }}</h2>
+          <span class="live-badge">
+            <mat-icon>fiber_manual_record</mat-icon>
+            LIVE
+          </span>
+        </div>
+        <div class="circuit-details">
+          <mat-icon class="location-icon">location_on</mat-icon>
+          <span>{{ circuitLocation }}</span>
+        </div>
+      </div>
+
+      <!-- Tab Navigation -->
+      <mat-tab-group class="chart-tabs" animationDuration="200ms">
+        <mat-tab label="Application">
+          <ng-template matTabContent>
+            <!-- Date Range Info -->
+            <div class="date-range-info">
+              <mat-icon>calendar_today</mat-icon>
+              <span>{{ dateRange }}</span>
+            </div>
+
+            <!-- Network Traffic Chart -->
+            <div class="chart-container">
+              <canvas
+                baseChart
+                [data]="lineChartData"
+                [options]="lineChartOptions"
+                [type]="lineChartType">
+              </canvas>
+            </div>
+
+            <!-- Protocol Breakdown Table -->
+            <div class="protocol-table-section">
+              <app-base-table
+                [config]="tableConfig"
+                [data]="protocols"
+                (selectionChange)="onProtocolSelectionChange($event)">
+              </app-base-table>
+            </div>
+          </ng-template>
+        </mat-tab>
+
+        <mat-tab label="Address">
+          <ng-template matTabContent>
+            <div class="tab-placeholder">
+              <mat-icon>public</mat-icon>
+              <p>Address-level traffic analysis</p>
+              <span class="placeholder-hint">This view would show traffic breakdown by IP address</span>
+            </div>
+          </ng-template>
+        </mat-tab>
+
+        <mat-tab label="Port">
+          <ng-template matTabContent>
+            <div class="tab-placeholder">
+              <mat-icon>settings_input_hdmi</mat-icon>
+              <p>Port-level traffic analysis</p>
+              <span class="placeholder-hint">This view would show traffic breakdown by network port</span>
+            </div>
+          </ng-template>
+        </mat-tab>
+
+        <mat-tab label="Talkers">
+          <ng-template matTabContent>
+            <div class="tab-placeholder">
+              <mat-icon>people</mat-icon>
+              <p>Top talkers analysis</p>
+              <span class="placeholder-hint">This view would show the most active network endpoints</span>
+            </div>
+          </ng-template>
+        </mat-tab>
+
+        <mat-tab label="Protocol">
+          <ng-template matTabContent>
+            <div class="tab-placeholder">
+              <mat-icon>swap_horiz</mat-icon>
+              <p>Protocol distribution analysis</p>
+              <span class="placeholder-hint">This view would show detailed protocol breakdown</span>
+            </div>
+          </ng-template>
+        </mat-tab>
+
+        <mat-tab label="Service Plans">
+          <ng-template matTabContent>
+            <div class="tab-placeholder">
+              <mat-icon>description</mat-icon>
+              <p>Service plan details</p>
+              <span class="placeholder-hint">This view would show your network service plan information</span>
+            </div>
+          </ng-template>
+        </mat-tab>
+
+        <mat-tab label="Total">
+          <ng-template matTabContent>
+            <div class="tab-placeholder">
+              <mat-icon>assessment</mat-icon>
+              <p>Total traffic summary</p>
+              <span class="placeholder-hint">This view would show aggregate traffic statistics</span>
+            </div>
+          </ng-template>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-card-content>
+  </mat-card>
+</div>
