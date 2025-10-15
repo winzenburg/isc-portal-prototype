@@ -67,6 +67,7 @@ import { CommandPaletteComponent } from './components/shared/command-palette/com
 import { NoAccessStateComponent } from './components/no-access-state/no-access-state.component';
 import { NetworkAnalystUnifiedComponent } from './components/pages/network-analyst-unified/network-analyst-unified.component';
 import { SparklineComponent } from './components/shared/sparkline/sparkline.component';
+import { HelpTooltipDirective } from './directives/help-tooltip.directive';
 
 @NgModule({
   declarations: [
@@ -104,7 +105,8 @@ import { SparklineComponent } from './components/shared/sparkline/sparkline.comp
     CommandPaletteComponent,
     NoAccessStateComponent,
     NetworkAnalystUnifiedComponent,
-    SparklineComponent
+    SparklineComponent,
+    HelpTooltipDirective
   ],
   imports: [
     BrowserModule,

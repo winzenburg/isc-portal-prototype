@@ -14,6 +14,7 @@ interface ProtocolData {
   selected: boolean;
   totalInData?: number[];
   totalOutData?: number[];
+  [key: string]: any;  // Allow dynamic properties
 }
 
 @Component({
@@ -297,13 +298,13 @@ export class NetworkAnalystUnifiedComponent implements OnInit {
       tableId: 'network-analyst-protocols',
 
       columns: [
-        { field: 'protocol', header: 'Name', sortable: true, width: '180px' },
-        { field: 'totalIn', header: 'Total In', sortable: true, width: '160px', type: 'custom', cellClass: 'sparkline-cell' },
-        { field: 'totalOut', header: 'Total Out', sortable: true, width: '160px', type: 'custom', cellClass: 'sparkline-cell' },
-        { field: 'averageIn', header: 'Average In', sortable: true, width: '120px' },
-        { field: 'averageOut', header: 'Average Out', sortable: true, width: '120px' },
-        { field: 'peakIn', header: 'Peak In', sortable: true, width: '120px' },
-        { field: 'peakOut', header: 'Peak Out', sortable: true, width: '120px' }
+        { field: 'protocol', header: 'Protocol', sortable: true, width: '180px', tooltip: 'Network communication protocol used by this traffic' },
+        { field: 'totalIn', header: 'Total In', sortable: true, width: '160px', type: 'custom', cellClass: 'sparkline-cell', tooltip: 'Total data received (inbound) with 24-hour traffic trend' },
+        { field: 'totalOut', header: 'Total Out', sortable: true, width: '160px', type: 'custom', cellClass: 'sparkline-cell', tooltip: 'Total data sent (outbound) with 24-hour traffic trend' },
+        { field: 'averageIn', header: 'Average In', sortable: true, width: '120px', tooltip: 'Average inbound data rate over time period' },
+        { field: 'averageOut', header: 'Average Out', sortable: true, width: '120px', tooltip: 'Average outbound data rate over time period' },
+        { field: 'peakIn', header: 'Peak In', sortable: true, width: '120px', tooltip: 'Highest inbound data rate observed' },
+        { field: 'peakOut', header: 'Peak Out', sortable: true, width: '120px', tooltip: 'Highest outbound data rate observed' }
       ],
 
       filtering: {
