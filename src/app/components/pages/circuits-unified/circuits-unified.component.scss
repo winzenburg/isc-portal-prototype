@@ -20,7 +20,7 @@
     }
   }
 
-  // Footer with timestamp and refresh button
+  // Footer with timestamp and refresh button (right side)
   .table-footer-info {
     position: absolute;
     bottom: 8px;
@@ -50,6 +50,16 @@
         &.spinning {
           animation: spin 1s linear infinite;
         }
+      }
+    }
+  }
+
+  // Move pagination to the left
+  ::ng-deep {
+    .mat-mdc-paginator {
+      .mat-mdc-paginator-container {
+        justify-content: flex-start !important;
+        padding-left: 16px;
       }
     }
   }
