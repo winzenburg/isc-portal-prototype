@@ -108,7 +108,7 @@
     .mat-panel-title {
       display: flex;
       align-items: center;
-      gap: var(--spacing-sm);
+      gap: var(--spacing-md);
       font-weight: 500;
       color: var(--md-sys-color-on-surface);
 
@@ -192,7 +192,7 @@
   .subsection-header {
     display: flex;
     align-items: center;
-    gap: var(--spacing-xs);
+    gap: var(--spacing-sm);
     margin-bottom: var(--spacing-xs);
 
     .subsection-icon {
