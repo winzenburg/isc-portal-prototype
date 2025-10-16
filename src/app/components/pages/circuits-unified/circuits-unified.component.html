@@ -1,5 +1,5 @@
 <div class="page-container">
-  <!-- Sync Status Indicator with Help Button -->
+  <!-- Sync Status Indicator with Action Buttons -->
   <div class="page-header-section">
     <app-sync-status-indicator
       *ngIf="syncInfo"
@@ -10,13 +10,24 @@
       (refresh)="refreshCircuits()">
     </app-sync-status-indicator>
 
-    <button
-      mat-icon-button
-      (click)="toggleHelpPanel()"
-      matTooltip="Page help"
-      class="help-button">
-      <mat-icon>help_outline</mat-icon>
-    </button>
+    <div class="action-buttons">
+      <button
+        mat-icon-button
+        color="primary"
+        class="download-button"
+        (click)="exportToCsv()"
+        matTooltip="Export CSV"
+        aria-label="Export CSV">
+        <mat-icon>download</mat-icon>
+      </button>
+      <button
+        mat-icon-button
+        (click)="toggleHelpPanel()"
+        matTooltip="Page help"
+        class="help-button">
+        <mat-icon>help_outline</mat-icon>
+      </button>
+    </div>
   </div>
 
   <app-base-table

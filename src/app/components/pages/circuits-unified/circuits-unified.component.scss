@@ -10,3 +10,20 @@
     display: block;
   }
 }
+
+.page-header-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  app-sync-status-indicator {
+    flex: 1;
+  }
+
+  .action-buttons {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+}

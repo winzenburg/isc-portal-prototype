@@ -1,5 +1,6 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { TableConfig } from '../../shared/base-table/base-table.config';
+import { BaseTableComponent } from '../../shared/base-table/base-table.component';
 import { SyncStatusService, DataSyncInfo } from '../../../services/sync-status.service';
 import { PageHelpService } from '../../../services/help/page-help.service';
 import { PageHelpContent } from '../../help/page-help-panel/page-help-panel.component';
@@ -23,6 +24,8 @@ interface Circuit {
   styleUrls: ['./circuits-unified.component.scss']
 })
 export class CircuitsUnifiedComponent implements OnInit, OnDestroy {
+  @ViewChild(BaseTableComponent) baseTable!: BaseTableComponent;
+
   tableConfig!: TableConfig<Circuit>;
   circuits: Circuit[] = [];
   loading: boolean = false;
@@ -174,11 +177,7 @@ export class CircuitsUnifiedComponent implements OnInit, OnDestroy {
       },
 
       export: {
-        enabled: true,
-        filename: 'circuits',
-        buttonLabel: 'Export CSV',
-        showIcon: true,
-        icon: 'download'
+        enabled: false  // Disabled to use custom button in header
       },
 
       pagination: { enabled: true, pageSize: 10, pageSizeOptions: [10, 25, 50, 100], showFirstLastButtons: true },
@@ -214,6 +213,15 @@ export class CircuitsUnifiedComponent implements OnInit, OnDestroy {
   addCircuit() { alert('Add Circuit'); }
   export(c: Circuit[]) { alert(`Export ${c.length} circuits`); }
   delete(c: Circuit[]) { if (confirm(`Delete ${c.length} circuits?`)) alert('Deleted'); }
+
+  /**
+   * Export circuits to CSV
+   */
+  exportToCsv(): void {
+    if (this.baseTable) {
+      this.baseTable.exportToCsv();
+    }
+  }
 
   /**
    * Toggle help panel
