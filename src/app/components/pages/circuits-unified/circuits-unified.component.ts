@@ -177,7 +177,11 @@ export class CircuitsUnifiedComponent implements OnInit, OnDestroy {
       },
 
       export: {
-        enabled: false  // Disabled to use custom button in header
+        enabled: true,
+        filename: 'circuits',
+        buttonLabel: 'Export CSV',
+        showIcon: true,
+        icon: 'download'
       },
 
       pagination: { enabled: true, pageSize: 10, pageSizeOptions: [10, 25, 50, 100], showFirstLastButtons: true },
