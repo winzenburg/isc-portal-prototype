@@ -1,14 +1,4 @@
 <div class="page-container">
-  <!-- Sync Status Indicator -->
-  <app-sync-status-indicator
-    *ngIf="syncInfo"
-    [syncInfo]="syncInfo"
-    [dataSourceName]="'Circuits'"
-    [showRecordCount]="true"
-    [showRefreshButton]="true"
-    (refresh)="refreshCircuits()">
-  </app-sync-status-indicator>
-
   <!-- Table with Help Button -->
   <div class="table-with-help">
     <button
@@ -23,6 +13,21 @@
       [data]="circuits"
       [loading]="loading"
     ></app-base-table>
+
+    <!-- Data Refresh Timestamp (bottom right, with pagination) -->
+    <div class="table-footer-info" *ngIf="syncInfo?.lastUpdated">
+      <span class="last-updated-text">
+        Last updated: {{ getTimeSinceUpdate() }}
+      </span>
+      <button
+        mat-icon-button
+        (click)="refreshCircuits()"
+        [disabled]="isSyncing()"
+        [matTooltip]="isSyncing() ? 'Syncing...' : 'Refresh data'"
+        class="refresh-button-small">
+        <mat-icon [class.spinning]="isSyncing()">refresh</mat-icon>
+      </button>
+    </div>
   </div>
 </div>
 
