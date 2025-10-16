@@ -228,9 +228,9 @@
     box-shadow: none;
     border-radius: 0; // Remove border radius from inner table
 
-    // Show table header for title
+    // Show table header for title with standard background color
     .table-header {
-      background: white;
+      background: #fafafa; // Match other tables
       border-bottom: 1px solid #e0e0e0;
     }
 
