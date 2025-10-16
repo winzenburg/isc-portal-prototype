@@ -223,6 +223,21 @@
     background: transparent;
     box-shadow: none;
     border-radius: 0 0 8px 8px; // Match container
+
+    // Remove internal filter section spacing since we have external filters
+    .table-filters {
+      display: none !important; // Hide internal filters completely
+    }
+
+    // Remove any internal spacing that creates gap
+    .table-wrapper {
+      margin-top: 0 !important;
+      padding-top: 0 !important;
+    }
+
+    table {
+      margin-top: 0 !important;
+    }
   }
 
   // Footer with timestamp and refresh button (left side)
