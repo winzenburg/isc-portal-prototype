@@ -20,6 +20,23 @@
     }
   }
 
+  // Push export button to far right of the row
+  ::ng-deep {
+    .search-and-filters {
+      display: flex !important;
+      align-items: center;
+      gap: 12px;
+
+      .search-field {
+        flex: 0 0 auto;
+      }
+
+      .export-button {
+        margin-left: auto; // Push to far right
+      }
+    }
+  }
+
   // Footer with timestamp and refresh button (left side)
   .table-footer-info {
     position: absolute;
