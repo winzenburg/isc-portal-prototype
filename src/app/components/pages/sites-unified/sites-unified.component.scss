@@ -156,7 +156,7 @@
 
 .complex-filters-after-header {
   position: absolute;
-  top: 64px; // Position after table header (approximate height of .table-header)
+  top: 65px; // Position after table header (65px to show the 1px border)
   left: 0;
   right: 0;
   background: white;
