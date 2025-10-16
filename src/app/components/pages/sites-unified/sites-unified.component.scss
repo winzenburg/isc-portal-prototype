@@ -209,3 +209,46 @@
     gap: 8px;
   }
 }
+
+// Footer with timestamp and refresh button (left side)
+.table-footer-info {
+  position: absolute;
+  bottom: 8px;
+  left: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 5;
+
+  .last-updated-text {
+    font-size: 0.75rem;
+    color: var(--md-sys-color-on-surface-variant, #666);
+    white-space: nowrap;
+  }
+
+  .refresh-button-small {
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+
+    ::ng-deep .mat-icon {
+      font-size: 20px;
+      width: 20px;
+      height: 20px;
+      line-height: 20px;
+
+      &.spinning {
+        animation: spin 1s linear infinite;
+      }
+    }
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

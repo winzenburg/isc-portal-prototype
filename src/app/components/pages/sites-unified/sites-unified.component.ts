@@ -543,4 +543,18 @@ export class SitesUnifiedComponent implements OnInit, OnDestroy {
   toggleHelpPanel(): void {
     this.helpPanelOpen = !this.helpPanelOpen;
   }
+
+  /**
+   * Get formatted time since last update
+   */
+  getTimeSinceUpdate(): string {
+    return this.syncStatusService.getTimeSinceUpdate(this.syncInfo.lastUpdated);
+  }
+
+  /**
+   * Check if data is currently syncing
+   */
+  isSyncing(): boolean {
+    return this.syncInfo?.status === 'syncing';
+  }
 }
