@@ -231,7 +231,7 @@
     // Show table header for title with standard background color
     .table-header {
       background: #fafafa; // Match other tables
-      border-bottom: 1px solid #e0e0e0;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.12); // Match other tables
     }
 
     // Remove internal filter section spacing since we have external filters
