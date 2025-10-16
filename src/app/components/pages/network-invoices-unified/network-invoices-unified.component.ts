@@ -52,9 +52,6 @@ export class NetworkInvoicesUnifiedComponent implements OnInit {
           { label: 'PDF', icon: 'picture_as_pdf', callback: ((inv: Invoice) => this.downloadPDF(inv)) as any, tooltip: 'Download PDF' },
           { label: 'CSV', icon: 'table_chart', callback: ((inv: Invoice) => this.downloadCSV(inv)) as any, tooltip: 'Download CSV' },
           { label: 'Email', icon: 'email', callback: ((inv: Invoice) => this.emailInvoice(inv)) as any, tooltip: 'Email invoice' }
-        ],
-        header: [
-          { label: 'Export All', icon: 'download', color: 'primary', callback: () => this.exportAll() }
         ]
       },
 
@@ -95,5 +92,4 @@ export class NetworkInvoicesUnifiedComponent implements OnInit {
   downloadPDF(inv: Invoice) { alert(`Download PDF: ${inv.invoiceNumber}`); }
   downloadCSV(inv: Invoice) { alert(`Download CSV: ${inv.invoiceNumber}`); }
   emailInvoice(inv: Invoice) { alert(`Email: ${inv.invoiceNumber}`); }
-  exportAll() { alert('Export all invoices'); }
 }
