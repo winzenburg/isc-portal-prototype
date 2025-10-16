@@ -108,3 +108,20 @@
   line-height: 1.5;
   margin-top: var(--spacing-md);
 }
+
+// Override base-table styles to push export button to the right
+::ng-deep {
+  .search-and-filters {
+    display: flex !important;
+    align-items: center;
+    gap: 12px;
+
+    .search-field {
+      flex: 0 0 auto;
+    }
+
+    .export-button {
+      margin-left: auto;
+    }
+  }
+}
