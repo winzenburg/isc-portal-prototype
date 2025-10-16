@@ -145,27 +145,29 @@
       </div>
     </div>
 
-    <!-- Base Table -->
-    <app-base-table
-      [config]="tableConfig"
-      [data]="filteredSites"
-      [loading]="loading"
-      [externalFiltersActive]="activeExternalFilters"
-    ></app-base-table>
+    <!-- Table with timestamp footer -->
+    <div class="table-with-footer">
+      <app-base-table
+        [config]="tableConfig"
+        [data]="filteredSites"
+        [loading]="loading"
+        [externalFiltersActive]="activeExternalFilters"
+      ></app-base-table>
 
-    <!-- Data Refresh Timestamp (bottom right, with pagination) -->
-    <div class="table-footer-info" *ngIf="syncInfo?.lastUpdated">
-      <span class="last-updated-text">
-        Last updated: {{ getTimeSinceUpdate() }}
-      </span>
-      <button
-        mat-icon-button
-        (click)="refreshSites()"
-        [disabled]="isSyncing()"
-        [matTooltip]="isSyncing() ? 'Syncing...' : 'Refresh data'"
-        class="refresh-button-small">
-        <mat-icon [class.spinning]="isSyncing()">refresh</mat-icon>
-      </button>
+      <!-- Data Refresh Timestamp (bottom left, with pagination) -->
+      <div class="table-footer-info" *ngIf="syncInfo?.lastUpdated">
+        <span class="last-updated-text">
+          Last updated: {{ getTimeSinceUpdate() }}
+        </span>
+        <button
+          mat-icon-button
+          (click)="refreshSites()"
+          [disabled]="isSyncing()"
+          [matTooltip]="isSyncing() ? 'Syncing...' : 'Refresh data'"
+          class="refresh-button-small">
+          <mat-icon [class.spinning]="isSyncing()">refresh</mat-icon>
+        </button>
+      </div>
     </div>
   </div>
 </div>
