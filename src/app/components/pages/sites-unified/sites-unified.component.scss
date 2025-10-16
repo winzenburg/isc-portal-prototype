@@ -154,13 +154,18 @@
   }
 }
 
-.complex-filters {
+.complex-filters-after-header {
+  position: absolute;
+  top: 64px; // Position after table header (approximate height of .table-header)
+  left: 0;
+  right: 0;
   background: white;
   padding: 16px;
   display: flex;
   flex-direction: column;
   gap: 12px;
-  border-bottom: 1px solid #e0e0e0; // Connect to table below
+  border-bottom: 1px solid #e0e0e0;
+  z-index: 5;
 }
 
 .filter-row {
@@ -234,10 +239,10 @@
       display: none !important; // Hide internal filters completely
     }
 
-    // Remove any internal spacing that creates gap
+    // Add padding to push table content below the filters
     .table-wrapper {
       margin-top: 0 !important;
-      padding-top: 0 !important;
+      padding-top: 180px !important; // Make room for filters (approximate height)
     }
 
     table {

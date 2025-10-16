@@ -67,8 +67,16 @@
   <div class="main-content">
     <!-- Table with filters and timestamp footer -->
     <div class="table-with-footer">
-      <!-- Multi-Row Filter System -->
-      <div class="complex-filters">
+      <!-- Base Table (includes title in header) -->
+      <app-base-table
+        [config]="tableConfig"
+        [data]="filteredSites"
+        [loading]="loading"
+        [externalFiltersActive]="activeExternalFilters"
+      ></app-base-table>
+
+      <!-- Multi-Row Filter System (positioned after table header) -->
+      <div class="complex-filters-after-header">
         <!-- Filter Row 1: Site Type -->
         <div class="filter-row">
           <span class="filter-label">Filter by Site type:</span>
@@ -146,14 +154,6 @@
           </div>
         </div>
       </div>
-
-      <!-- Base Table -->
-      <app-base-table
-        [config]="tableConfig"
-        [data]="filteredSites"
-        [loading]="loading"
-        [externalFiltersActive]="activeExternalFilters"
-      ></app-base-table>
 
       <!-- Data Refresh Timestamp (bottom left, with pagination) -->
       <div class="table-footer-info" *ngIf="syncInfo?.lastUpdated">
