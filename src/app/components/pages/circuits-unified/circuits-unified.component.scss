@@ -54,12 +54,13 @@
     }
   }
 
-  // Move pagination to the left
+  // Move pagination to the left and add space for timestamp on right
   ::ng-deep {
-    .mat-mdc-paginator {
+    .base-table-container .mat-mdc-paginator {
       .mat-mdc-paginator-container {
         justify-content: flex-start !important;
-        padding-left: 16px;
+        padding-left: 0;
+        padding-right: 200px; // Make room for timestamp on right
       }
     }
   }
