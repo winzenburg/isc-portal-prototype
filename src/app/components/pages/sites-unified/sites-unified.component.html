@@ -65,16 +65,6 @@
 
   <!-- Right Side: Main Content -->
   <div class="main-content">
-    <!-- Sync Status Indicator -->
-    <app-sync-status-indicator
-      *ngIf="syncInfo"
-      [syncInfo]="syncInfo"
-      [dataSourceName]="'Sites'"
-      [showRecordCount]="true"
-      [showRefreshButton]="true"
-      (refresh)="refreshSites()">
-    </app-sync-status-indicator>
-
     <!-- Multi-Row Filter System -->
     <div class="complex-filters">
       <!-- Filter Row 1: Site Type -->
