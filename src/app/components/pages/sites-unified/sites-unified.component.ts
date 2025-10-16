@@ -109,7 +109,6 @@ export class SitesUnifiedComponent implements OnInit, OnDestroy {
     this.tableConfig = {
       tableType: 'quick-filter',
       tableId: 'sites-table',
-      title: 'Sites',
 
       columns: [
         {

@@ -154,6 +154,14 @@
   }
 }
 
+.page-title {
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--md-sys-color-on-surface, #202124);
+  margin: 0 0 16px 0;
+  padding: 0;
+}
+
 .complex-filters {
   background: white;
   border-radius: 8px 8px 0 0; // Only round top corners
