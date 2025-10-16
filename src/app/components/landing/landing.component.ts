@@ -149,4 +149,8 @@ export class LandingComponent {
       'Low': 'effort-low'
     }[effort] || '';
   }
+
+  openExternalLink(url: string): void {
+    window.open(url, '_blank');
+  }
 }

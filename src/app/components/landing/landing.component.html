@@ -142,7 +142,9 @@
     <div class="issues-grid">
       <mat-card *ngFor="let issue of quickWins"
                 class="issue-card md3-card-elevated quick-win-card"
-                [routerLink]="issue.demoRoute">
+                [routerLink]="issue.demoRoute.startsWith('/assets') ? null : issue.demoRoute"
+                (click)="issue.demoRoute.startsWith('/assets') ? openExternalLink(issue.demoRoute) : null"
+                [style.cursor]="'pointer'">
         <div class="issue-header">
           <mat-icon class="issue-icon"
                     [style.color]="'var(--md-sys-color-success)'">
@@ -229,7 +231,9 @@
     <div class="issues-grid">
       <mat-card *ngFor="let issue of issues"
                 class="issue-card md3-card-outlined"
-                [routerLink]="issue.demoRoute">
+                [routerLink]="issue.demoRoute.startsWith('/assets') ? null : issue.demoRoute"
+                (click)="issue.demoRoute.startsWith('/assets') ? openExternalLink(issue.demoRoute) : null"
+                [style.cursor]="'pointer'">
         <div class="issue-header">
           <mat-icon class="issue-icon"
                     [style.color]="issue.impact === 'High' ? 'var(--md-sys-color-error)' : 'var(--md-sys-color-warning)'">
