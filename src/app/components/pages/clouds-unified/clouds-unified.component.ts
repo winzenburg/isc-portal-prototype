@@ -79,6 +79,7 @@ export class CloudsUnifiedComponent implements OnInit {
     this.tableConfig = {
       tableType: 'quick-filter',
       tableId: 'clouds-table',
+      title: 'Clouds',
 
       columns: [
         {
