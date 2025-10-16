@@ -1,0 +1,90 @@
+[
+  {
+    "page": "Clouds",
+    "searches": [
+      {
+        "index": 2,
+        "label": "Search clouds...",
+        "placeholder": "",
+        "field": {
+          "width": 300,
+          "height": 44.5,
+          "y": 221
+        },
+        "input": {
+          "width": 255,
+          "height": 36,
+          "fontSize": "14px",
+          "padding": "0px"
+        },
+        "appearance": "outline"
+      }
+    ]
+  },
+  {
+    "page": "Circuits",
+    "searches": [
+      {
+        "index": 2,
+        "label": "Search circuits...",
+        "placeholder": "",
+        "field": {
+          "width": 300,
+          "height": 44.5,
+          "y": 253
+        },
+        "input": {
+          "width": 255,
+          "height": 36,
+          "fontSize": "14px",
+          "padding": "0px"
+        },
+        "appearance": "outline"
+      }
+    ]
+  },
+  {
+    "page": "Sites",
+    "searches": [
+      {
+        "index": 3,
+        "label": "Filter",
+        "placeholder": "",
+        "field": {
+          "width": 300,
+          "height": 44.5,
+          "y": 269
+        },
+        "input": {
+          "width": 255,
+          "height": 36,
+          "fontSize": "14px",
+          "padding": "0px"
+        },
+        "appearance": "outline"
+      }
+    ]
+  },
+  {
+    "page": "Circuit Reports",
+    "searches": [
+      {
+        "index": 2,
+        "label": "Search reports...",
+        "placeholder": "",
+        "field": {
+          "width": 300,
+          "height": 44.5,
+          "y": 173
+        },
+        "input": {
+          "width": 255,
+          "height": 36,
+          "fontSize": "14px",
+          "padding": "0px"
+        },
+        "appearance": "outline"
+      }
+    ]
+  }
+]
