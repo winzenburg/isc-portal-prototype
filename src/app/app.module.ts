@@ -71,6 +71,7 @@ import { HelpTooltipDirective } from './directives/help-tooltip.directive';
 import { GlossaryModalComponent } from './components/help/glossary-modal/glossary-modal.component';
 import { Nl2brPipe } from './pipes/nl2br.pipe';
 import { HelpPopoverComponent } from './components/help/help-popover/help-popover.component';
+import { PageHelpPanelComponent } from './components/help/page-help-panel/page-help-panel.component';
 
 @NgModule({
   declarations: [
@@ -112,7 +113,8 @@ import { HelpPopoverComponent } from './components/help/help-popover/help-popove
     HelpTooltipDirective,
     GlossaryModalComponent,
     Nl2brPipe,
-    HelpPopoverComponent
+    HelpPopoverComponent,
+    PageHelpPanelComponent
   ],
   imports: [
     BrowserModule,

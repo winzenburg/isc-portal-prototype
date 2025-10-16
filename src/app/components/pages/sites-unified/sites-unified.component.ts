@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { TableConfig } from '../../shared/base-table/base-table.config';
 import { BaseTableComponent } from '../../shared/base-table/base-table.component';
 import { SyncStatusService, DataSyncInfo } from '../../../services/sync-status.service';
+import { PageHelpService } from '../../../services/help/page-help.service';
+import { PageHelpContent } from '../../help/page-help-panel/page-help-panel.component';
 import { Subject, takeUntil } from 'rxjs';
 
 interface CircuitHealth {
@@ -69,7 +71,14 @@ export class SitesUnifiedComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<void>();
   private readonly SYNC_KEY = 'sites-data';
 
-  constructor(private syncStatusService: SyncStatusService) {}
+  // Help panel
+  helpPanelOpen = false;
+  helpContent!: PageHelpContent;
+
+  constructor(
+    private syncStatusService: SyncStatusService,
+    private pageHelpService: PageHelpService
+  ) {}
 
   ngOnInit() {
     // Initialize sync tracking
@@ -77,6 +86,12 @@ export class SitesUnifiedComponent implements OnInit, OnDestroy {
     this.syncStatusService.getSyncInfo(this.SYNC_KEY)
       .pipe(takeUntil(this.destroy$))
       .subscribe(info => this.syncInfo = info);
+
+    // Load help content
+    const content = this.pageHelpService.getPageHelp('sites');
+    if (content) {
+      this.helpContent = content;
+    }
 
     this.initializeTableConfig();
     this.loadSites();
@@ -520,5 +535,12 @@ export class SitesUnifiedComponent implements OnInit, OnDestroy {
         country.indeterminate = true;
       }
     });
+  }
+
+  /**
+   * Toggle help panel
+   */
+  toggleHelpPanel(): void {
+    this.helpPanelOpen = !this.helpPanelOpen;
   }
 }

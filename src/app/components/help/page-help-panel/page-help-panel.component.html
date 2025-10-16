@@ -1,0 +1,70 @@
+<div class="page-help-panel" [class.open]="isOpen" *ngIf="content">
+  <!-- Panel Header -->
+  <div class="panel-header">
+    <div class="header-title">
+      <mat-icon class="help-icon">help</mat-icon>
+      <h2>{{ content.pageTitle }} Help</h2>
+    </div>
+    <div class="header-actions">
+      <button mat-icon-button (click)="expandAll()" matTooltip="Expand all sections">
+        <mat-icon>unfold_more</mat-icon>
+      </button>
+      <button mat-icon-button (click)="collapseAll()" matTooltip="Collapse all sections">
+        <mat-icon>unfold_less</mat-icon>
+      </button>
+      <button mat-icon-button (click)="printHelp()" matTooltip="Print help">
+        <mat-icon>print</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <!-- Page Description -->
+  <div class="page-description">
+    <p [innerHTML]="content.pageDescription | nl2br"></p>
+  </div>
+
+  <!-- Help Sections -->
+  <div class="help-sections">
+    <mat-accordion multi="true">
+      <mat-expansion-panel
+        *ngFor="let section of content.sections"
+        [expanded]="isSectionExpanded(section.id)"
+        (opened)="toggleSection(section.id)"
+        (closed)="toggleSection(section.id)"
+        class="help-section">
+
+        <!-- Section Header -->
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon *ngIf="section.icon" class="section-icon">{{ section.icon }}</mat-icon>
+            <span>{{ section.title }}</span>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <!-- Section Content -->
+        <div class="section-content">
+          <div [innerHTML]="section.content | nl2br"></div>
+
+          <!-- Subsections -->
+          <div *ngIf="section.subsections && section.subsections.length > 0" class="subsections">
+            <div *ngFor="let subsection of section.subsections" class="subsection">
+              <div class="subsection-header">
+                <mat-icon *ngIf="subsection.icon" class="subsection-icon">{{ subsection.icon }}</mat-icon>
+                <h4>{{ subsection.title }}</h4>
+              </div>
+              <div class="subsection-content" [innerHTML]="subsection.content | nl2br"></div>
+            </div>
+          </div>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+
+  <!-- Footer -->
+  <div class="panel-footer">
+    <div class="footer-hint">
+      <mat-icon>lightbulb</mat-icon>
+      <span>Need more help? Check the <strong>Glossary</strong> in the header for term definitions</span>
+    </div>
+  </div>
+</div>

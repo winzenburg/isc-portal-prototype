@@ -136,6 +136,13 @@
         </mat-form-field>
         <button
           mat-icon-button
+          (click)="toggleHelpPanel()"
+          matTooltip="Page help"
+          class="help-button">
+          <mat-icon>help_outline</mat-icon>
+        </button>
+        <button
+          mat-icon-button
           color="primary"
           class="download-button"
           (click)="exportToCsv()"
@@ -155,3 +162,10 @@
     ></app-base-table>
   </div>
 </div>
+
+<!-- Page Help Panel -->
+<app-page-help-panel
+  *ngIf="helpContent"
+  [content]="helpContent"
+  [isOpen]="helpPanelOpen">
+</app-page-help-panel>

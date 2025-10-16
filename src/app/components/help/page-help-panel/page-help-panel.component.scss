@@ -1,0 +1,314 @@
+.page-help-panel {
+  position: fixed;
+  top: 64px; // Below header
+  right: -450px; // Hidden by default
+  width: 450px;
+  height: calc(100vh - 64px);
+  background: var(--md-sys-color-surface);
+  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.15);
+  z-index: 900;
+  transition: right 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  &.open {
+    right: 0;
+  }
+}
+
+// ============================================================================
+// HEADER
+// ============================================================================
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-lg);
+  border-bottom: 1px solid var(--md-sys-color-outline-variant);
+  background: var(--md-sys-color-primary-container);
+
+  .header-title {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+
+    .help-icon {
+      font-size: 28px;
+      width: 28px;
+      height: 28px;
+      color: var(--md-sys-color-on-primary-container);
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--md-sys-color-on-primary-container);
+    }
+  }
+
+  .header-actions {
+    display: flex;
+    gap: 4px;
+
+    button {
+      color: var(--md-sys-color-on-primary-container);
+    }
+  }
+}
+
+// ============================================================================
+// PAGE DESCRIPTION
+// ============================================================================
+
+.page-description {
+  padding: var(--spacing-lg);
+  background: var(--md-sys-color-surface-variant);
+  border-bottom: 1px solid var(--md-sys-color-outline-variant);
+
+  p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--md-sys-color-on-surface-variant);
+
+    ::ng-deep strong {
+      font-weight: 600;
+      color: var(--md-sys-color-primary);
+    }
+  }
+}
+
+// ============================================================================
+// HELP SECTIONS
+// ============================================================================
+
+.help-sections {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--spacing-md);
+}
+
+::ng-deep .mat-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+::ng-deep .help-section {
+  border: 1px solid var(--md-sys-color-outline-variant);
+  border-radius: var(--md-sys-shape-corner-medium);
+  overflow: hidden;
+
+  .mat-expansion-panel-header {
+    padding: var(--spacing-md) var(--spacing-lg);
+
+    .mat-panel-title {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      font-weight: 500;
+      color: var(--md-sys-color-on-surface);
+
+      .section-icon {
+        font-size: 20px;
+        width: 20px;
+        height: 20px;
+        color: var(--md-sys-color-primary);
+      }
+    }
+  }
+
+  .mat-expansion-panel-body {
+    padding: 0;
+  }
+}
+
+.section-content {
+  padding: var(--spacing-md) var(--spacing-lg);
+
+  ::ng-deep {
+    p {
+      margin: 0 0 var(--spacing-sm);
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--md-sys-color-on-surface);
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    strong {
+      font-weight: 600;
+      color: var(--md-sys-color-primary);
+    }
+
+    ul, ol {
+      margin: var(--spacing-sm) 0;
+      padding-left: var(--spacing-lg);
+
+      li {
+        margin-bottom: var(--spacing-xs);
+        font-size: 14px;
+        line-height: 1.5;
+
+        strong {
+          font-weight: 600;
+          color: var(--md-sys-color-on-surface);
+        }
+      }
+    }
+
+    code {
+      padding: 2px 6px;
+      background: var(--md-sys-color-surface-variant);
+      border-radius: 4px;
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+    }
+  }
+}
+
+// ============================================================================
+// SUBSECTIONS
+// ============================================================================
+
+.subsections {
+  margin-top: var(--spacing-md);
+  padding-top: var(--spacing-md);
+  border-top: 1px solid var(--md-sys-color-outline-variant);
+}
+
+.subsection {
+  margin-bottom: var(--spacing-md);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  .subsection-header {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    margin-bottom: var(--spacing-xs);
+
+    .subsection-icon {
+      font-size: 18px;
+      width: 18px;
+      height: 18px;
+      color: var(--md-sys-color-secondary);
+    }
+
+    h4 {
+      margin: 0;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--md-sys-color-on-surface);
+    }
+  }
+
+  .subsection-content {
+    padding-left: var(--spacing-lg);
+
+    ::ng-deep {
+      p {
+        margin: 0 0 var(--spacing-xs);
+        font-size: 13px;
+        line-height: 1.5;
+        color: var(--md-sys-color-on-surface-variant);
+      }
+
+      ul {
+        margin: var(--spacing-xs) 0;
+
+        li {
+          font-size: 13px;
+        }
+      }
+    }
+  }
+}
+
+// ============================================================================
+// FOOTER
+// ============================================================================
+
+.panel-footer {
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-top: 1px solid var(--md-sys-color-outline-variant);
+  background: var(--md-sys-color-surface-variant);
+
+  .footer-hint {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-sm);
+
+    mat-icon {
+      font-size: 20px;
+      width: 20px;
+      height: 20px;
+      color: var(--md-sys-color-tertiary);
+      flex-shrink: 0;
+    }
+
+    span {
+      font-size: 13px;
+      line-height: 1.5;
+      color: var(--md-sys-color-on-surface-variant);
+
+      strong {
+        color: var(--md-sys-color-on-surface);
+      }
+    }
+  }
+}
+
+// ============================================================================
+// PRINT STYLES
+// ============================================================================
+
+@media print {
+  .page-help-panel {
+    position: static;
+    width: 100%;
+    height: auto;
+    box-shadow: none;
+
+    .header-actions {
+      display: none;
+    }
+
+    ::ng-deep .mat-expansion-panel {
+      box-shadow: none !important;
+      border: 1px solid #ccc;
+
+      .mat-expansion-panel-header {
+        display: none;
+      }
+
+      .mat-expansion-panel-content {
+        display: block !important;
+        height: auto !important;
+        visibility: visible !important;
+      }
+    }
+  }
+}
+
+// ============================================================================
+// RESPONSIVE
+// ============================================================================
+
+@media (max-width: 768px) {
+  .page-help-panel {
+    width: 100%;
+    right: -100%;
+
+    &.open {
+      right: 0;
+    }
+  }
+}
