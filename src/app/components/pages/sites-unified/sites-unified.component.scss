@@ -154,18 +154,8 @@
   }
 }
 
-.page-title {
-  font-size: 24px;
-  font-weight: 500;
-  color: var(--md-sys-color-on-surface, #202124);
-  margin: 0 0 16px 0;
-  padding: 0;
-}
-
 .complex-filters {
   background: white;
-  border-radius: 8px 8px 0 0; // Only round top corners
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
   padding: 16px;
   display: flex;
   flex-direction: column;
@@ -219,18 +209,25 @@
   }
 }
 
-// Table container with footer (matches circuits pattern)
+// Table container with footer and filters
 .table-with-footer {
   position: relative;
   background: white;
-  border-radius: 0 0 8px 8px; // Only round bottom corners
+  border-radius: 8px; // Round all corners
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+  overflow: hidden; // Ensure content respects border radius
 
   // Override base-table to remove its own background/shadow since we're wrapping it
   ::ng-deep app-base-table .base-table-container {
     background: transparent;
     box-shadow: none;
-    border-radius: 0 0 8px 8px; // Match container
+    border-radius: 0; // Remove border radius from inner table
+
+    // Show table header for title
+    .table-header {
+      background: white;
+      border-bottom: 1px solid #e0e0e0;
+    }
 
     // Remove internal filter section spacing since we have external filters
     .table-filters {
