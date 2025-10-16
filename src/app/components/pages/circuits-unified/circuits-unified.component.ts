@@ -1,6 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { TableConfig } from '../../shared/base-table/base-table.config';
 import { SyncStatusService, DataSyncInfo } from '../../../services/sync-status.service';
+import { PageHelpService } from '../../../services/help/page-help.service';
+import { PageHelpContent } from '../../help/page-help-panel/page-help-panel.component';
 import { Subject, takeUntil } from 'rxjs';
 
 interface Circuit {
@@ -30,7 +32,14 @@ export class CircuitsUnifiedComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<void>();
   private readonly SYNC_KEY = 'circuits-data';
 
-  constructor(private syncStatusService: SyncStatusService) {}
+  // Help panel
+  helpPanelOpen = false;
+  helpContent!: PageHelpContent;
+
+  constructor(
+    private syncStatusService: SyncStatusService,
+    private pageHelpService: PageHelpService
+  ) {}
 
   ngOnInit(): void {
     // Initialize sync tracking
@@ -38,6 +47,12 @@ export class CircuitsUnifiedComponent implements OnInit, OnDestroy {
     this.syncStatusService.getSyncInfo(this.SYNC_KEY)
       .pipe(takeUntil(this.destroy$))
       .subscribe(info => this.syncInfo = info);
+
+    // Load help content
+    const content = this.pageHelpService.getPageHelp('circuits');
+    if (content) {
+      this.helpContent = content;
+    }
 
     this.initializeTableConfig();
     this.loadCircuits();
@@ -199,4 +214,11 @@ export class CircuitsUnifiedComponent implements OnInit, OnDestroy {
   addCircuit() { alert('Add Circuit'); }
   export(c: Circuit[]) { alert(`Export ${c.length} circuits`); }
   delete(c: Circuit[]) { if (confirm(`Delete ${c.length} circuits?`)) alert('Deleted'); }
+
+  /**
+   * Toggle help panel
+   */
+  toggleHelpPanel(): void {
+    this.helpPanelOpen = !this.helpPanelOpen;
+  }
 }

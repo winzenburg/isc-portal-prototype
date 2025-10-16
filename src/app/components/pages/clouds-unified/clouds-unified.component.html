@@ -1,4 +1,15 @@
 <div class="page-container">
+  <!-- Help Button -->
+  <div class="page-header-section">
+    <button
+      mat-icon-button
+      (click)="toggleHelpPanel()"
+      matTooltip="Page help"
+      class="help-button">
+      <mat-icon>help_outline</mat-icon>
+    </button>
+  </div>
+
   <app-base-table
     [config]="tableConfig"
     [data]="clouds"
@@ -11,3 +22,10 @@
     [featureName]="'Cloud Services'"
   ></app-base-table>
 </div>
+
+<!-- Page Help Panel -->
+<app-page-help-panel
+  *ngIf="helpContent"
+  [content]="helpContent"
+  [isOpen]="helpPanelOpen">
+</app-page-help-panel>

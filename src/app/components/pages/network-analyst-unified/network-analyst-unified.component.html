@@ -2,7 +2,13 @@
   <!-- Page Header -->
   <div class="page-header">
     <h1>Network Analyst</h1>
-    <mat-icon class="help-icon" matTooltip="Monitor network traffic by protocol, showing inbound/outbound data patterns">help_outline</mat-icon>
+    <button
+      mat-icon-button
+      (click)="toggleHelpPanel()"
+      matTooltip="Page help"
+      class="help-button">
+      <mat-icon>help_outline</mat-icon>
+    </button>
   </div>
 
   <!-- Circuit Information Card -->
@@ -116,3 +122,10 @@
     </mat-card-content>
   </mat-card>
 </div>
+
+<!-- Page Help Panel -->
+<app-page-help-panel
+  *ngIf="helpContent"
+  [content]="helpContent"
+  [isOpen]="helpPanelOpen">
+</app-page-help-panel>

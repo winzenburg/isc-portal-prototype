@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ChartConfiguration, ChartData, ChartType } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 import { TableConfig } from '../../shared/base-table/base-table.config';
+import { PageHelpService } from '../../../services/help/page-help.service';
+import { PageHelpContent } from '../../help/page-help-panel/page-help-panel.component';
 
 interface ProtocolData {
   protocol: string;
@@ -161,7 +163,19 @@ export class NetworkAnalystUnifiedComponent implements OnInit {
   tableConfig!: TableConfig<ProtocolData>;
   protocols: ProtocolData[] = [];
 
+  // Help panel
+  helpPanelOpen = false;
+  helpContent!: PageHelpContent;
+
+  constructor(private pageHelpService: PageHelpService) {}
+
   ngOnInit() {
+    // Load help content
+    const content = this.pageHelpService.getPageHelp('network-analyst');
+    if (content) {
+      this.helpContent = content;
+    }
+
     this.generateChartData();
     this.initializeProtocolData();
     this.initializeTableConfig();
@@ -338,5 +352,12 @@ export class NetworkAnalystUnifiedComponent implements OnInit {
   onProtocolSelectionChange(event: any) {
     console.log('Selected protocols:', event);
     // In a real implementation, this would filter the chart data
+  }
+
+  /**
+   * Toggle help panel
+   */
+  toggleHelpPanel(): void {
+    this.helpPanelOpen = !this.helpPanelOpen;
   }
 }

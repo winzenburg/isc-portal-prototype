@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { TableConfig } from '../../shared/base-table/base-table.config';
 import { AccessControlService, AccessErrorCode } from '../../../services/access-control.service';
+import { PageHelpService } from '../../../services/help/page-help.service';
+import { PageHelpContent } from '../../help/page-help-panel/page-help-panel.component';
 
 interface Cloud {
   cloudId: string;
@@ -29,11 +31,24 @@ export class CloudsUnifiedComponent implements OnInit {
   accessErrorDetails?: string;
   showUpgradeButton = false;
 
-  constructor(private accessControl: AccessControlService) {}
+  // Help panel
+  helpPanelOpen = false;
+  helpContent!: PageHelpContent;
+
+  constructor(
+    private accessControl: AccessControlService,
+    private pageHelpService: PageHelpService
+  ) {}
 
   ngOnInit() {
     // Check access before initializing
     this.checkAccess();
+
+    // Load help content
+    const content = this.pageHelpService.getPageHelp('clouds');
+    if (content) {
+      this.helpContent = content;
+    }
 
     if (!this.accessDenied) {
       this.initializeTableConfig();
@@ -217,5 +232,12 @@ export class CloudsUnifiedComponent implements OnInit {
 
       this.loading = false;
     }, 500);
+  }
+
+  /**
+   * Toggle help panel
+   */
+  toggleHelpPanel(): void {
+    this.helpPanelOpen = !this.helpPanelOpen;
   }
 }
