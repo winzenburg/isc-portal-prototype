@@ -210,10 +210,24 @@
   }
 }
 
-// Footer with timestamp and refresh button (left side)
+// Make pagination row a flexbox container to accommodate timestamp
+::ng-deep {
+  app-base-table .base-table-container .mat-mdc-paginator {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+
+    .mat-mdc-paginator-container {
+      justify-content: flex-end !important;
+      padding: 0 !important;
+    }
+  }
+}
+
+// Footer with timestamp and refresh button (left side of pagination row)
 .table-footer-info {
   position: absolute;
-  bottom: 8px;
+  bottom: 16px;
   left: 16px;
   display: flex;
   align-items: center;
