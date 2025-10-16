@@ -31,7 +31,7 @@ export class LandingComponent {
       effort: 'Medium',
       evidence: '"Errors are not helpful" - Employee Survey',
       solution: 'Structured error messages with error codes, timestamps, and clear recovery actions',
-      demoRoute: '/assets/demos/05-api-error-state.html',
+      demoRoute: '/assets/demos/index.html',
       icon: 'error_outline'
     },
     {
