@@ -2,37 +2,28 @@
   padding: var(--spacing-lg);
   background-color: var(--md-sys-color-surface);
   min-height: calc(100vh - 64px);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  app-sync-status-indicator {
+    display: block;
+  }
 }
 
-.table-with-sync {
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
+.table-with-help {
+  position: relative;
 
-  .table-header-section {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 12px 16px;
-    border-bottom: 1px solid var(--md-sys-color-outline-variant, #e0e0e0);
-    background: var(--md-sys-color-surface-variant, #f5f5f5);
+  .floating-help-button {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    z-index: 10;
+    background: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
-    app-sync-status-indicator {
-      flex: 1;
-    }
-
-    .help-button {
-      margin-left: 8px;
-      flex-shrink: 0;
-    }
-  }
-
-  // Remove any default padding from base-table since it's now in a card
-  ::ng-deep {
-    .base-table-container {
-      box-shadow: none;
-      border-radius: 0;
+    &:hover {
+      background: #f5f5f5;
     }
   }
 }
