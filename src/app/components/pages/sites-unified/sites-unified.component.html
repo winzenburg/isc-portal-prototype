@@ -65,110 +65,20 @@
 
   <!-- Right Side: Main Content -->
   <div class="main-content">
-    <!-- Table with filters and timestamp footer -->
-    <div class="table-with-footer">
-      <!-- Multi-Row Filter System -->
-      <div class="complex-filters">
-        <!-- Filter Row 1: Site Type -->
-        <div class="filter-row">
-          <span class="filter-label">Filter by Site type:</span>
-          <div class="filter-pills">
-            <button mat-button class="filter-pill"
-                    [class.active]="siteTypeFilter === null"
-                    (click)="onSiteTypeFilterChange(null)">
-              <mat-icon *ngIf="siteTypeFilter === null">check</mat-icon>
-              All
-            </button>
-            <button mat-button class="filter-pill"
-                    [class.active]="siteTypeFilter === 'SD-WAN'"
-                    (click)="onSiteTypeFilterChange('SD-WAN')">
-              <mat-icon *ngIf="siteTypeFilter === 'SD-WAN'">check</mat-icon>
-              <span appHelpTooltip="sd-wan">SD-WAN</span> Sites
-            </button>
-          </div>
-        </div>
-
-        <!-- Filter Row 2: Site Health -->
-        <div class="filter-row">
-          <span class="filter-label">Filter by Site Health:</span>
-          <div class="filter-pills">
-            <button mat-button class="filter-pill"
-                    [class.active]="siteHealthFilter === null"
-                    (click)="onSiteHealthFilterChange(null)">
-              <mat-icon *ngIf="siteHealthFilter === null">check</mat-icon>
-              All
-            </button>
-            <button mat-button class="filter-pill"
-                    [class.active]="siteHealthFilter === 'Partially Inactive'"
-                    (click)="onSiteHealthFilterChange('Partially Inactive')">
-              <mat-icon *ngIf="siteHealthFilter === 'Partially Inactive'">check</mat-icon>
-              Partially Inactive
-            </button>
-            <button mat-button class="filter-pill"
-                    [class.active]="siteHealthFilter === 'Down'"
-                    (click)="onSiteHealthFilterChange('Down')">
-              <mat-icon *ngIf="siteHealthFilter === 'Down'">check</mat-icon>
-              Down
-            </button>
-            <button mat-button class="filter-pill"
-                    [class.active]="siteHealthFilter === 'No Info'"
-                    (click)="onSiteHealthFilterChange('No Info')">
-              <mat-icon *ngIf="siteHealthFilter === 'No Info'">check</mat-icon>
-              No Info
-            </button>
-          </div>
-        </div>
-
-        <!-- Global Filter Search -->
-        <div class="global-filter">
-          <mat-form-field appearance="outline" class="filter-search">
-            <mat-label>Filter</mat-label>
-            <input matInput [(ngModel)]="globalFilter" (ngModelChange)="onGlobalFilterChange($event)">
-            <mat-icon matPrefix>search</mat-icon>
-          </mat-form-field>
-          <div class="action-buttons">
-            <button
-              mat-icon-button
-              color="primary"
-              class="download-button"
-              (click)="exportToCsv()"
-              matTooltip="Export CSV"
-              aria-label="Export CSV">
-              <mat-icon>download</mat-icon>
-            </button>
-            <button
-              mat-icon-button
-              (click)="toggleHelpPanel()"
-              matTooltip="Page help"
-              class="help-button">
-              <mat-icon>help_outline</mat-icon>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Base Table -->
+    <!-- Table with Help Button -->
+    <div class="table-with-help">
+      <button
+        mat-icon-button
+        (click)="toggleHelpPanel()"
+        matTooltip="Page help"
+        class="floating-help-button">
+        <mat-icon>help_outline</mat-icon>
+      </button>
       <app-base-table
         [config]="tableConfig"
-        [data]="filteredSites"
+        [data]="sites"
         [loading]="loading"
-        [externalFiltersActive]="activeExternalFilters"
       ></app-base-table>
-
-      <!-- Data Refresh Timestamp (bottom left, with pagination) -->
-      <div class="table-footer-info" *ngIf="syncInfo?.lastUpdated">
-        <span class="last-updated-text">
-          Last updated: {{ getTimeSinceUpdate() }}
-        </span>
-        <button
-          mat-icon-button
-          (click)="refreshSites()"
-          [disabled]="isSyncing()"
-          [matTooltip]="isSyncing() ? 'Syncing...' : 'Refresh data'"
-          class="refresh-button-small">
-          <mat-icon [class.spinning]="isSyncing()">refresh</mat-icon>
-        </button>
-      </div>
     </div>
   </div>
 </div>

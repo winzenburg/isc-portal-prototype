@@ -54,14 +54,7 @@ export class SitesUnifiedComponent implements OnInit, OnDestroy {
 
   tableConfig!: TableConfig<Site>;
   sites: Site[] = [];
-  filteredSites: Site[] = [];
   loading = false;
-
-  // Filter states
-  siteTypeFilter: string | null = null;
-  siteHealthFilter: string | null = null;
-  globalFilter: string = '';
-  activeExternalFilters: number = 0;
 
   // Sources hierarchy data
   sources: SourceCountry[] = [];
@@ -150,14 +143,24 @@ export class SitesUnifiedComponent implements OnInit, OnDestroy {
       ],
 
       filtering: {
-        searchEnabled: false,
-        persistFilters: false
+        searchEnabled: true,
+        searchPlaceholder: 'Search sites...',
+        persistFilters: true,
+        quickFilters: {
+          enabled: true,
+          label: 'Site Type:',
+          field: 'siteType',
+          options: [
+            { label: 'All', value: null },
+            { label: 'SD-WAN Sites', value: 'SD-WAN' }
+          ]
+        }
       },
 
-      // Note: Export button is handled in custom template (global-filter section)
-      // to maintain optimal placement with the filter controls
       export: {
-        enabled: false  // Disabled to avoid duplicate buttons
+        enabled: true,
+        filename: 'sites',
+        buttonLabel: 'Export CSV'
       },
 
       pagination: { enabled: true, pageSize: 10, pageSizeOptions: [10, 25, 50], showFirstLastButtons: true },
@@ -222,69 +225,12 @@ export class SitesUnifiedComponent implements OnInit, OnDestroy {
         }
       ];
       this.loading = false;
-      this.applyFilters();
       this.syncStatusService.completeSync(this.SYNC_KEY, this.sites.length);
     }, 500);
   }
 
   refreshSites(): void {
     this.loadSites();
-  }
-
-  onSiteTypeFilterChange(value: string | null): void {
-    this.siteTypeFilter = value;
-    this.applyFilters();
-  }
-
-  onSiteHealthFilterChange(value: string | null): void {
-    this.siteHealthFilter = value;
-    this.applyFilters();
-  }
-
-  onGlobalFilterChange(value: string): void {
-    this.globalFilter = value;
-    this.applyFilters();
-  }
-
-  private applyFilters(): void {
-    let filtered = [...this.sites];
-
-    // Count active filters
-    let filterCount = 0;
-
-    // Apply site type filter
-    if (this.siteTypeFilter) {
-      filtered = filtered.filter(site => site.siteType === this.siteTypeFilter);
-      filterCount++;
-    }
-
-    // Apply site health filter
-    if (this.siteHealthFilter) {
-      filtered = filtered.filter(site => site.siteHealth === this.siteHealthFilter);
-      filterCount++;
-    }
-
-    // Apply global filter (search across all fields)
-    if (this.globalFilter) {
-      const term = this.globalFilter.toLowerCase();
-      filtered = filtered.filter(site =>
-        site.siteAlias.toLowerCase().includes(term) ||
-        site.address.toLowerCase().includes(term)
-      );
-      filterCount++;
-    }
-
-    this.filteredSites = filtered;
-    this.activeExternalFilters = filterCount;
-  }
-
-  /**
-   * Export filtered sites to CSV
-   */
-  exportToCsv(): void {
-    if (this.baseTable) {
-      this.baseTable.exportToCsv();
-    }
   }
 
   /**
@@ -543,19 +489,5 @@ export class SitesUnifiedComponent implements OnInit, OnDestroy {
    */
   toggleHelpPanel(): void {
     this.helpPanelOpen = !this.helpPanelOpen;
-  }
-
-  /**
-   * Get formatted time since last update
-   */
-  getTimeSinceUpdate(): string {
-    return this.syncStatusService.getTimeSinceUpdate(this.syncInfo.lastUpdated);
-  }
-
-  /**
-   * Check if data is currently syncing
-   */
-  isSyncing(): boolean {
-    return this.syncInfo?.status === 'syncing';
   }
 }

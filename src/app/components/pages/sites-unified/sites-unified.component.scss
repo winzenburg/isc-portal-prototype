@@ -147,144 +147,37 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 0; // Remove gap to connect filters and table
-
-  app-sync-status-indicator {
-    display: block;
-  }
 }
 
-.complex-filters {
-  background: white;
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  border-bottom: 1px solid #e0e0e0; // Connect to table below
-}
-
-.filter-row {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-
-  .filter-label {
-    font-size: 14px;
-    color: #616161;
-  }
-
-  .filter-pills {
-    display: flex;
-    gap: 8px;
-  }
-
-  .filter-pill {
-    border-radius: 20px;
-    padding: 6px 16px;
-    font-size: 14px;
-    background: white;
-    border: 1px solid #e0e0e0;
-
-    &.active {
-      background: #1565C0;
-      color: white;
-    }
-  }
-}
-
-.global-filter {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-
-  .filter-search {
-    width: 300px;
-  }
-
-  .action-buttons {
-    margin-left: auto;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-}
-
-// Table container with footer and filters
-.table-with-footer {
+.table-with-help {
   position: relative;
-  background: white;
-  border-radius: 8px; // Round all corners
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
-  overflow: hidden; // Ensure content respects border radius
 
-  // Override base-table to remove its own background/shadow since we're wrapping it
-  ::ng-deep app-base-table .base-table-container {
-    background: transparent;
-    box-shadow: none;
-    border-radius: 0; // Remove border radius from inner table
+  .floating-help-button {
+    position: absolute;
+    top: 72px; // Position on search/export row (below quick filters)
+    right: 8px; // Right next to export button
+    z-index: 10;
 
-    // Show table header for title
-    .table-header {
-      background: white;
-      border-bottom: 1px solid #e0e0e0;
-    }
-
-    // Remove internal filter section spacing since we have external filters
-    .table-filters {
-      display: none !important; // Hide internal filters completely
-    }
-
-    // Remove any internal spacing that creates gap
-    .table-wrapper {
-      margin-top: 0 !important;
-      padding-top: 0 !important;
-    }
-
-    table {
-      margin-top: 0 !important;
+    &:hover .mat-icon {
+      color: var(--md-sys-color-primary);
     }
   }
 
-  // Footer with timestamp and refresh button (left side)
-  .table-footer-info {
-    position: absolute;
-    bottom: 8px;
-    left: 16px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    z-index: 5;
+  // Push export button to far right and group with help button
+  ::ng-deep {
+    .search-and-filters {
+      display: flex !important;
+      align-items: center;
+      gap: 12px;
 
-    .last-updated-text {
-      font-size: 0.75rem;
-      color: var(--md-sys-color-on-surface-variant, #666);
-      white-space: nowrap;
-    }
+      .search-field {
+        flex: 0 0 auto;
+      }
 
-    .refresh-button-small {
-      width: 32px;
-      height: 32px;
-      line-height: 32px;
-
-      ::ng-deep .mat-icon {
-        font-size: 20px;
-        width: 20px;
-        height: 20px;
-        line-height: 20px;
-
-        &.spinning {
-          animation: spin 1s linear infinite;
-        }
+      .export-button {
+        margin-left: auto; // Push to far right
+        margin-right: 48px; // Make room for help button
       }
     }
-  }
-}
-
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
   }
 }
