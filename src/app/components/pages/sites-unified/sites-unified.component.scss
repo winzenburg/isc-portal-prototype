@@ -201,4 +201,11 @@
   .filter-search {
     width: 300px;
   }
+
+  .action-buttons {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
 }

@@ -134,22 +134,24 @@
           <input matInput [(ngModel)]="globalFilter" (ngModelChange)="onGlobalFilterChange($event)">
           <mat-icon matPrefix>search</mat-icon>
         </mat-form-field>
-        <button
-          mat-icon-button
-          (click)="toggleHelpPanel()"
-          matTooltip="Page help"
-          class="help-button">
-          <mat-icon>help_outline</mat-icon>
-        </button>
-        <button
-          mat-icon-button
-          color="primary"
-          class="download-button"
-          (click)="exportToCsv()"
-          matTooltip="Export CSV"
-          aria-label="Export CSV">
-          <mat-icon>download</mat-icon>
-        </button>
+        <div class="action-buttons">
+          <button
+            mat-icon-button
+            color="primary"
+            class="download-button"
+            (click)="exportToCsv()"
+            matTooltip="Export CSV"
+            aria-label="Export CSV">
+            <mat-icon>download</mat-icon>
+          </button>
+          <button
+            mat-icon-button
+            (click)="toggleHelpPanel()"
+            matTooltip="Page help"
+            class="help-button">
+            <mat-icon>help_outline</mat-icon>
+          </button>
+        </div>
       </div>
     </div>
 
