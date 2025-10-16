@@ -20,11 +20,11 @@
     }
   }
 
-  // Footer with timestamp and refresh button (right side)
+  // Footer with timestamp and refresh button (left side)
   .table-footer-info {
     position: absolute;
     bottom: 8px;
-    right: 16px;
+    left: 16px;
     display: flex;
     align-items: center;
     gap: 8px;
@@ -50,17 +50,6 @@
         &.spinning {
           animation: spin 1s linear infinite;
         }
-      }
-    }
-  }
-
-  // Move pagination to the left and add space for timestamp on right
-  ::ng-deep {
-    .base-table-container .mat-mdc-paginator {
-      .mat-mdc-paginator-container {
-        justify-content: flex-start !important;
-        padding-left: 0;
-        padding-right: 200px; // Make room for timestamp on right
       }
     }
   }
