@@ -210,29 +210,20 @@
   }
 }
 
-// Make pagination row a flexbox container to accommodate timestamp
-::ng-deep {
-  app-base-table .base-table-container .mat-mdc-paginator {
-    display: flex !important;
-    justify-content: space-between !important;
-    align-items: center !important;
-
-    .mat-mdc-paginator-container {
-      justify-content: flex-end !important;
-      padding: 0 !important;
-    }
-  }
+// Make the page container position: relative for absolute positioning
+.sites-page-container {
+  position: relative;
 }
 
-// Footer with timestamp and refresh button (left side of pagination row)
+// Footer with timestamp and refresh button (overlays on left side of pagination row)
 .table-footer-info {
-  position: absolute;
+  position: fixed;
   bottom: 16px;
-  left: 16px;
+  left: 312px; // Account for left panel (280px) + gap (16px) + padding (16px)
   display: flex;
   align-items: center;
   gap: 8px;
-  z-index: 5;
+  z-index: 10;
 
   .last-updated-text {
     font-size: 0.75rem;
