@@ -29,7 +29,7 @@
         <div class="chart-content">
           <div class="doughnut-chart-container">
             <div class="doughnut-center-text">
-              <div class="doughnut-total">44</div>
+              <div class="doughnut-total" [appCountUp]="44" [countDuration]="1200" [countDelay]="100"></div>
               <div class="doughnut-label">Total</div>
             </div>
             <canvas baseChart
@@ -39,12 +39,12 @@
             </canvas>
           </div>
           <div class="chart-legend">
-            <div *ngFor="let item of cloudsBreakdown" class="legend-item">
+            <div *ngFor="let item of cloudsBreakdown; let i = index" class="legend-item">
               <div class="legend-color" [style.background-color]="item.color"></div>
               <div class="legend-details">
-                <div class="legend-count">{{ item.count }}</div>
+                <div class="legend-count" [appCountUp]="item.count" [countDuration]="1000" [countDelay]="200 + i * 100"></div>
                 <div class="legend-label">{{ item.label }}</div>
-                <div class="legend-percentage">{{ item.percentage }}%</div>
+                <div class="legend-percentage" [appCountUp]="item.percentage" [countDuration]="1000" [countDelay]="200 + i * 100" [countDecimals]="2" countSuffix="%"></div>
               </div>
             </div>
           </div>
@@ -68,14 +68,14 @@
       <mat-card-content>
         <div class="circuits-content">
           <div class="circuits-grid">
-            <div *ngFor="let circuit of circuitsOverview" class="circuit-item">
-              <div class="circuit-percentage">{{ circuit.percentage }}%</div>
+            <div *ngFor="let circuit of circuitsOverview; let i = index" class="circuit-item">
+              <div class="circuit-percentage" [appCountUp]="circuit.percentage" [countDuration]="1000" [countDelay]="300 + i * 80" [countDecimals]="1" countSuffix="%"></div>
               <div class="circuit-label">{{ circuit.label }}</div>
-              <div class="circuit-total">Total: {{ circuit.total }}</div>
+              <div class="circuit-total">Total: <span [appCountUp]="circuit.total" [countDuration]="1000" [countDelay]="300 + i * 80"></span></div>
             </div>
           </div>
           <div class="circuits-total">
-            <strong>Total Circuits:</strong> {{ totalCircuits }}
+            <strong>Total Circuits:</strong> <span [appCountUp]="totalCircuits" [countDuration]="1200" [countDelay]="600"></span>
           </div>
         </div>
       </mat-card-content>
@@ -97,8 +97,8 @@
     </mat-card-header>
     <mat-card-content>
       <div class="tickets-content">
-        <div *ngFor="let ticket of ticketsData" class="ticket-item">
-          <div class="ticket-count">{{ ticket.count }}</div>
+        <div *ngFor="let ticket of ticketsData; let i = index" class="ticket-item">
+          <div class="ticket-count" [appCountUp]="ticket.count" [countDuration]="800" [countDelay]="400 + i * 60"></div>
           <div class="ticket-bar">
             <div class="ticket-bar-fill"
                  [style.background-color]="ticket.color"

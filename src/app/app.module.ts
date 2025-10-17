@@ -68,6 +68,7 @@ import { NoAccessStateComponent } from './components/no-access-state/no-access-s
 import { NetworkAnalystUnifiedComponent } from './components/pages/network-analyst-unified/network-analyst-unified.component';
 import { SparklineComponent } from './components/shared/sparkline/sparkline.component';
 import { HelpTooltipDirective } from './directives/help-tooltip.directive';
+import { CountUpDirective } from './directives/count-up.directive';
 import { GlossaryModalComponent } from './components/help/glossary-modal/glossary-modal.component';
 import { Nl2brPipe } from './pipes/nl2br.pipe';
 import { HelpPopoverComponent } from './components/help/help-popover/help-popover.component';
@@ -111,6 +112,7 @@ import { PageHelpPanelComponent } from './components/help/page-help-panel/page-h
     NetworkAnalystUnifiedComponent,
     SparklineComponent,
     HelpTooltipDirective,
+    CountUpDirective,
     GlossaryModalComponent,
     Nl2brPipe,
     HelpPopoverComponent,
