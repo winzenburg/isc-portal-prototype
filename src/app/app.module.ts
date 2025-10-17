@@ -73,6 +73,7 @@ import { GlossaryModalComponent } from './components/help/glossary-modal/glossar
 import { Nl2brPipe } from './pipes/nl2br.pipe';
 import { HelpPopoverComponent } from './components/help/help-popover/help-popover.component';
 import { PageHelpPanelComponent } from './components/help/page-help-panel/page-help-panel.component';
+import { AiChatbotComponent } from './components/ai-chatbot/ai-chatbot.component';
 
 @NgModule({
   declarations: [
@@ -116,7 +117,8 @@ import { PageHelpPanelComponent } from './components/help/page-help-panel/page-h
     GlossaryModalComponent,
     Nl2brPipe,
     HelpPopoverComponent,
-    PageHelpPanelComponent
+    PageHelpPanelComponent,
+    AiChatbotComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,109 @@
+<!-- Floating Chat Button -->
+<button
+  *ngIf="!isOpen"
+  class="chat-fab"
+  mat-fab
+  color="primary"
+  (click)="toggleChat()"
+  matTooltip="Chat with AI Assistant"
+  aria-label="Open chat">
+  <mat-icon>chat</mat-icon>
+  <span class="pulse-ring"></span>
+</button>
+
+<!-- Chat Window -->
+<div class="chat-window" [class.open]="isOpen" [class.minimized]="isMinimized">
+  <!-- Chat Header -->
+  <div class="chat-header">
+    <div class="chat-header-content">
+      <div class="bot-avatar">
+        <mat-icon>smart_toy</mat-icon>
+      </div>
+      <div class="chat-title">
+        <h3>ISC Portal Assistant</h3>
+        <span class="bot-status">
+          <span class="status-dot"></span>
+          Always available
+        </span>
+      </div>
+    </div>
+    <div class="chat-actions">
+      <button mat-icon-button (click)="minimizeChat()" matTooltip="Minimize">
+        <mat-icon>{{ isMinimized ? 'expand_less' : 'expand_more' }}</mat-icon>
+      </button>
+      <button mat-icon-button (click)="closeChat()" matTooltip="Close">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <!-- Chat Messages -->
+  <div class="chat-messages" #messagesContainer [class.minimized]="isMinimized">
+    <div *ngFor="let message of messages" class="message-wrapper" [class.user]="message.sender === 'user'">
+      <div class="message" [class.user-message]="message.sender === 'user'" [class.bot-message]="message.sender === 'bot'">
+        <div *ngIf="message.sender === 'bot'" class="bot-avatar-small">
+          <mat-icon>smart_toy</mat-icon>
+        </div>
+        <div class="message-content">
+          <div class="message-text" [innerHTML]="message.text | nl2br"></div>
+          <span class="message-time">{{ formatTime(message.timestamp) }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Typing Indicator -->
+    <div *ngIf="isTyping" class="message-wrapper">
+      <div class="message bot-message typing-indicator">
+        <div class="bot-avatar-small">
+          <mat-icon>smart_toy</mat-icon>
+        </div>
+        <div class="typing-dots">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chat Input -->
+  <div class="chat-input" *ngIf="!isMinimized">
+    <mat-form-field appearance="outline" class="chat-input-field">
+      <input
+        matInput
+        [(ngModel)]="userInput"
+        (keyup.enter)="sendMessage()"
+        placeholder="Type your message..."
+        autocomplete="off">
+    </mat-form-field>
+    <button
+      mat-mini-fab
+      color="primary"
+      (click)="sendMessage()"
+      [disabled]="!userInput.trim()"
+      class="send-button"
+      aria-label="Send message">
+      <mat-icon>send</mat-icon>
+    </button>
+  </div>
+
+  <!-- Suggested Actions (shown when no messages) -->
+  <div class="suggested-actions" *ngIf="messages.length === 1 && !isMinimized">
+    <button mat-stroked-button (click)="userInput = 'How do I view my sites?'; sendMessage()">
+      <mat-icon>location_on</mat-icon>
+      View Sites
+    </button>
+    <button mat-stroked-button (click)="userInput = 'Check circuit status'; sendMessage()">
+      <mat-icon>router</mat-icon>
+      Circuit Status
+    </button>
+    <button mat-stroked-button (click)="userInput = 'Create a support ticket'; sendMessage()">
+      <mat-icon>support</mat-icon>
+      Create Ticket
+    </button>
+    <button mat-stroked-button (click)="userInput = 'What can you help me with?'; sendMessage()">
+      <mat-icon>help_outline</mat-icon>
+      Get Help
+    </button>
+  </div>
+</div>
