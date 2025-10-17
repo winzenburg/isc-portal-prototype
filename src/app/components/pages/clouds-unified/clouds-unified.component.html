@@ -26,5 +26,6 @@
 <app-page-help-panel
   *ngIf="helpContent"
   [content]="helpContent"
-  [isOpen]="helpPanelOpen">
+  [isOpen]="helpPanelOpen"
+  (closePanel)="helpPanelOpen = false">
 </app-page-help-panel>

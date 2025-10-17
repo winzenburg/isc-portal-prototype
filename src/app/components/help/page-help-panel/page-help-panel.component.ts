@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 export interface PageHelpSection {
   id: string;
@@ -28,6 +28,7 @@ export interface PageHelpContent {
 export class PageHelpPanelComponent {
   @Input() content!: PageHelpContent;
   @Input() isOpen: boolean = false;
+  @Output() closePanel = new EventEmitter<void>();
 
   expandedSections: Set<string> = new Set();
 
@@ -55,5 +56,9 @@ export class PageHelpPanelComponent {
 
   printHelp(): void {
     window.print();
+  }
+
+  close(): void {
+    this.closePanel.emit();
   }
 }
