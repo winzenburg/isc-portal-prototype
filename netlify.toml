@@ -1,0 +1,27 @@
+# Netlify configuration for ISC Portal Prototype
+
+[build]
+  # Build command to run
+  command = "npm install && npm run build"
+
+  # Directory where the built files are located
+  publish = "dist/isc-portal-prototype"
+
+# Production context
+[context.production]
+  command = "npm install && npm run build"
+
+# Deploy preview context
+[context.deploy-preview]
+  command = "npm install && npm run build"
+
+# Branch deploy context
+[context.branch-deploy]
+  command = "npm install && npm run build"
+
+# Redirect rules for Angular SPA (Single Page Application)
+# This ensures that all routes are handled by index.html
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
